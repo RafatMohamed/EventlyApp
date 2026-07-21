@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'core/utilities/app_them.dart';
+
 void main() {
   runApp(const TestRun());
 }
@@ -9,9 +11,11 @@ class TestRun extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return  MaterialApp(
       themeMode: .light,
-      home: Placeholder(),
+      darkTheme: AppThem.darkThem,
+      theme: AppThem.lightThem,
+      home: const Placeholder(),
     );
   }
 }
