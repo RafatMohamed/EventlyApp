@@ -1,7 +1,11 @@
 class AppText {
   static const String appName = "Evently";
-  static const String routeMainApp = "MainApp";
+  static const String routeMainApp = "mainApp";
   static const String routeOnBoardingApp = "onBoardingView";
+  static const String routeHomeViewApp = "homeView";
+  static const String routeFavoriteViewApp = "favoriteView";
+  static const String routeProfileViewApp = "profileView";
+  static const String routeEditeEventViewApp = "editeEvent";
 
 
 
@@ -23,4 +27,7 @@ static const String ar="Arabic";
 static const String letsStart ="Let’s start";
 static const String next ="next";
 static const String getStarted ="Get Started";
+static const String home ="Home";
+static const String favorite ="Favorite";
+static const String profile ="Profile";
 }

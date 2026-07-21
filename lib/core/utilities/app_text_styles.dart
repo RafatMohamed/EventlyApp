@@ -27,4 +27,9 @@ class AppTextStyles {
     fontWeight: .bold,
     fontStyle: .normal,
   );
+  static const TextStyle textS12RStyle = TextStyle(
+    fontSize: 12,
+    fontWeight: .w400,
+    fontStyle: .normal,
+  );
 }

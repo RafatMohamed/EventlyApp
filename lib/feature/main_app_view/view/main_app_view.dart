@@ -1,0 +1,71 @@
+import 'package:evently_app/feature/edite_event/view/edite_event_view.dart';
+import 'package:evently_app/feature/favorite/view/favorite_view.dart';
+import 'package:evently_app/feature/home/view/home_view.dart';
+import 'package:evently_app/feature/profile/view/profile_view.dart';
+import 'package:evently_app/generated/assets.dart';
+import 'package:flutter/material.dart';
+import '../../../core/utilities/app_text.dart';
+import '../widgets/custom_build_bottom_nav_bar_item.dart';
+
+class MainAppView extends StatefulWidget {
+  const MainAppView({super.key});
+  static const String routeName = "/${AppText.routeMainApp}";
+
+  @override
+  State<MainAppView> createState() => _MainAppViewState();
+}
+
+class _MainAppViewState extends State<MainAppView> {
+  int currentIndex = 0;
+  List<Widget> tabsView = [
+    const HomeView(),
+    const FavoriteView(),
+    const ProfileView(),
+  ];
+  List<BottomNavigationBarItem> iconBottomNavBar = [
+    BottomNavigationBarItem(
+      activeIcon: BottomNavBarItemActive(
+        pathIcon: Assets.icons.homeSelect.path,
+      ),
+      icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.home.path),
+      label: AppText.home,
+    ),
+    BottomNavigationBarItem(
+      activeIcon: BottomNavBarItemActive(
+        pathIcon: Assets.icons.favouriteSelect.path,
+      ),
+      icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.favorite.path),
+      label: AppText.favorite,
+    ),
+    BottomNavigationBarItem(
+      activeIcon: BottomNavBarItemActive(
+        pathIcon: Assets.icons.userSelect.path,
+      ),
+      icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.user.path),
+      label: AppText.profile,
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: tabsView[currentIndex],
+
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          currentIndex = index;
+          setState(() {});
+        },
+        currentIndex: currentIndex,
+        items: iconBottomNavBar,
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context,EditeEventView.routeName);
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
