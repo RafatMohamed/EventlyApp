@@ -74,6 +74,9 @@ class $AssetsSvgGen {
   final SvgGenImage beingCreative2 = const SvgGenImage(
     'assets/images/svg/being-creative2.svg',
   );
+  final SvgGenImage beingCreative3 = const SvgGenImage(
+    'assets/images/svg/being-creative3.svg',
+  );
   final SvgGenImage hotTrending = const SvgGenImage(
     'assets/images/svg/hot-trending.svg',
   );
