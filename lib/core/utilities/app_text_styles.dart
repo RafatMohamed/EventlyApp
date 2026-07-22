@@ -2,6 +2,11 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
+  static const TextStyle textS24SBStyle = TextStyle(
+    fontSize: 24,
+    fontWeight: .w600,
+    fontStyle: .normal,
+  );
   static const TextStyle textS20SBStyle = TextStyle(
     fontSize: 20,
     fontWeight: .w600,
@@ -9,6 +14,11 @@ class AppTextStyles {
   );
   static const TextStyle textS16RStyle = TextStyle(
     fontSize: 16,
+    fontWeight: .w400,
+    fontStyle: .normal,
+  );
+  static const TextStyle textS14RStyle = TextStyle(
+    fontSize: 14,
     fontWeight: .w400,
     fontStyle: .normal,
   );

@@ -91,7 +91,10 @@ class $AssetsIconsGen {
   final SvgGenImage favouriteSelect = const SvgGenImage(
     'assets/icons/favourite_select.svg',
   );
-  final SvgGenImage google = const SvgGenImage('assets/icons/google.svg');
+  final AssetGenImage googlePng = const AssetGenImage(
+    'assets/icons/google.png',
+  );
+  final SvgGenImage googleSvg = const SvgGenImage('assets/icons/google.svg');
   final SvgGenImage home = const SvgGenImage('assets/icons/home.svg');
   final SvgGenImage homeSelect = const SvgGenImage(
     'assets/icons/home_select.svg',
@@ -105,7 +108,6 @@ class $AssetsIconsGen {
   final SvgGenImage userSelect = const SvgGenImage(
     'assets/icons/user_select.svg',
   );
-
 }
 
 class AssetGenImage {
