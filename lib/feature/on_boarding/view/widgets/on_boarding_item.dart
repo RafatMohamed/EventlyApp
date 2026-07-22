@@ -60,7 +60,7 @@ class _OnBoardingItemState extends State<OnBoardingItem> {
       SvgPicture.asset(
         Assets.icons.darkMode.path,
         fit: .scaleDown,
-          colorFilter: ColorFilter.mode(isLightThem == 0
+          colorFilter: ColorFilter.mode(isLightThem == 1
               ? themData.disabledColor
               : themData.primaryColor, BlendMode.srcIn),
       ),

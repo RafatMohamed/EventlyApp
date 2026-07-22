@@ -1,8 +1,14 @@
 class AppText {
   static const String appName = "Evently";
-  static const String routeMainApp = "MainApp";
+  static const String routeMainApp = "mainApp";
   static const String routeOnBoardingApp = "onBoardingView";
-
+  static const String routeHomeViewApp = "homeView";
+  static const String routeFavoriteViewApp = "favoriteView";
+  static const String routeProfileViewApp = "profileView";
+  static const String routeEditeEventViewApp = "editeEvent";
+  static const String routeLoginViewApp = "loginView";
+  static const String routeRegisterViewApp = "registerView";
+  static const String routeForgetPassViewApp = "forgetPassView";
 
 
   static const String title0OnBoarding = "Personalize Your Experience";
@@ -23,4 +29,22 @@ static const String ar="Arabic";
 static const String letsStart ="Let’s start";
 static const String next ="next";
 static const String getStarted ="Get Started";
+static const String home ="Home";
+static const String favorite ="Favorite";
+static const String profile ="Profile";
+
+static const String titleLoginAcc ="Login to your account";
+static const String titleRegisterAcc ="Create your account";
+static const String forgetPass ="Forget Password";
+static const String login ="Login";
+static const String signUp ="Sign up";
+static const String enterYourEmail ="Enter your email";
+static const String enterYourPass ="Enter your password";
+static const String enterYournName ="Enter your name";
+static const String confirmYourPass ="Confirm your password";
+static const String resetPass ="Reset password";
+static const String dontHaveAcc ="Don’t have an account";
+static const String haveAcc ="Already have an account";
+static const String or ="Or";
+static const String withGoogle ="with Google";
 }

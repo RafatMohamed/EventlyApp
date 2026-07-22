@@ -87,13 +87,27 @@ class $AssetsIconsGen {
 
   final SvgGenImage darkMode = const SvgGenImage('assets/icons/dark_mode.svg');
   final SvgGenImage eyeSlash = const SvgGenImage('assets/icons/eye-slash.svg');
-  final SvgGenImage google = const SvgGenImage('assets/icons/google.svg');
+  final SvgGenImage favorite = const SvgGenImage('assets/icons/favorite.svg');
+  final SvgGenImage favouriteSelect = const SvgGenImage(
+    'assets/icons/favourite_select.svg',
+  );
+  final AssetGenImage googlePng = const AssetGenImage(
+    'assets/icons/google.png',
+  );
+  final SvgGenImage googleSvg = const SvgGenImage('assets/icons/google.svg');
+  final SvgGenImage home = const SvgGenImage('assets/icons/home.svg');
+  final SvgGenImage homeSelect = const SvgGenImage(
+    'assets/icons/home_select.svg',
+  );
   final SvgGenImage lightMode = const SvgGenImage(
     'assets/icons/light_mode.svg',
   );
   final SvgGenImage lock = const SvgGenImage('assets/icons/lock.svg');
   final SvgGenImage sms = const SvgGenImage('assets/icons/sms.svg');
   final SvgGenImage user = const SvgGenImage('assets/icons/user.svg');
+  final SvgGenImage userSelect = const SvgGenImage(
+    'assets/icons/user_select.svg',
+  );
 }
 
 class AssetGenImage {

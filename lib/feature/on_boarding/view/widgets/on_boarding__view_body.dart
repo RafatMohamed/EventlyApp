@@ -1,5 +1,6 @@
 import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
+import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/model/on_boarding_model.dart';
 import 'package:evently_app/generated/assets.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +84,9 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
           ),
           CustomButtonApp(
             onTap: () {
-              if (currentIndex == itemsOnBoarding.length - 1) return;
+              if (currentIndex == itemsOnBoarding.length - 1) {
+               navigationToMainView();
+              }
               animateChangePage(currentIndex + 1);
             },
             text: currentIndex == 0
@@ -103,5 +106,9 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.fastLinearToSlowEaseIn,
     );
+  }
+
+  Future<void> navigationToMainView() {
+    return  Navigator.pushReplacementNamed(context, MainAppView.routeName);
   }
 }
