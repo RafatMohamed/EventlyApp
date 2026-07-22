@@ -2,8 +2,9 @@ import 'package:evently_app/core/utilities/app_text_styles.dart';
 import 'package:evently_app/core/widgets/app_bar_logo.dart';
 import 'package:evently_app/core/widgets/custom_button_app.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
+import 'package:evently_app/feature/login/view/login_view.dart';
 import 'package:evently_app/feature/login/view/widgets/custom_form_build_login.dart';
-import 'package:evently_app/feature/register/view/sign_up_view.dart';
+import 'package:evently_app/feature/register/view/widgets/custom_form_build_sign_up.dart';
 import 'package:evently_app/generated/assets.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +12,9 @@ import '../../../core/utilities/app_padding.dart';
 import '../../../core/utilities/app_text.dart';
 import '../../../core/widgets/custom_button_google.dart';
 
-class LoginView extends StatelessWidget {
-  static const String routeName = "/${AppText.routeLoginViewApp}";
-  const LoginView({super.key});
+class SignUpView extends StatelessWidget {
+  static const String routeName = "/${AppText.routeRegisterViewApp}";
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,26 +33,26 @@ class LoginView extends StatelessWidget {
                 Align(
                   alignment: .centerStart,
                   child: Text(
-                    AppText.titleLoginAcc,
+                    AppText.titleRegisterAcc,
                     style: textTheme.bodyLarge,
                   ),
                 ),
                 SizedBox(height: 24),
-                CustomFormBuildLogin(textTheme: textTheme),
+                CustomFormBuildSignUp(textTheme: textTheme),
                 SizedBox(height: 48),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, SignUpView.routeName);
+                    Navigator.pushNamed(context, LoginView.routeName);
                   },
                   child: Text.rich(
                     textAlign: .center,
                     style: textTheme.titleSmall,
                     TextSpan(
                       children: <TextSpan>[
-                        TextSpan(text: AppText.dontHaveAcc),
+                        TextSpan(text: AppText.haveAcc),
                         TextSpan(text: " ? "),
                         TextSpan(
-                          text: AppText.signUp,
+                          text: AppText.login,
                           style: textTheme.labelSmall,
                         ),
                       ],
@@ -70,7 +71,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                CustomButtonGoogle(onTap: () {}, text: AppText.login),
+                CustomButtonGoogle(onTap: () {}, text: AppText.signUp),
               ],
             ),
           ),

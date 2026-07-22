@@ -9,6 +9,7 @@ import '../feature/favorite/view/favorite_view.dart';
 import '../feature/home/view/home_view.dart';
 import '../feature/login/view/login_view.dart';
 import '../feature/profile/view/profile_view.dart';
+import '../feature/register/view/sign_up_view.dart';
 
 class EventlyApp extends StatelessWidget {
   const EventlyApp({super.key});
@@ -19,6 +20,7 @@ class EventlyApp extends StatelessWidget {
       OnBoardingView.routeName: (context) => const OnBoardingView(),
       MainAppView.routeName: (context) => const MainAppView(),
       LoginView.routeName: (context) => const LoginView(),
+      SignUpView.routeName: (context) => const SignUpView(),
       HomeView.routeName: (context) => const HomeView(),
       FavoriteView.routeName: (context) => const FavoriteView(),
       ProfileView.routeName: (context) => const ProfileView(),

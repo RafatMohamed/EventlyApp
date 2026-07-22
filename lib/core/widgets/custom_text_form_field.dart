@@ -36,11 +36,11 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color themeColor = Theme.of(context).primaryColor;
+    final ThemeData themeColor = Theme.of(context);
     return TextFormField(
       obscureText:isSecureValue!,
       controller: controller,
-      cursorColor: themeColor,
+      cursorColor: themeColor.primaryColor,
       cursorHeight: 25,
       validator: (value) {
         if (withValidator!) {
@@ -69,6 +69,12 @@ class CustomTextFormField extends StatelessWidget {
         }
       },
       keyboardType: keyboardType,
+      style:  TextStyle(
+        color: themeColor.primaryColor,
+        fontSize: 20,
+        fontWeight: .w600,
+        fontStyle: .normal,
+      ),
       textInputAction: textInputAction,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
