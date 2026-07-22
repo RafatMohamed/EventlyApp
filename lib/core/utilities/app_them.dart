@@ -31,7 +31,7 @@ class AppThem {
         fontStyle: .normal,
       ),
       labelStyle:  TextStyle(
-        color: AppColors.inputsLight,
+        color: AppColors.mainColorLight,
         fontSize: 16,
         fontWeight: .bold,
         fontStyle: .normal,
@@ -144,16 +144,12 @@ class AppThem {
         fontStyle: .normal,
       ),
       labelStyle:  TextStyle(
-        color: AppColors.inputsDark,
+        color: AppColors.mainColorDark,
         fontSize: 16,
         fontWeight: .bold,
         fontStyle: .normal,
       ),
       prefixIconColor: AppColors.disableColor,
-      prefixStyle: TextStyle(
-        fontSize: 24,
-        color: AppColors.disableColor,
-      ),
       suffixIconColor:AppColors.disableColor,
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorderRadius.r16),

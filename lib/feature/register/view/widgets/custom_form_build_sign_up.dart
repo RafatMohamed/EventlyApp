@@ -5,8 +5,8 @@ import '../../../../core/widgets/custom_button_app.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../generated/assets.dart';
 
-class CustomFormBuildLogin extends StatelessWidget {
-  const CustomFormBuildLogin({
+class CustomFormBuildSignUp extends StatelessWidget {
+  const CustomFormBuildSignUp({
     super.key,
     required this.textTheme,
   });
@@ -20,6 +20,14 @@ class CustomFormBuildLogin extends StatelessWidget {
         crossAxisAlignment: .end,
         children: [
           CustomTextFormField(
+            hintText: AppText.enterYournName,
+            isName: true,
+            prefixIconPath: Assets.icons.user.path,
+            keyboardType: .name,
+            textInputAction: .next,
+          ),
+          SizedBox(height: 16),
+          CustomTextFormField(
             hintText: AppText.enterYourEmail,
             isEmail: true,
             prefixIconPath: Assets.icons.sms.path,
@@ -30,24 +38,21 @@ class CustomFormBuildLogin extends StatelessWidget {
           CustomTextFormField(
             hintText: AppText.enterYourPass,
             isPassword: true,
+            prefixIconPath: Assets.icons.lock.path,
+            keyboardType: .visiblePassword,
+            textInputAction: .next,
+            isSecureValue: true,
+          ), SizedBox(height: 16),
+          CustomTextFormField(
+            hintText: AppText.confirmYourPass,
+            isPassword: true,
             isSecureValue: true,
             prefixIconPath: Assets.icons.lock.path,
             keyboardType: .visiblePassword,
             textInputAction: .done,
           ),
-          SizedBox(height: 8),
-          Text.rich(
-            textAlign: .end,
-            style: textTheme.labelSmall,
-            TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: AppText.forgetPass),
-                TextSpan(text: "?"),
-              ],
-            ),
-          ),
           SizedBox(height: 48),
-          CustomButtonApp(onTap: () {}, text: AppText.login),
+          CustomButtonApp(onTap: () {}, text: AppText.signUp),
         ],
       ),
     );
