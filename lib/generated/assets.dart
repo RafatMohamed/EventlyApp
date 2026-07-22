@@ -105,7 +105,6 @@ class $AssetsIconsGen {
   final SvgGenImage userSelect = const SvgGenImage(
     'assets/icons/user_select.svg',
   );
-
 }
 
 class AssetGenImage {
