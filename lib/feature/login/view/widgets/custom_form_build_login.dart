@@ -1,3 +1,4 @@
+import 'package:evently_app/feature/reset_pass/view/reset_pass_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/utilities/app_text.dart';
@@ -26,7 +27,7 @@ class CustomFormBuildLogin extends StatelessWidget {
             keyboardType: .emailAddress,
             textInputAction: .next,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           CustomTextFormField(
             hintText: AppText.enterYourPass,
             isPassword: true,
@@ -35,18 +36,23 @@ class CustomFormBuildLogin extends StatelessWidget {
             keyboardType: .visiblePassword,
             textInputAction: .done,
           ),
-          SizedBox(height: 8),
-          Text.rich(
-            textAlign: .end,
-            style: textTheme.labelSmall,
-            TextSpan(
-              children: <TextSpan>[
-                TextSpan(text: AppText.forgetPass),
-                TextSpan(text: "?"),
-              ],
+          const SizedBox(height: 8),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, ResetPasswordView.routeName);
+            },
+            child: Text.rich(
+              textAlign: .end,
+              style: textTheme.labelSmall,
+              const TextSpan(
+                children: <TextSpan>[
+                  TextSpan(text: AppText.forgetPass),
+                  TextSpan(text: "?"),
+                ],
+              ),
             ),
           ),
-          SizedBox(height: 48),
+          const SizedBox(height: 48),
           CustomButtonApp(onTap: () {}, text: AppText.login),
         ],
       ),

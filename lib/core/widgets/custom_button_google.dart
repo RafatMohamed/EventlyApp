@@ -1,8 +1,5 @@
 import 'package:evently_app/generated/assets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../utilities/app_border_radius.dart';
 import '../utilities/app_padding.dart';
 import '../utilities/app_text.dart';
@@ -36,8 +33,8 @@ class CustomButtonGoogle extends StatelessWidget {
               TextSpan(
                 children: <TextSpan>[
                   TextSpan(text: text),
-                  TextSpan(text: " "),
-                  TextSpan(text: AppText.withGoogle),
+                  const TextSpan(text: " "),
+                  const TextSpan(text: AppText.withGoogle),
                 ],
               ),
             ),
