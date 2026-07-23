@@ -38,6 +38,9 @@ class $AssetsPngGen {
   final AssetGenImage brandingLight = const AssetGenImage(
     'assets/images/png/branding_light.png',
   );
+  final AssetGenImage changePassImg = const AssetGenImage(
+    'assets/images/png/change-pass_img.png',
+  );
   final AssetGenImage exhibitionDark = const AssetGenImage(
     'assets/images/png/exhibition_dark.png',
   );
