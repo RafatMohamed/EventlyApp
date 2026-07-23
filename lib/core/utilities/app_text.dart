@@ -39,6 +39,7 @@ static const String forgetPass ="Forget Password";
 static const String login ="Login";
 static const String signUp ="Sign up";
 static const String enterYourEmail ="Enter your email";
+static const String to ="to";
 static const String enterYourPass ="Enter your password";
 static const String enterYournName ="Enter your name";
 static const String confirmYourPass ="Confirm your password";

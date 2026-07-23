@@ -26,7 +26,7 @@ class CustomFormBuildSignUp extends StatelessWidget {
             keyboardType: .name,
             textInputAction: .next,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           CustomTextFormField(
             hintText: AppText.enterYourEmail,
             isEmail: true,
@@ -34,7 +34,7 @@ class CustomFormBuildSignUp extends StatelessWidget {
             keyboardType: .emailAddress,
             textInputAction: .next,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           CustomTextFormField(
             hintText: AppText.enterYourPass,
             isPassword: true,
@@ -42,7 +42,7 @@ class CustomFormBuildSignUp extends StatelessWidget {
             keyboardType: .visiblePassword,
             textInputAction: .next,
             isSecureValue: true,
-          ), SizedBox(height: 16),
+          ), const SizedBox(height: 16),
           CustomTextFormField(
             hintText: AppText.confirmYourPass,
             isPassword: true,
@@ -51,7 +51,7 @@ class CustomFormBuildSignUp extends StatelessWidget {
             keyboardType: .visiblePassword,
             textInputAction: .done,
           ),
-          SizedBox(height: 48),
+          const SizedBox(height: 48),
           CustomButtonApp(onTap: () {}, text: AppText.signUp),
         ],
       ),

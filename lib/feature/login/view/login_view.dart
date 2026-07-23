@@ -1,12 +1,7 @@
-import 'package:evently_app/core/utilities/app_text_styles.dart';
 import 'package:evently_app/core/widgets/app_bar_logo.dart';
-import 'package:evently_app/core/widgets/custom_button_app.dart';
-import 'package:evently_app/core/widgets/custom_text_form_field.dart';
 import 'package:evently_app/feature/login/view/widgets/custom_form_build_login.dart';
 import 'package:evently_app/feature/register/view/sign_up_view.dart';
-import 'package:evently_app/generated/assets.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/utilities/app_padding.dart';
 import '../../../core/utilities/app_text.dart';
 import '../../../core/widgets/custom_button_google.dart';
@@ -27,8 +22,8 @@ class LoginView extends StatelessWidget {
             padding: const EdgeInsetsDirectional.all(AppPadding.p16),
             child: Column(
               children: [
-                Align(alignment: .center, child: AppBarLogo()),
-                SizedBox(height: 48),
+                const Align(alignment: .center, child: AppBarLogo()),
+                const SizedBox(height: 48),
                 Align(
                   alignment: .centerStart,
                   child: Text(
@@ -36,9 +31,9 @@ class LoginView extends StatelessWidget {
                     style: textTheme.bodyLarge,
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 CustomFormBuildLogin(textTheme: textTheme),
-                SizedBox(height: 48),
+                const SizedBox(height: 48),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, SignUpView.routeName);
@@ -48,8 +43,8 @@ class LoginView extends StatelessWidget {
                     style: textTheme.titleSmall,
                     TextSpan(
                       children: <TextSpan>[
-                        TextSpan(text: AppText.dontHaveAcc),
-                        TextSpan(text: " ? "),
+                        const TextSpan(text: AppText.dontHaveAcc),
+                        const TextSpan(text: " ? "),
                         TextSpan(
                           text: AppText.signUp,
                           style: textTheme.labelSmall,
