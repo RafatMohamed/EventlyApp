@@ -21,65 +21,47 @@ class $AssetsPngGen {
   const $AssetsPngGen();
 
   final AssetGenImage birthdayDark = const AssetGenImage(
-    'assets/images/png/birthday_dark.png',
-  );
+      'assets/images/png/birthday_dark.png');
   final AssetGenImage birthdayLight = const AssetGenImage(
-    'assets/images/png/birthday_light.png',
-  );
+      'assets/images/png/birthday_light.png');
   final AssetGenImage bookClubDark = const AssetGenImage(
-    'assets/images/png/book_club_dark.png',
-  );
+      'assets/images/png/book_club_dark.png');
   final AssetGenImage bookClubLight = const AssetGenImage(
-    'assets/images/png/book_club_light.png',
-  );
+      'assets/images/png/book_club_light.png');
   final AssetGenImage brandingDark = const AssetGenImage(
-    'assets/images/png/branding_dark.png',
-  );
+      'assets/images/png/branding_dark.png');
   final AssetGenImage brandingLight = const AssetGenImage(
-    'assets/images/png/branding_light.png',
-  );
+      'assets/images/png/branding_light.png');
   final AssetGenImage exhibitionDark = const AssetGenImage(
-    'assets/images/png/exhibition_dark.png',
-  );
+      'assets/images/png/exhibition_dark.png');
   final AssetGenImage exhibitionLight = const AssetGenImage(
-    'assets/images/png/exhibition_light.png',
-  );
+      'assets/images/png/exhibition_light.png');
   final AssetGenImage logo = const AssetGenImage('assets/images/png/logo.png');
   final AssetGenImage meetingDark = const AssetGenImage(
-    'assets/images/png/meeting_dark.png',
-  );
+      'assets/images/png/meeting_dark.png');
   final AssetGenImage meetingLight = const AssetGenImage(
-    'assets/images/png/meeting_light.png',
-  );
+      'assets/images/png/meeting_light.png');
   final AssetGenImage splashImgAndroid12dark = const AssetGenImage(
-    'assets/images/png/splash_img_android_12dark.png',
-  );
+      'assets/images/png/splash_img_android_12dark.png');
   final AssetGenImage splashImgAndroid12light = const AssetGenImage(
-    'assets/images/png/splash_img_android_12light.png',
-  );
+      'assets/images/png/splash_img_android_12light.png');
   final AssetGenImage sportDark = const AssetGenImage(
-    'assets/images/png/sport_dark.png',
-  );
+      'assets/images/png/sport_dark.png');
   final AssetGenImage sportLight = const AssetGenImage(
-    'assets/images/png/sport_light.png',
-  );
+      'assets/images/png/sport_light.png');
 }
 
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
   final SvgGenImage beingCreative = const SvgGenImage(
-    'assets/images/svg/being-creative.svg',
-  );
+      'assets/images/svg/being-creative.svg');
   final SvgGenImage beingCreative2 = const SvgGenImage(
-    'assets/images/svg/being-creative2.svg',
-  );
+      'assets/images/svg/being-creative2.svg');
   final SvgGenImage beingCreative3 = const SvgGenImage(
-    'assets/images/svg/being-creative3.svg',
-  );
+      'assets/images/svg/being-creative3.svg');
   final SvgGenImage hotTrending = const SvgGenImage(
-    'assets/images/svg/hot-trending.svg',
-  );
+      'assets/images/svg/hot-trending.svg');
 }
 
 class $AssetsIconsGen {
@@ -89,31 +71,27 @@ class $AssetsIconsGen {
   final SvgGenImage eyeSlash = const SvgGenImage('assets/icons/eye-slash.svg');
   final SvgGenImage favorite = const SvgGenImage('assets/icons/favorite.svg');
   final SvgGenImage favouriteSelect = const SvgGenImage(
-    'assets/icons/favourite_select.svg',
-  );
+      'assets/icons/favourite_select.svg');
   final AssetGenImage googlePng = const AssetGenImage(
-    'assets/icons/google.png',
-  );
+      'assets/icons/google.png');
   final SvgGenImage googleSvg = const SvgGenImage('assets/icons/google.svg');
   final SvgGenImage home = const SvgGenImage('assets/icons/home.svg');
   final SvgGenImage homeSelect = const SvgGenImage(
-    'assets/icons/home_select.svg',
-  );
+      'assets/icons/home_select.svg');
   final SvgGenImage lightMode = const SvgGenImage(
-    'assets/icons/light_mode.svg',
-  );
+      'assets/icons/light_mode.svg');
   final SvgGenImage lock = const SvgGenImage('assets/icons/lock.svg');
   final SvgGenImage sms = const SvgGenImage('assets/icons/sms.svg');
   final SvgGenImage user = const SvgGenImage('assets/icons/user.svg');
   final SvgGenImage userSelect = const SvgGenImage(
-    'assets/icons/user_select.svg',
-  );
+      'assets/icons/user_select.svg');
 }
 
 class AssetGenImage {
   const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
+
 
   final Size? size;
   final Set<String> flavors;
@@ -171,8 +149,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   Widget custom({
@@ -250,3 +235,4 @@ class SvgGenImage {
 
   String get keyName => _assetName;
 }
+
