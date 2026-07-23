@@ -49,7 +49,9 @@ class _MainAppViewState extends State<MainAppView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: tabsView[currentIndex],
+      body: SafeArea(
+          child: tabsView[currentIndex]
+      ),
 
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
