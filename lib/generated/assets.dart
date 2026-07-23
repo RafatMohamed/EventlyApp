@@ -38,6 +38,9 @@ class $AssetsPngGen {
   final AssetGenImage brandingLight = const AssetGenImage(
     'assets/images/png/branding_light.png',
   );
+  final AssetGenImage changePassImg = const AssetGenImage(
+    'assets/images/png/change-pass_img.png',
+  );
   final AssetGenImage exhibitionDark = const AssetGenImage(
     'assets/images/png/exhibition_dark.png',
   );
@@ -91,7 +94,10 @@ class $AssetsIconsGen {
   final SvgGenImage favouriteSelect = const SvgGenImage(
     'assets/icons/favourite_select.svg',
   );
-  final SvgGenImage google = const SvgGenImage('assets/icons/google.svg');
+  final AssetGenImage googlePng = const AssetGenImage(
+    'assets/icons/google.png',
+  );
+  final SvgGenImage googleSvg = const SvgGenImage('assets/icons/google.svg');
   final SvgGenImage home = const SvgGenImage('assets/icons/home.svg');
   final SvgGenImage homeSelect = const SvgGenImage(
     'assets/icons/home_select.svg',

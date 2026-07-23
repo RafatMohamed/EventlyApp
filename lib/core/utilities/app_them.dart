@@ -1,4 +1,6 @@
+import 'package:evently_app/core/utilities/app_border_radius.dart';
 import 'package:evently_app/core/utilities/app_colors.dart';
+import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/core/utilities/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,57 @@ class AppThem {
     unselectedWidgetColor: AppColors.strokeLight,
     scaffoldBackgroundColor: AppColors.backgroundLight,
     useMaterial3: true,
+    inputDecorationTheme: InputDecorationTheme(
+      fillColor: AppColors.inputsLight,
+      filled: true,
+      contentPadding: const EdgeInsetsDirectional.all(AppPadding.p8),
+      enabledBorder:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppBorderRadius.r16),
+          gapPadding: 8,
+          borderSide: const BorderSide(
+            style: BorderStyle.solid,
+            color: AppColors.strokeLight,
+          )
+      ),
+      hintStyle: const TextStyle(
+        color: AppColors.secTextLight,
+        fontSize: 14,
+        fontWeight: .w400,
+        fontStyle: .normal,
+      ),
+      labelStyle:  const TextStyle(
+        color: AppColors.mainColorLight,
+        fontSize: 16,
+        fontWeight: .bold,
+        fontStyle: .normal,
+      ),
+      prefixIconColor: AppColors.disableColor,
+      suffixIconColor:AppColors.disableColor,
+      prefixStyle: const TextStyle(
+        fontSize: 24,
+        color: AppColors.disableColor,
+      ),
+      focusedBorder:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppBorderRadius.r16),
+          gapPadding: 8,
+          borderSide: const BorderSide(
+            style: BorderStyle.solid,
+            color: AppColors.strokeLight,
+          )
+      ),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppBorderRadius.r16),
+        gapPadding: 8,
+        borderSide: const BorderSide(
+          style: BorderStyle.solid,
+          color: AppColors.strokeLight,
+        )
+      ),
+    ),
     textTheme: TextTheme(
+      bodyLarge:AppTextStyles.textS24SBStyle.copyWith(
+        color: AppColors.mainColorLight,
+      ) ,
       bodyMedium: AppTextStyles.textS20SBStyle.copyWith(
         color: AppColors.mainTextLight,
       ),
@@ -22,6 +74,10 @@ class AppThem {
       ),
       labelSmall: AppTextStyles.textS14BStyle.copyWith(
         color: AppColors.mainColorLight,
+      ),
+      titleSmall: AppTextStyles.textS14BStyle.copyWith(
+        color: AppColors.secTextLight,
+        fontWeight: .w400
       ),
       titleLarge: AppTextStyles.textS20MStyle.copyWith(
         color: AppColors.inputsLight,
@@ -69,7 +125,54 @@ class AppThem {
     scaffoldBackgroundColor: AppColors.backgroundDark,
     secondaryHeaderColor: AppColors.disableColor,
     useMaterial3: true,
+    inputDecorationTheme: InputDecorationTheme(
+      fillColor: AppColors.inputsDark,
+      filled: true,
+      contentPadding: const EdgeInsets.all(AppPadding.p8),
+      enabledBorder:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppBorderRadius.r16),
+          gapPadding: 8,
+          borderSide: const BorderSide(
+            style: BorderStyle.solid,
+            color: AppColors.strokeDark,
+          )
+      ),
+      hintStyle: const TextStyle(
+        color: AppColors.secTextDark,
+        fontSize: 14,
+        fontWeight: .w400,
+        fontStyle: .normal,
+      ),
+      labelStyle:  const TextStyle(
+        color: AppColors.mainColorDark,
+        fontSize: 16,
+        fontWeight: .bold,
+        fontStyle: .normal,
+      ),
+      prefixIconColor: AppColors.disableColor,
+      suffixIconColor:AppColors.disableColor,
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppBorderRadius.r16),
+          gapPadding: 8,
+          borderSide: const BorderSide(
+            style: BorderStyle.solid,
+            color: AppColors.strokeDark,
+          )
+      ),
+      focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppBorderRadius.r16),
+          gapPadding: 8,
+          borderSide: const BorderSide(
+            style: BorderStyle.solid,
+            color: AppColors.strokeDark,
+          )
+      ),
+    ),
+
     textTheme: TextTheme(
+      bodyLarge:AppTextStyles.textS24SBStyle.copyWith(
+        color: AppColors.mainColorDark,
+      ) ,
       bodyMedium: AppTextStyles.textS20SBStyle.copyWith(
         color: AppColors.mainTextDark,
       ),
@@ -81,6 +184,10 @@ class AppThem {
       ),
       labelSmall: AppTextStyles.textS14BStyle.copyWith(
         color: AppColors.inputsLight,
+      ),
+      titleSmall: AppTextStyles.textS14BStyle.copyWith(
+          color: AppColors.secTextDark,
+          fontWeight: .w400
       ),
       titleLarge: AppTextStyles.textS20MStyle.copyWith(
         color: AppColors.inputsLight,
