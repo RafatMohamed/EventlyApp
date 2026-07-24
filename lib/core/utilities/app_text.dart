@@ -53,4 +53,6 @@ static const String or ="Or";
 static const String welcomeBack ="Welcome Back";
 static const String withGoogle ="with Google";
 static const String searchEvent ="Search for event";
+static const String darkMode ="Dark mode";
+static const String logOut ="Logout";
 }
