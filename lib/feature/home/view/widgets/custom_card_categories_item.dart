@@ -23,6 +23,9 @@ class CustomCardCategoriesItem extends StatelessWidget {
         itemCount: 6,
         itemBuilder: (context, index) {
           return Container(
+            margin: const EdgeInsetsDirectional.only(
+              bottom: AppPadding.p16
+            ),
             padding: const EdgeInsetsDirectional.all(AppPadding.p10),
             height: size.height*0.25,
             decoration: BoxDecoration(

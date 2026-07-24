@@ -106,6 +106,7 @@ class $AssetsIconsGen {
     'assets/icons/light_mode.svg',
   );
   final SvgGenImage lock = const SvgGenImage('assets/icons/lock.svg');
+  final SvgGenImage search = const SvgGenImage('assets/icons/search.svg');
   final SvgGenImage sms = const SvgGenImage('assets/icons/sms.svg');
   final SvgGenImage user = const SvgGenImage('assets/icons/user.svg');
   final SvgGenImage userSelect = const SvgGenImage(

@@ -1,5 +1,8 @@
+import 'package:evently_app/core/utilities/app_padding.dart';
+import 'package:evently_app/core/widgets/custom_text_form_field.dart';
+import 'package:evently_app/feature/home/view/widgets/custom_card_categories_item.dart';
+import 'package:evently_app/generated/assets.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/utilities/app_text.dart';
 
 class FavoriteView extends StatelessWidget {
@@ -8,6 +11,25 @@ class FavoriteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Center(child: Text("Favorite",style: Theme.of(context).textTheme.titleMedium,));
+    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ThemeData colorThem = Theme.of(context);
+    final Size size =MediaQuery.sizeOf(context);
+    return Padding(
+      padding: const EdgeInsetsDirectional.symmetric(horizontal: AppPadding.p16,vertical:AppPadding.p8),
+      child: Column(
+        spacing: 16,
+        crossAxisAlignment: .start,
+        children: [
+          CustomTextFormField(hintText: AppText.searchEvent,suffixIconPath: Assets.icons.search.path,),
+          Expanded(child: CustomCardCategoriesItem(size: size, colorThem: colorThem, textTheme: textTheme))
+        ],
+      ),
+    );
   }
 }
+
+
+
+
+
+

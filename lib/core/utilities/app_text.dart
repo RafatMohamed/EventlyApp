@@ -52,4 +52,5 @@ static const String haveAcc ="Already have an account";
 static const String or ="Or";
 static const String welcomeBack ="Welcome Back";
 static const String withGoogle ="with Google";
+static const String searchEvent ="Search for event";
 }
