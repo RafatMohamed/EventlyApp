@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class AppThem {
   static ThemeData lightThem = ThemeData(
     primaryColor: AppColors.mainColorLight,
+    primaryColorLight: AppColors.mainTextLight,
     secondaryHeaderColor: AppColors.disableColor,
     disabledColor: AppColors.inputsLight,
     unselectedWidgetColor: AppColors.strokeLight,
@@ -15,22 +16,22 @@ class AppThem {
     inputDecorationTheme: InputDecorationTheme(
       fillColor: AppColors.inputsLight,
       filled: true,
-      contentPadding: EdgeInsets.all(AppPadding.p8),
+      contentPadding: const EdgeInsetsDirectional.all(AppPadding.p8),
       enabledBorder:OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorderRadius.r16),
           gapPadding: 8,
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             style: BorderStyle.solid,
             color: AppColors.strokeLight,
           )
       ),
-      hintStyle: TextStyle(
+      hintStyle: const TextStyle(
         color: AppColors.secTextLight,
         fontSize: 14,
         fontWeight: .w400,
         fontStyle: .normal,
       ),
-      labelStyle:  TextStyle(
+      labelStyle:  const TextStyle(
         color: AppColors.mainColorLight,
         fontSize: 16,
         fontWeight: .bold,
@@ -38,14 +39,14 @@ class AppThem {
       ),
       prefixIconColor: AppColors.disableColor,
       suffixIconColor:AppColors.disableColor,
-      prefixStyle: TextStyle(
+      prefixStyle: const TextStyle(
         fontSize: 24,
         color: AppColors.disableColor,
       ),
       focusedBorder:OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorderRadius.r16),
           gapPadding: 8,
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             style: BorderStyle.solid,
             color: AppColors.strokeLight,
           )
@@ -53,7 +54,7 @@ class AppThem {
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppBorderRadius.r16),
         gapPadding: 8,
-        borderSide: BorderSide(
+        borderSide: const BorderSide(
           style: BorderStyle.solid,
           color: AppColors.strokeLight,
         )
@@ -120,7 +121,8 @@ class AppThem {
   );
   static ThemeData darkThem = ThemeData(
     primaryColor: AppColors.mainColorDark,
-    disabledColor: AppColors.inputsLight,
+    primaryColorLight: AppColors.mainTextDark,
+    disabledColor: AppColors.inputsDark,
     unselectedWidgetColor: AppColors.strokeDark,
     scaffoldBackgroundColor: AppColors.backgroundDark,
     secondaryHeaderColor: AppColors.disableColor,
@@ -128,22 +130,22 @@ class AppThem {
     inputDecorationTheme: InputDecorationTheme(
       fillColor: AppColors.inputsDark,
       filled: true,
-      contentPadding: EdgeInsets.all(AppPadding.p8),
+      contentPadding: const EdgeInsets.all(AppPadding.p8),
       enabledBorder:OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorderRadius.r16),
           gapPadding: 8,
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             style: BorderStyle.solid,
             color: AppColors.strokeDark,
           )
       ),
-      hintStyle: TextStyle(
+      hintStyle: const TextStyle(
         color: AppColors.secTextDark,
         fontSize: 14,
         fontWeight: .w400,
         fontStyle: .normal,
       ),
-      labelStyle:  TextStyle(
+      labelStyle:  const TextStyle(
         color: AppColors.mainColorDark,
         fontSize: 16,
         fontWeight: .bold,
@@ -154,7 +156,7 @@ class AppThem {
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorderRadius.r16),
           gapPadding: 8,
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             style: BorderStyle.solid,
             color: AppColors.strokeDark,
           )
@@ -162,7 +164,7 @@ class AppThem {
       focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorderRadius.r16),
           gapPadding: 8,
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             style: BorderStyle.solid,
             color: AppColors.strokeDark,
           )

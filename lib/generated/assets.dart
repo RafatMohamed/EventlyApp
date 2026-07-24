@@ -38,6 +38,9 @@ class $AssetsPngGen {
   final AssetGenImage brandingLight = const AssetGenImage(
     'assets/images/png/branding_light.png',
   );
+  final AssetGenImage changePassImg = const AssetGenImage(
+    'assets/images/png/change-pass_img.png',
+  );
   final AssetGenImage exhibitionDark = const AssetGenImage(
     'assets/images/png/exhibition_dark.png',
   );
@@ -45,6 +48,9 @@ class $AssetsPngGen {
     'assets/images/png/exhibition_light.png',
   );
   final AssetGenImage logo = const AssetGenImage('assets/images/png/logo.png');
+  final AssetGenImage logoRoute = const AssetGenImage(
+    'assets/images/png/logo_route.png',
+  );
   final AssetGenImage meetingDark = const AssetGenImage(
     'assets/images/png/meeting_dark.png',
   );
@@ -103,6 +109,8 @@ class $AssetsIconsGen {
     'assets/icons/light_mode.svg',
   );
   final SvgGenImage lock = const SvgGenImage('assets/icons/lock.svg');
+  final SvgGenImage logout = const SvgGenImage('assets/icons/logout.svg');
+  final SvgGenImage search = const SvgGenImage('assets/icons/search.svg');
   final SvgGenImage sms = const SvgGenImage('assets/icons/sms.svg');
   final SvgGenImage user = const SvgGenImage('assets/icons/user.svg');
   final SvgGenImage userSelect = const SvgGenImage(
