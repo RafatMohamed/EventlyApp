@@ -32,6 +32,9 @@ static const String getStarted ="Get Started";
 static const String home ="Home";
 static const String favorite ="Favorite";
 static const String profile ="Profile";
+static const String sports ="Sports";
+static const String all ="All";
+static const String birthday ="Birthday";
 
 static const String titleLoginAcc ="Login to your account";
 static const String titleRegisterAcc ="Create your account";
@@ -47,5 +50,6 @@ static const String resetPass ="Reset password";
 static const String dontHaveAcc ="Don’t have an account";
 static const String haveAcc ="Already have an account";
 static const String or ="Or";
+static const String welcomeBack ="Welcome Back";
 static const String withGoogle ="with Google";
 }

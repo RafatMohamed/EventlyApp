@@ -36,7 +36,7 @@ class EventlyApp extends StatelessWidget {
       darkTheme: AppThem.darkThem,
       theme: AppThem.lightThem,
       routes: routesApp,
-      initialRoute: OnBoardingView.routeName,
+      initialRoute: MainAppView.routeName,
     );
   }
 }

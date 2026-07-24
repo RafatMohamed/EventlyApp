@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class AppThem {
   static ThemeData lightThem = ThemeData(
     primaryColor: AppColors.mainColorLight,
+    primaryColorLight: AppColors.mainTextLight,
     secondaryHeaderColor: AppColors.disableColor,
     disabledColor: AppColors.inputsLight,
     unselectedWidgetColor: AppColors.strokeLight,
@@ -120,7 +121,8 @@ class AppThem {
   );
   static ThemeData darkThem = ThemeData(
     primaryColor: AppColors.mainColorDark,
-    disabledColor: AppColors.inputsLight,
+    primaryColorLight: AppColors.mainTextDark,
+    disabledColor: AppColors.inputsDark,
     unselectedWidgetColor: AppColors.strokeDark,
     scaffoldBackgroundColor: AppColors.backgroundDark,
     secondaryHeaderColor: AppColors.disableColor,
