@@ -1,6 +1,5 @@
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/generated/assets.dart';
-import 'package:flutter/material.dart';
 
 class CategoriesModel {
   String id;

@@ -5,7 +5,7 @@ class AppText {
   static const String routeHomeViewApp = "homeView";
   static const String routeFavoriteViewApp = "favoriteView";
   static const String routeProfileViewApp = "profileView";
-  static const String routeEditeEventViewApp = "editeEvent";
+  static const String routeAddEventViewApp = "addEvent";
   static const String routeLoginViewApp = "loginView";
   static const String routeRegisterViewApp = "registerView";
   static const String routeForgetPassViewApp = "forgetPassView";
@@ -56,4 +56,16 @@ static const String withGoogle ="with Google";
 static const String searchEvent ="Search for event";
 static const String darkMode ="Dark mode";
 static const String logOut ="Logout";
+static const String addEvent ="Add Event";
+static const String event ="Event";
+static const String editeEvent ="Edite Event";
+static const String title ="Title";
+static const String desc ="Description";
+static const String date ="Date";
+static const String time ="Time";
+static const String choose ="Choose";
+static const String chooseTime ="Choose Time";
+static const String chooseDate ="Choose Date";
+static const String eventDate ="Event Date";
+static const String eventTime ="Event  Time";
 }

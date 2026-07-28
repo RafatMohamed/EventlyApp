@@ -39,7 +39,7 @@ class TabBarCategoriesItem extends StatelessWidget {
         children: [
           SvgPicture.asset(categories.iconPath,colorFilter: ColorFilter.mode(isSelected
               ? colorThem.disabledColor
-              : colorThem.primaryColor.withValues(alpha: 0.8),BlendMode.srcIn),
+              : colorThem.primaryColor.withValues(alpha: 0.5),BlendMode.srcIn),
           ),
           Text(
             categories.label,

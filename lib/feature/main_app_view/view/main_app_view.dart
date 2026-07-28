@@ -1,4 +1,4 @@
-import 'package:evently_app/feature/edite_event/view/edite_event_view.dart';
+import 'package:evently_app/feature/add_event/view/add_event_view.dart';
 import 'package:evently_app/feature/favorite/view/favorite_view.dart';
 import 'package:evently_app/feature/home/view/home_view.dart';
 import 'package:evently_app/feature/profile/view/profile_view.dart';
@@ -64,7 +64,7 @@ class _MainAppViewState extends State<MainAppView> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context,EditeEventView.routeName);
+          Navigator.pushNamed(context,AddEventView.routeName);
         },
         child: const Icon(Icons.add),
       ),
