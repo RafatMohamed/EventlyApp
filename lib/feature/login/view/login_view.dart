@@ -36,7 +36,7 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 48),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, SignUpView.routeName);
+                    Navigator.pushReplacementNamed(context, SignUpView.routeName);
                   },
                   child: Text.rich(
                     textAlign: .center,
