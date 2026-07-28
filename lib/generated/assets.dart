@@ -91,6 +91,8 @@ class $AssetsSvgGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  final SvgGenImage birthday = const SvgGenImage('assets/icons/birthday.svg');
+  final SvgGenImage book = const SvgGenImage('assets/icons/book.svg');
   final SvgGenImage darkMode = const SvgGenImage('assets/icons/dark_mode.svg');
   final SvgGenImage eyeSlash = const SvgGenImage('assets/icons/eye-slash.svg');
   final SvgGenImage favorite = const SvgGenImage('assets/icons/favorite.svg');
@@ -105,6 +107,9 @@ class $AssetsIconsGen {
   final SvgGenImage homeSelect = const SvgGenImage(
     'assets/icons/home_select.svg',
   );
+  final SvgGenImage iconCategoriesAll = const SvgGenImage(
+    'assets/icons/iconCategoriesAll.svg',
+  );
   final SvgGenImage lightMode = const SvgGenImage(
     'assets/icons/light_mode.svg',
   );
@@ -112,6 +117,7 @@ class $AssetsIconsGen {
   final SvgGenImage logout = const SvgGenImage('assets/icons/logout.svg');
   final SvgGenImage search = const SvgGenImage('assets/icons/search.svg');
   final SvgGenImage sms = const SvgGenImage('assets/icons/sms.svg');
+  final SvgGenImage sport = const SvgGenImage('assets/icons/sport.svg');
   final SvgGenImage user = const SvgGenImage('assets/icons/user.svg');
   final SvgGenImage userSelect = const SvgGenImage(
     'assets/icons/user_select.svg',

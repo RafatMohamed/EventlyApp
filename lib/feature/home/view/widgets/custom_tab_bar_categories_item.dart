@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/models/tab_bar_categories_model.dart';
 import '../../../../core/utilities/app_border_radius.dart';
@@ -36,11 +37,9 @@ class TabBarCategoriesItem extends StatelessWidget {
         spacing:8,
         mainAxisAlignment: .center,
         children: [
-          Icon(
-            categories.iconData,
-            color: isSelected
-                ? colorThem.disabledColor
-                : colorThem.primaryColorLight,
+          SvgPicture.asset(categories.iconPath,colorFilter: ColorFilter.mode(isSelected
+              ? colorThem.disabledColor
+              : colorThem.primaryColor.withValues(alpha: 0.8),BlendMode.srcIn),
           ),
           Text(
             categories.label,

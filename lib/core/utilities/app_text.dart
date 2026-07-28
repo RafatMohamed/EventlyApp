@@ -35,6 +35,7 @@ static const String profile ="Profile";
 static const String sports ="Sports";
 static const String all ="All";
 static const String birthday ="Birthday";
+static const String bookClub ="BookClub";
 
 static const String titleLoginAcc ="Login to your account";
 static const String titleRegisterAcc ="Create your account";
