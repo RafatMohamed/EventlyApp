@@ -1,3 +1,4 @@
+import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
@@ -109,6 +110,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
   }
 
   Future<void> navigationToMainView() {
+    StorgeLocalHive.instance.saveIsFirstOpenApp(false);
     return  Navigator.pushReplacementNamed(context, MainAppView.routeName);
   }
 }

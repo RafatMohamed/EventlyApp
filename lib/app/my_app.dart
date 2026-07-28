@@ -1,3 +1,4 @@
+import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/view/on_boarding_view.dart';
@@ -26,7 +27,7 @@ class EventlyApp extends StatelessWidget {
       HomeView.routeName: (context) => const HomeView(),
       FavoriteView.routeName: (context) => const FavoriteView(),
       ProfileView.routeName: (context) => const ProfileView(),
-      AddEventView.routeName:(context) => const AddEventView(),
+      AddEventView.routeName: (context) => const AddEventView(),
     };
 
     return MaterialApp(
@@ -36,7 +37,9 @@ class EventlyApp extends StatelessWidget {
       darkTheme: AppThem.darkThem,
       theme: AppThem.lightThem,
       routes: routesApp,
-      initialRoute: MainAppView.routeName,
+      initialRoute: StorgeLocalHive.instance.getIsFirstOpenApp()
+          ? OnBoardingView.routeName
+          : LoginView.routeName,
     );
   }
 }
