@@ -1,10 +1,10 @@
 import 'package:evently_app/core/utilities/app_text.dart';
-import 'package:evently_app/feature/edite_event/view/edite_event_view.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/view/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 
 import '../core/utilities/app_them.dart';
+import '../feature/add_event/view/add_event_view.dart';
 import '../feature/favorite/view/favorite_view.dart';
 import '../feature/home/view/home_view.dart';
 import '../feature/login/view/login_view.dart';
@@ -26,7 +26,7 @@ class EventlyApp extends StatelessWidget {
       HomeView.routeName: (context) => const HomeView(),
       FavoriteView.routeName: (context) => const FavoriteView(),
       ProfileView.routeName: (context) => const ProfileView(),
-      EditeEventView.routeName:(context) => const EditeEventView(),
+      AddEventView.routeName:(context) => const AddEventView(),
     };
 
     return MaterialApp(

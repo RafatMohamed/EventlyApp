@@ -1,22 +1,20 @@
-import 'package:evently_app/generated/assets.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/models/tab_bar_categories_model.dart';
 import '../../../../core/utilities/app_padding.dart';
-import '../../../../core/utilities/app_text.dart';
-import 'custom_tab_bar_categories_item.dart';
+import '../../../home/view/widgets/custom_tab_bar_categories_item.dart';
 
-class CustomTabBarHome extends StatefulWidget {
-  const CustomTabBarHome({super.key});
+class CustomTabBarAddEditeEvent extends StatefulWidget {
+  const CustomTabBarAddEditeEvent({super.key});
   @override
-  State<CustomTabBarHome> createState() => _CustomTabBarHomeState();
+  State<CustomTabBarAddEditeEvent> createState() => _CustomTabBarAddEditeEventState();
 }
 
-class _CustomTabBarHomeState extends State<CustomTabBarHome> with SingleTickerProviderStateMixin {
+class _CustomTabBarAddEditeEventState extends State<CustomTabBarAddEditeEvent> with SingleTickerProviderStateMixin {
   int currentIndex = 0;
   late TabController tabController;
   @override
   void initState() {
-    tabController = TabController(length: CategoriesModel.listTabBarCategories.length +1 , vsync: this);
+    tabController = TabController(length: CategoriesModel.listTabBarCategories.length, vsync: this);
     super.initState();
   }
 
@@ -44,14 +42,11 @@ class _CustomTabBarHomeState extends State<CustomTabBarHome> with SingleTickerPr
         currentIndex = value;
         setState(() {});
       },
-      tabs:[
-        TabBarCategoriesItem(isSelected: currentIndex==0,categories: CategoriesModel(id:AppText.all, label: AppText.all, iconPath: Assets.icons.iconCategoriesAll.path),),
-        ...List.generate(CategoriesModel.listTabBarCategories.length, (index) {
-          final isSelected = currentIndex == index+1;
+      tabs:List.generate(CategoriesModel.listTabBarCategories.length, (index) {
+          final isSelected = currentIndex == index;
           final CategoriesModel categorie =CategoriesModel.listTabBarCategories[index];
           return TabBarCategoriesItem(isSelected: isSelected,categories: categorie,);
-        })
-      ],
+        }),
     );
   }
 }
