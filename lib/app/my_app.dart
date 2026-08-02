@@ -37,9 +37,10 @@ class EventlyApp extends StatelessWidget {
       darkTheme: AppThem.darkThem,
       theme: AppThem.lightThem,
       routes: routesApp,
-      initialRoute: StorgeLocalHive.instance.getIsFirstOpenApp()
-          ? OnBoardingView.routeName
-          : LoginView.routeName,
+      initialRoute:AddEventView.routeName ,
+      // initialRoute: StorgeLocalHive.instance.getIsFirstOpenApp()
+      //     ? OnBoardingView.routeName
+      //     : LoginView.routeName,
     );
   }
 }

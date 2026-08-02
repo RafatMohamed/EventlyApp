@@ -1,18 +1,20 @@
+import 'package:evently_app/core/models/tab_bar_categories_model.dart';
 import 'package:evently_app/core/widgets/custom_button_app.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
+import 'package:evently_app/feature/add_event/model/event_model.dart';
+import 'package:evently_app/feature/add_event/services/add_event_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/utilities/app_padding.dart';
 import '../../../../core/utilities/app_text.dart';
 import '../../../../generated/assets.dart';
 import '../add_event_view.dart';
-
+import 'custom_build_choose_date.dart';
 
 class DefaultAddEvent extends StatefulWidget {
-  const DefaultAddEvent({
-    super.key,
-  });
-
+  const DefaultAddEvent({super.key, required this.categorie, required this.pathImage});
+  final CategoriesModel categorie;
+  final String pathImage;
   @override
   State<DefaultAddEvent> createState() => _DefaultAddEventState();
 }
@@ -21,7 +23,9 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
   DateTime? dateSelect;
   TimeOfDay? timeSelect;
   var formate = DateFormat("dd MMM,yyyy");
-  GlobalKey<FormState> formKey =GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
@@ -50,6 +54,7 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
         timeSelect = timeOfDay;
       });
     }
+
     return Form(
       key: formKey,
       child: Column(
@@ -62,22 +67,28 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
               color: colorThem.primaryColorLight,
             ),
           ),
-          const CustomTextFormField(
+          CustomTextFormField(
             hintText: "${AppText.event} ${AppText.title}",
             textInputAction: .next,
             keyboardType: .text,
+            controller: titleController,
+            isName: true,
+            withValidator: true,
           ),
           Text(
             AppText.desc,
-            style:textTheme.bodySmall?.copyWith(
+            style: textTheme.bodySmall?.copyWith(
               color: colorThem.primaryColorLight,
             ),
           ),
-          const CustomTextFormField(
+          CustomTextFormField(
             hintText: "${AppText.event} ${AppText.desc}",
             textInputAction: .done,
             keyboardType: .multiline,
             maxLines: 5,
+            controller: descController,
+            isName: true,
+            withValidator: true,
           ),
           CustomBuildChooseDate(
             title: AppText.eventDate,
@@ -89,15 +100,35 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
           ),
           CustomBuildChooseDate(
             title: AppText.eventTime,
-            trailTitle:timeSelect != null
-                ?timeSelect!.format(context)
+            trailTitle: timeSelect != null
+                ? timeSelect!.format(context)
                 : AppText.chooseTime,
             iconPath: Assets.icons.clock.path,
             chooseDate: chooseTime,
           ),
-          CustomButtonApp(onTap: () {}, text: AppText.addEvent)
+          CustomButtonApp(onTap: addEvent, text: AppText.addEvent),
         ],
       ),
     );
+  }
+
+  Future<void> addEvent() async {
+    if(formKey.currentState!.validate()&& dateSelect !=null && timeSelect!=null){
+      EventModel event = EventModel(
+        title: titleController.text,
+        desc: descController.text,
+        pathImage: widget.pathImage,
+        dateTime: DateTime(
+          dateSelect!.year,
+          dateSelect!.month,
+          dateSelect!.day,
+          timeSelect!.hour,
+          timeSelect!.minute,
+        ),
+        categories: widget.categorie,
+      );
+      await AddEventFirestoreService.addEvent(event);
+      print("Success");
+    }
   }
 }
