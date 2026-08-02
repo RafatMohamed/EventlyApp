@@ -78,8 +78,10 @@ class CustomTextFormField extends StatelessWidget {
         fontStyle: .normal,
       ),
       textInputAction: textInputAction,
+
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
+
         hintText: hintText,
         suffixIcon:  isPassword == true
             ? GestureDetector(
