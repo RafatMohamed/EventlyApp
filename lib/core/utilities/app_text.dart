@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppText {
   static String get appName => "appName".tr();
+  static String get raafat => "RaafatMohamed".tr();
 
   static const String routeMainApp = "mainApp";
   static const String routeOnBoardingApp = "onBoardingView";
@@ -32,14 +33,14 @@ class AppText {
   static String get next => "next".tr();
   static String get getStarted => "getStarted".tr();
 
-  static String get home => "home".tr();
-  static String get favorite => "favorite".tr();
-  static String get profile => "profile".tr();
+  static String get home => "home";
+  static String get favorite => "favorite";
+  static String get profile => "profile";
 
-  static String get sports => "sports".tr();
   static String get all => "all".tr();
-  static String get birthday => "birthday".tr();
-  static String get bookClub => "bookClub".tr();
+  static String get sports => "sports";
+  static String get birthday => "birthday";
+  static String get bookClub => "bookClub";
 
   static String get titleLoginAcc => "titleLoginAcc".tr();
   static String get titleRegisterAcc => "titleRegisterAcc".tr();

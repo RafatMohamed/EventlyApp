@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/feature/add_event/view/add_event_view.dart';
 import 'package:evently_app/feature/favorite/view/favorite_view.dart';
 import 'package:evently_app/feature/home/view/home_view.dart';
@@ -17,37 +18,37 @@ class MainAppView extends StatefulWidget {
 
 class _MainAppViewState extends State<MainAppView> {
   int currentIndex = 0;
-  List<Widget> tabsView = [
-    const HomeView(),
-    const FavoriteView(),
-    const ProfileView(),
-  ];
-  List<BottomNavigationBarItem> iconBottomNavBar = [
-    BottomNavigationBarItem(
-      activeIcon: BottomNavBarItemActive(
-        pathIcon: Assets.icons.homeSelect.path,
-      ),
-      icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.home.path),
-      label: AppText.home,
-    ),
-    BottomNavigationBarItem(
-      activeIcon: BottomNavBarItemActive(
-        pathIcon: Assets.icons.favouriteSelect.path,
-      ),
-      icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.favorite.path),
-      label: AppText.favorite,
-    ),
-    BottomNavigationBarItem(
-      activeIcon: BottomNavBarItemActive(
-        pathIcon: Assets.icons.userSelect.path,
-      ),
-      icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.user.path),
-      label: AppText.profile,
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<Widget> tabsView = [
+      const HomeView(),
+      const FavoriteView(),
+      const ProfileView(),
+    ];
+    List<BottomNavigationBarItem> iconBottomNavBar = [
+      BottomNavigationBarItem(
+        activeIcon: BottomNavBarItemActive(
+          pathIcon: Assets.icons.homeSelect.path,
+        ),
+        icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.home.path),
+        label: AppText.home.tr(context: context),
+      ),
+      BottomNavigationBarItem(
+        activeIcon: BottomNavBarItemActive(
+          pathIcon: Assets.icons.favouriteSelect.path,
+        ),
+        icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.favorite.path),
+        label: AppText.favorite.tr(context: context),
+      ),
+      BottomNavigationBarItem(
+        activeIcon: BottomNavBarItemActive(
+          pathIcon: Assets.icons.userSelect.path,
+        ),
+        icon: BottomNavBarItemNotActive(pathIcon: Assets.icons.user.path),
+        label: AppText.profile.tr(context: context),
+      ),
+    ];
+
     return Scaffold(
       body: SafeArea(
           child: tabsView[currentIndex]

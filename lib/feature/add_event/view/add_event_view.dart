@@ -17,7 +17,7 @@ class AddEventView extends StatefulWidget {
 }
 
 class _AddEventViewState extends State<AddEventView> {
-  CategoriesModel selectCategories = CategoriesModel.listTabBarCategories.first;
+  CategoriesModel selectCategories = CategoriesModel.getListCategories().first;
   @override
   Widget build(BuildContext context) {
     final ThemeData colorThem = Theme.of(context);

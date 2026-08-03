@@ -32,7 +32,7 @@ class EventModel {
       desc: event["desc"],
       pathImage: event["pathImage"],
       dateTime: (event["dateTime"] as Timestamp).toDate(),
-      categories: CategoriesModel.listTabBarCategories.firstWhere(
+      categories: CategoriesModel.getListCategories().firstWhere(
         (element) => element.id == event["categoriesID"],
       ),
     );

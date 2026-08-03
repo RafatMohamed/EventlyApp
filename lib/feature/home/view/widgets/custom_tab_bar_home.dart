@@ -16,7 +16,7 @@ class _CustomTabBarHomeState extends State<CustomTabBarHome> with SingleTickerPr
   late TabController tabController;
   @override
   void initState() {
-    tabController = TabController(length: CategoriesModel.listTabBarCategories.length +1 , vsync: this);
+    tabController = TabController(length: CategoriesModel.getListCategories().length +1 , vsync: this);
     super.initState();
   }
 
@@ -46,9 +46,9 @@ class _CustomTabBarHomeState extends State<CustomTabBarHome> with SingleTickerPr
       },
       tabs:[
         TabBarCategoriesItem(isSelected: currentIndex==0,categories: CategoriesModel(id:AppText.all, label: AppText.all, iconPath: Assets.icons.iconCategoriesAll.path),),
-        ...List.generate(CategoriesModel.listTabBarCategories.length, (index) {
+        ...List.generate(CategoriesModel.getListCategories().length, (index) {
           final isSelected = currentIndex == index+1;
-          final CategoriesModel categorie =CategoriesModel.listTabBarCategories[index];
+          final CategoriesModel categorie =CategoriesModel.getListCategories()[index];
           return TabBarCategoriesItem(isSelected: isSelected,categories: categorie,);
         })
       ],

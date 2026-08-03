@@ -19,7 +19,7 @@ class _CustomTabBarAddEditeEventState extends State<CustomTabBarAddEditeEvent>
   @override
   void initState() {
     tabController = TabController(
-      length: CategoriesModel.listTabBarCategories.length,
+      length: CategoriesModel.getListCategories().length,
       vsync: this,
     );
     super.initState();
@@ -43,12 +43,12 @@ class _CustomTabBarAddEditeEventState extends State<CustomTabBarAddEditeEvent>
       labelPadding: const EdgeInsetsDirectional.only(end: AppPadding.p16),
       onTap: (value) {
         currentIndex = value;
-        widget.onCategorySelected(CategoriesModel.listTabBarCategories[currentIndex]);
+        widget.onCategorySelected(CategoriesModel.getListCategories()[currentIndex]);
         setState((){});
       },
-      tabs: List.generate(CategoriesModel.listTabBarCategories.length, (index) {
+      tabs: List.generate(CategoriesModel.getListCategories().length, (index) {
         final isSelected = currentIndex == index;
-        final CategoriesModel categoriesModel = CategoriesModel.listTabBarCategories[index];
+        final CategoriesModel categoriesModel = CategoriesModel.getListCategories()[index];
         return TabBarCategoriesItem(
           isSelected: isSelected,
           categories: categoriesModel,

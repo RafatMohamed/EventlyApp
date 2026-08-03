@@ -31,7 +31,7 @@ class HomeView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Text("Raafat Mohamed", style: textTheme.bodyMedium),
+          Text(AppText.raafat, style: textTheme.bodyMedium),
           const Padding(
             padding: EdgeInsetsDirectional.symmetric(vertical: AppPadding.p24),
             child: CustomTabBarHome(),

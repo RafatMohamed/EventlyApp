@@ -1,11 +1,16 @@
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/core/models/tab_bar_categories_model.dart';
 import 'package:evently_app/core/service/them_app_service.dart';
 import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/view/on_boarding_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../core/service/localization_app_service.dart';
 import '../core/utilities/app_them.dart';
 import '../feature/add_event/view/add_event_view.dart';
 import '../feature/favorite/view/favorite_view.dart';
@@ -31,16 +36,35 @@ class EventlyApp extends StatelessWidget {
       ProfileView.routeName: (context) => const ProfileView(),
       AddEventView.routeName: (context) => const AddEventView(),
     };
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemAppService()),
+        ChangeNotifierProvider(
+          create: (context) => LocalizationAppService(),
+        ),
+      ],
+      child: CustomMaterialApp(routesApp: routesApp),
+    );
+  }
+}
 
+class CustomMaterialApp extends StatelessWidget {
+  const CustomMaterialApp({super.key, required this.routesApp});
+
+  final Map<String, WidgetBuilder> routesApp;
+
+  @override
+  Widget build(BuildContext context) {
+    final themProvider = Provider.of<ThemAppService>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppText.appName,
-      themeMode: ThemAppService.currentThem,
+      themeMode: themProvider.currentThem,
       darkTheme: AppThem.darkThem,
       theme: AppThem.lightThem,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
       locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
       routes: routesApp,
       initialRoute: StorgeLocalHive.instance.getIsFirstOpenApp()
           ? OnBoardingView.routeName
