@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:evently_app/core/models/tab_bar_categories_model.dart';
 import 'package:evently_app/core/widgets/custom_button_app.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
@@ -8,7 +10,6 @@ import 'package:intl/intl.dart';
 import '../../../../core/utilities/app_padding.dart';
 import '../../../../core/utilities/app_text.dart';
 import '../../../../generated/assets.dart';
-import '../add_event_view.dart';
 import 'custom_build_choose_date.dart';
 
 class DefaultAddEvent extends StatefulWidget {
@@ -128,7 +129,7 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
         categories: widget.categorie,
       );
       await AddEventFirestoreService.addEvent(event);
-      print("Success");
+      log("Success");
     }
   }
 }

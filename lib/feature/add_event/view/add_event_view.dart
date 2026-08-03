@@ -1,12 +1,8 @@
 import 'package:evently_app/core/models/tab_bar_categories_model.dart';
-import 'package:evently_app/core/widgets/custom_button_app.dart';
-import 'package:evently_app/core/widgets/custom_text_form_field.dart';
 import 'package:evently_app/core/widgets/default_app_bar_app.dart';
 import 'package:evently_app/feature/add_event/view/widgets/custom_add_event_body.dart';
 import 'package:evently_app/feature/add_event/view/widgets/custom_tab_bar_add_edite_event.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import '../../../core/utilities/app_border_radius.dart';
 import '../../../core/utilities/app_padding.dart';
 import '../../../core/utilities/app_text.dart';

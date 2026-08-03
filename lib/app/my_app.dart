@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/core/service/them_app_service.dart';
 import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
@@ -33,14 +35,16 @@ class EventlyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppText.appName,
-      themeMode: .light,
+      themeMode: ThemAppService.currentThem,
       darkTheme: AppThem.darkThem,
       theme: AppThem.lightThem,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       routes: routesApp,
-      initialRoute:AddEventView.routeName ,
-      // initialRoute: StorgeLocalHive.instance.getIsFirstOpenApp()
-      //     ? OnBoardingView.routeName
-      //     : LoginView.routeName,
+      initialRoute: StorgeLocalHive.instance.getIsFirstOpenApp()
+          ? OnBoardingView.routeName
+          : MainAppView.routeName,
     );
   }
 }

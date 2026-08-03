@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class AppText {
-  static const String appName = "Evently";
+  static String get appName => "appName".tr();
+
   static const String routeMainApp = "mainApp";
   static const String routeOnBoardingApp = "onBoardingView";
   static const String routeHomeViewApp = "homeView";
@@ -10,62 +13,72 @@ class AppText {
   static const String routeRegisterViewApp = "registerView";
   static const String routeForgetPassViewApp = "forgetPassView";
 
+  static String get title0OnBoarding => "title0OnBoarding".tr();
+  static String get title1OnBoarding => "title1OnBoarding".tr();
+  static String get title2OnBoarding => "title2OnBoarding".tr();
+  static String get title3OnBoarding => "title3OnBoarding".tr();
 
-  static const String title0OnBoarding = "Personalize Your Experience";
-  static const String title1OnBoarding = "Find Events That Inspire You";
-  static const String title2OnBoarding = "Effortless Event Planning";
-  static const String title3OnBoarding = "Connect with Friends & Share Moments";
-  static const String desc0OnBoarding = "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.";
-  static const String desc1OnBoarding = "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.";
-  static const String desc2OnBoarding = "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.";
-  static const String desc3OnBoarding = "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.";
+  static String get desc0OnBoarding => "desc0OnBoarding".tr();
+  static String get desc1OnBoarding => "desc1OnBoarding".tr();
+  static String get desc2OnBoarding => "desc2OnBoarding".tr();
+  static String get desc3OnBoarding => "desc3OnBoarding".tr();
 
+  static String get lang => "lang".tr();
+  static String get theme => "theme".tr();
+  static String get en => "en".tr();
+  static String get ar => "ar".tr();
 
+  static String get letsStart => "letsStart".tr();
+  static String get next => "next".tr();
+  static String get getStarted => "getStarted".tr();
 
-static const String lang="Language";
-static const String theme="Theme";
-static const String en="English";
-static const String ar="Arabic";
-static const String letsStart ="Let’s start";
-static const String next ="next";
-static const String getStarted ="Get Started";
-static const String home ="Home";
-static const String favorite ="Favorite";
-static const String profile ="Profile";
-static const String sports ="Sports";
-static const String all ="All";
-static const String birthday ="Birthday";
-static const String bookClub ="BookClub";
+  static String get home => "home".tr();
+  static String get favorite => "favorite".tr();
+  static String get profile => "profile".tr();
 
-static const String titleLoginAcc ="Login to your account";
-static const String titleRegisterAcc ="Create your account";
-static const String forgetPass ="Forget Password";
-static const String login ="Login";
-static const String signUp ="Sign up";
-static const String enterYourEmail ="Enter your email";
-static const String to ="to";
-static const String enterYourPass ="Enter your password";
-static const String enterYournName ="Enter your name";
-static const String confirmYourPass ="Confirm your password";
-static const String resetPass ="Reset password";
-static const String dontHaveAcc ="Don’t have an account";
-static const String haveAcc ="Already have an account";
-static const String or ="Or";
-static const String welcomeBack ="Welcome Back";
-static const String withGoogle ="with Google";
-static const String searchEvent ="Search for event";
-static const String darkMode ="Dark mode";
-static const String logOut ="Logout";
-static const String addEvent ="Add Event";
-static const String event ="Event";
-static const String editeEvent ="Edite Event";
-static const String title ="Title";
-static const String desc ="Description";
-static const String date ="Date";
-static const String time ="Time";
-static const String choose ="Choose";
-static const String chooseTime ="Choose Time";
-static const String chooseDate ="Choose Date";
-static const String eventDate ="Event Date";
-static const String eventTime ="Event  Time";
+  static String get sports => "sports".tr();
+  static String get all => "all".tr();
+  static String get birthday => "birthday".tr();
+  static String get bookClub => "bookClub".tr();
+
+  static String get titleLoginAcc => "titleLoginAcc".tr();
+  static String get titleRegisterAcc => "titleRegisterAcc".tr();
+
+  static String get forgetPass => "forgetPass".tr();
+  static String get login => "login".tr();
+  static String get signUp => "signUp".tr();
+
+  static String get enterYourEmail => "enterYourEmail".tr();
+  static String get to => "to".tr();
+  static String get enterYourPass => "enterYourPass".tr();
+  static String get enterYournName => "enterYournName".tr();
+  static String get confirmYourPass => "confirmYourPass".tr();
+
+  static String get resetPass => "resetPass".tr();
+  static String get dontHaveAcc => "dontHaveAcc".tr();
+  static String get haveAcc => "haveAcc".tr();
+
+  static String get or => "or".tr();
+  static String get welcomeBack => "welcomeBack".tr();
+  static String get withGoogle => "withGoogle".tr();
+
+  static String get searchEvent => "searchEvent".tr();
+  static String get darkMode => "darkMode".tr();
+  static String get logOut => "logOut".tr();
+
+  static String get addEvent => "addEvent".tr();
+  static String get event => "event".tr();
+  static String get editeEvent => "editeEvent".tr();
+
+  static String get title => "title".tr();
+  static String get desc => "desc".tr();
+  static String get date => "date".tr();
+  static String get time => "time".tr();
+
+  static String get choose => "choose".tr();
+  static String get chooseTime => "chooseTime".tr();
+  static String get chooseDate => "chooseDate".tr();
+
+  static String get eventDate => "eventDate".tr();
+  static String get eventTime => "eventTime".tr();
 }

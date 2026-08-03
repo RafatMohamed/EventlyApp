@@ -43,7 +43,7 @@ class SignUpView extends StatelessWidget {
                     style: textTheme.titleSmall,
                     TextSpan(
                       children: <TextSpan>[
-                        const TextSpan(text: AppText.haveAcc),
+                        TextSpan(text: AppText.haveAcc),
                         const TextSpan(text: " ? "),
                         TextSpan(
                           text: AppText.login,

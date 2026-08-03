@@ -34,7 +34,7 @@ class CustomButtonGoogle extends StatelessWidget {
                 children: <TextSpan>[
                   TextSpan(text: text),
                   const TextSpan(text: " "),
-                  const TextSpan(text: AppText.withGoogle),
+                  TextSpan(text: AppText.withGoogle),
                 ],
               ),
             ),

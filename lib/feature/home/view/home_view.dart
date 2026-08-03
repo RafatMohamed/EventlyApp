@@ -25,9 +25,9 @@ class HomeView extends StatelessWidget {
               fontWeight: .w400,
               color: isLight ? AppColors.secTextLight : AppColors.secTextDark,
             ),
-            const TextSpan(
+            TextSpan(
               text: AppText.welcomeBack,
-              children: [TextSpan(text: "✨ ddd")],
+              children: const [TextSpan(text: "✨")],
             ),
           ),
           const SizedBox(height: 4),

@@ -43,7 +43,7 @@ class LoginView extends StatelessWidget {
                     style: textTheme.titleSmall,
                     TextSpan(
                       children: <TextSpan>[
-                        const TextSpan(text: AppText.dontHaveAcc),
+                        TextSpan(text: AppText.dontHaveAcc),
                         const TextSpan(text: " ? "),
                         TextSpan(
                           text: AppText.signUp,

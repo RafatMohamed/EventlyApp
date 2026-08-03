@@ -44,10 +44,10 @@ class CustomFormBuildLogin extends StatelessWidget {
             child: Text.rich(
               textAlign: .end,
               style: textTheme.labelSmall,
-              const TextSpan(
+              TextSpan(
                 children: <TextSpan>[
                   TextSpan(text: AppText.forgetPass),
-                  TextSpan(text: "?"),
+                  const TextSpan(text: "?"),
                 ],
               ),
             ),
