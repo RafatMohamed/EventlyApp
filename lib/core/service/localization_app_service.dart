@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 
 class LocalizationAppService extends ChangeNotifier {
 
-  Locale currentLocale = const Locale("en");
-
   Future<void> changLocal(Locale newLocal, BuildContext context) async {
-    if (newLocal == currentLocale) return;
-    currentLocale = newLocal;
-    context.setLocale(currentLocale);
+    if (context.locale == newLocal) return;
+    context.setLocale(newLocal);
     notifyListeners();
   }
 }
