@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:evently_app/core/service/them_app_service.dart';
 import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/view/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../core/service/localization_app_service.dart';
+import '../core/service/Provider/get_event_services.dart';
+import '../core/service/Provider/localization_app_service.dart';
+import '../core/service/Provider/them_app_service.dart';
 import '../core/utilities/app_them.dart';
 import '../feature/add_event/view/add_event_view.dart';
 import '../feature/favorite/view/favorite_view.dart';
@@ -37,6 +38,9 @@ class EventlyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ThemAppService()),
         ChangeNotifierProvider(
           create: (context) => LocalizationAppService(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => GetEventServicesProvider()..getAllEvent(),
         ),
       ],
       child: CustomMaterialApp(routesApp: routesApp),

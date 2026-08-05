@@ -1,15 +1,14 @@
 import 'package:evently_app/core/models/tab_bar_categories_model.dart';
 import 'package:evently_app/core/service/getPathImageService/get_path_img_services.dart';
-import 'package:evently_app/core/service/them_app_service.dart';
 import 'package:evently_app/core/widgets/default_app_bar_app.dart';
 import 'package:evently_app/feature/add_event/view/widgets/custom_add_event_body.dart';
 import 'package:evently_app/feature/add_event/view/widgets/custom_tab_bar_add_edite_event.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../core/service/Provider/them_app_service.dart';
 import '../../../core/utilities/app_border_radius.dart';
 import '../../../core/utilities/app_padding.dart';
 import '../../../core/utilities/app_text.dart';
-import '../../../generated/assets.dart';
 
 class AddEventView extends StatefulWidget {
   static const String routeName = "/${AppText.routeAddEventViewApp}";

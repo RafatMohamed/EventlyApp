@@ -1,10 +1,13 @@
 import 'dart:developer';
 
 import 'package:evently_app/core/models/tab_bar_categories_model.dart';
+import 'package:evently_app/core/service/EventServiceFirebase/event_services.dart';
+import 'package:evently_app/core/utilities/app_text_styles.dart';
+import 'package:evently_app/core/utilities/helper/custom_snack_bar_app.dart';
 import 'package:evently_app/core/widgets/custom_button_app.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
 import 'package:evently_app/feature/add_event/model/event_model.dart';
-import 'package:evently_app/feature/add_event/services/add_event_firestore.dart';
+import 'package:evently_app/feature/add_event/services/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/utilities/app_padding.dart';
@@ -13,7 +16,11 @@ import '../../../../generated/assets.dart';
 import 'custom_build_choose_date.dart';
 
 class DefaultAddEvent extends StatefulWidget {
-  const DefaultAddEvent({super.key, required this.categorie, required this.pathImage});
+  const DefaultAddEvent({
+    super.key,
+    required this.categorie,
+    required this.pathImage,
+  });
   final CategoriesModel categorie;
   final String pathImage;
   @override
@@ -114,7 +121,9 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
   }
 
   Future<void> addEvent() async {
-    if(formKey.currentState!.validate()&& dateSelect !=null && timeSelect!=null){
+    if (formKey.currentState!.validate() &&
+        dateSelect != null &&
+        timeSelect != null) {
       EventModel event = EventModel(
         title: titleController.text,
         desc: descController.text,
@@ -128,8 +137,12 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
         ),
         categories: widget.categorie,
       );
-      await EventFirestoreService.addEvent(event);
-      log("Success");
+      AddEventServices.addEvent(event).then((_){
+        ShowMess.successMess(context: context, mess: "Add Event Success");
+        Navigator.of(context).pop();
+      }).catchError((error){
+        ShowMess.successMess(context: context, mess: "Failed Add Event $error");
+      });
     }
   }
 }
