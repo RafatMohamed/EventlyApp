@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:evently_app/core/models/tab_bar_categories_model.dart';
 import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ void main() async {
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       saveLocale: true,
-      fallbackLocale: Locale("en"),
+      fallbackLocale: const Locale("en"),
       child: const EventlyApp(),
     ),
   );

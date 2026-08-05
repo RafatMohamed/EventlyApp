@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/generated/assets.dart';
-import 'package:flutter/cupertino.dart';
 
 class CategoriesModel {
   String id;
