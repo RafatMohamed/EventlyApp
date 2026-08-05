@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:evently_app/core/service/them_app_service.dart';
+import 'package:evently_app/core/service/Provider/them_app_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/service/localization_app_service.dart';
+import '../../../../core/service/Provider/localization_app_service.dart';
 import '../../../../core/utilities/app_border_radius.dart';
 import '../../../../core/utilities/app_padding.dart';
 import '../../../../core/utilities/app_text.dart';

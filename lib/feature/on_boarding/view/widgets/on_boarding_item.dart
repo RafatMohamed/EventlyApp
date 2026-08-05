@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:evently_app/core/service/localization_app_service.dart';
-import 'package:evently_app/core/service/them_app_service.dart';
+import 'package:evently_app/core/service/Provider/localization_app_service.dart';
+import 'package:evently_app/core/service/Provider/them_app_service.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/feature/on_boarding/model/on_boarding_model.dart';
 import 'package:flutter/material.dart';
