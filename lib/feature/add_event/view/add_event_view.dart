@@ -1,8 +1,11 @@
 import 'package:evently_app/core/models/tab_bar_categories_model.dart';
+import 'package:evently_app/core/service/getPathImageService/get_path_img_services.dart';
+import 'package:evently_app/core/service/them_app_service.dart';
 import 'package:evently_app/core/widgets/default_app_bar_app.dart';
 import 'package:evently_app/feature/add_event/view/widgets/custom_add_event_body.dart';
 import 'package:evently_app/feature/add_event/view/widgets/custom_tab_bar_add_edite_event.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../core/utilities/app_border_radius.dart';
 import '../../../core/utilities/app_padding.dart';
 import '../../../core/utilities/app_text.dart';
@@ -20,6 +23,13 @@ class _AddEventViewState extends State<AddEventView> {
   CategoriesModel selectCategories = CategoriesModel.getListCategories().first;
   @override
   Widget build(BuildContext context) {
+    bool isDark() {
+      if (Provider.of<ThemAppService>(context).currentThem == ThemeMode.dark) {
+        return true;
+      }
+      return false;
+    }
+
     final ThemeData colorThem = Theme.of(context);
     final Size size = MediaQuery.sizeOf(context);
 
@@ -49,7 +59,9 @@ class _AddEventViewState extends State<AddEventView> {
                   color: Colors.transparent,
                   border: Border.all(color: colorThem.unselectedWidgetColor),
                   image: DecorationImage(
-                    image: AssetImage(getPathImage()),
+                    image: AssetImage(
+                      "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: selectCategories)}${isDark() ? "_dark" : "_light"}.png",
+                    ),
                     fit: .fill,
                   ),
                 ),
@@ -63,7 +75,9 @@ class _AddEventViewState extends State<AddEventView> {
                 },
               ),
               DefaultAddEvent(
-                pathImage: getPathImage(),
+                pathImage: GetPathImgServices.getPathImage(
+                  selectCategories: selectCategories,
+                ),
                 categorie: selectCategories,
               ),
             ],
@@ -71,24 +85,5 @@ class _AddEventViewState extends State<AddEventView> {
         ),
       ),
     );
-  }
-
-  String getPathImage() {
-    if (selectCategories.id == AppText.sports) {
-      if(ThemeMode.dark.isDark){
-
-      }
-      return Assets.images.png.sportLight.path;
-    }
-    if (selectCategories.id == AppText.birthday) {
-      return Assets.images.png.birthdayLight.path;
-    }
-    if (selectCategories.id == AppText.bookClub) {
-      return Assets.images.png.bookClubLight.path;
-    }
-    if (selectCategories.id == AppText.meeting) {
-      return Assets.images.png.meetingLight.path;
-    }
-    return Assets.images.png.sportLight.path;
   }
 }
