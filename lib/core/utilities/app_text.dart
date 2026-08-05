@@ -41,6 +41,7 @@ class AppText {
   static String get sports => "sports";
   static String get birthday => "birthday";
   static String get bookClub => "bookClub";
+  static String get meeting => "meeting";
 
   static String get titleLoginAcc => "titleLoginAcc".tr();
   static String get titleRegisterAcc => "titleRegisterAcc".tr();

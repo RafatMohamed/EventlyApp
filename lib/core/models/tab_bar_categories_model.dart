@@ -11,9 +11,10 @@ class CategoriesModel {
 
   static List<CategoriesModel> getListCategories(){
     return [
-      CategoriesModel(id: AppText.sports, label: AppText.sports.tr(), iconPath: Assets.icons.sport.path),
-      CategoriesModel(id: AppText.birthday, label: AppText.birthday.tr(), iconPath: Assets.icons.birthday.path),
-      CategoriesModel(id: AppText.bookClub, label: AppText.bookClub.tr(), iconPath: Assets.icons.book.path),
+      CategoriesModel(id: "sports", label: AppText.sports.tr(), iconPath: Assets.icons.sport.path),
+      CategoriesModel(id: "birthday", label: AppText.birthday.tr(), iconPath: Assets.icons.birthday.path),
+      CategoriesModel(id: "bookClub", label: AppText.bookClub.tr(), iconPath: Assets.icons.book.path),
+      CategoriesModel(id: "meeting", label: AppText.meeting.tr(), iconPath: Assets.icons.book.path),
     ];
   }
 }

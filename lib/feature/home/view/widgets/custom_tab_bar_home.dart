@@ -45,7 +45,7 @@ class _CustomTabBarHomeState extends State<CustomTabBarHome> with SingleTickerPr
         setState(() {});
       },
       tabs:[
-        TabBarCategoriesItem(isSelected: currentIndex==0,categories: CategoriesModel(id:AppText.all, label: AppText.all, iconPath: Assets.icons.iconCategoriesAll.path),),
+        TabBarCategoriesItem(isSelected: currentIndex==0,categories: CategoriesModel(id:"all", label: AppText.all, iconPath: Assets.icons.iconCategoriesAll.path),),
         ...List.generate(CategoriesModel.getListCategories().length, (index) {
           final isSelected = currentIndex == index+1;
           final CategoriesModel categorie =CategoriesModel.getListCategories()[index];

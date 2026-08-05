@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../model/event_model.dart';
 
-class AddEventFirestoreService {
+class EventFirestoreService {
  static CollectionReference<EventModel> eventRef = FirebaseFirestore.instance.collection('Events').withConverter<EventModel>(
   fromFirestore: (snapshot, _) => EventModel.fromFirebase(snapshot.data()!),
   toFirestore: (event, _) => event.toJsonFirebase(),

@@ -128,7 +128,7 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
         ),
         categories: widget.categorie,
       );
-      await AddEventFirestoreService.addEvent(event);
+      await EventFirestoreService.addEvent(event);
       log("Success");
     }
   }

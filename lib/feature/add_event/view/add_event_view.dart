@@ -75,6 +75,9 @@ class _AddEventViewState extends State<AddEventView> {
 
   String getPathImage() {
     if (selectCategories.id == AppText.sports) {
+      if(ThemeMode.dark.isDark){
+
+      }
       return Assets.images.png.sportLight.path;
     }
     if (selectCategories.id == AppText.birthday) {
@@ -82,6 +85,9 @@ class _AddEventViewState extends State<AddEventView> {
     }
     if (selectCategories.id == AppText.bookClub) {
       return Assets.images.png.bookClubLight.path;
+    }
+    if (selectCategories.id == AppText.meeting) {
+      return Assets.images.png.meetingLight.path;
     }
     return Assets.images.png.sportLight.path;
   }

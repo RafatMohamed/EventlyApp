@@ -28,10 +28,10 @@ class $AssetsPngGen {
     'assets/images/png/birthday_light.png',
   );
   final AssetGenImage bookClubDark = const AssetGenImage(
-    'assets/images/png/book_club_dark.png',
+    'assets/images/png/bookClub_dark.png',
   );
   final AssetGenImage bookClubLight = const AssetGenImage(
-    'assets/images/png/book_club_light.png',
+    'assets/images/png/bookClub_light.png',
   );
   final AssetGenImage brandingDark = const AssetGenImage(
     'assets/images/png/branding_dark.png',
