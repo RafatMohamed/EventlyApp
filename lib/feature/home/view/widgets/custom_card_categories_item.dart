@@ -1,16 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/service/getPathImageService/get_path_img_services.dart';
-import 'package:evently_app/core/utilities/helper/custom_widget_loading_data.dart';
-import 'package:evently_app/feature/add_event/model/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../core/service/Provider/get_event_services.dart';
 import '../../../../core/service/Provider/them_app_service.dart';
 import '../../../../core/utilities/app_border_radius.dart';
 import '../../../../core/utilities/app_padding.dart';
 import '../../../../generated/assets.dart';
+import '../../../event/model/event_model.dart';
 
 class CustomCardCategoriesItem extends StatelessWidget {
   const CustomCardCategoriesItem({

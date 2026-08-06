@@ -9,7 +9,8 @@ class AppText {
   static const String routeHomeViewApp = "homeView";
   static const String routeFavoriteViewApp = "favoriteView";
   static const String routeProfileViewApp = "profileView";
-  static const String routeAddEventViewApp = "addEvent";
+  static const String routeAddEventViewApp = "addEventView";
+  static const String routeEventDetailsViewApp = "EventDetailsView";
   static const String routeLoginViewApp = "loginView";
   static const String routeRegisterViewApp = "registerView";
   static const String routeForgetPassViewApp = "forgetPassView";

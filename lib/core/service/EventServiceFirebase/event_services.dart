@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../feature/add_event/model/event_model.dart';
+import '../../../feature/event/model/event_model.dart';
 
 class EventServicesFirebase {
   static CollectionReference<EventModel> eventRef = FirebaseFirestore.instance

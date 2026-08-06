@@ -11,7 +11,8 @@ import '../core/service/Provider/get_event_services.dart';
 import '../core/service/Provider/localization_app_service.dart';
 import '../core/service/Provider/them_app_service.dart';
 import '../core/utilities/app_them.dart';
-import '../feature/add_event/view/add_event_view.dart';
+import '../feature/event/view/add_event_view.dart';
+import '../feature/event/view/event_detailes_view.dart';
 import '../feature/favorite/view/favorite_view.dart';
 import '../feature/home/view/home_view.dart';
 import '../feature/home/view/widgets/my_event_view.dart';
@@ -35,6 +36,7 @@ class EventlyApp extends StatelessWidget {
       FavoriteView.routeName: (context) => const FavoriteView(),
       ProfileView.routeName: (context) => const ProfileView(),
       AddEventView.routeName: (context) => const AddEventView(),
+      EventDetailsView.routeName: (context) => const EventDetailsView(),
       AuthGate.routeName: (context) => const AuthGate(),
       MyEventView.routeName: (context) => const MyEventView(),
     };

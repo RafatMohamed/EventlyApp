@@ -1,19 +1,10 @@
-import 'dart:io';
-
 import 'package:evently_app/core/widgets/app_bar_logo.dart';
 import 'package:evently_app/feature/login/view/widgets/custom_form_build_login.dart';
 import 'package:evently_app/feature/register/view/sign_up_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../../core/models/auth_model.dart';
-import '../../../core/service/AuthServicesFirebase/auth_services_firebase.dart';
-import '../../../core/service/Provider/auth_services.dart';
 import '../../../core/utilities/app_padding.dart';
 import '../../../core/utilities/app_text.dart';
-import '../../../core/utilities/helper/custom_snack_bar_app.dart';
 import '../../../core/widgets/custom_button_google.dart';
-import '../../main_app_view/view/main_app_view.dart';
 
 class LoginView extends StatelessWidget {
   static const String routeName = "/${AppText.routeLoginViewApp}";

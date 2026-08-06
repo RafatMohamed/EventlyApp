@@ -25,7 +25,7 @@ class AuthServicesFirebase {
     return snapShot.data()!;
   }
 
-  static Future<AuthModel> RegisterUser({
+  static Future<AuthModel> registerUser({
     required String name,
     required String email,
     required String pass,
@@ -40,7 +40,7 @@ class AuthServicesFirebase {
     return user;
   }
 
-  static Future<AuthModel> LoginUser({
+  static Future<AuthModel> loginUser({
     required String email,
     required String pass,
   }) async {
@@ -86,6 +86,7 @@ class AuthServicesFirebase {
 
   static Future<void> logOut({required BuildContext context})async{
     await FirebaseAuth.instance.signOut();
+    if (!context.mounted) return;
     Provider.of<AuthServicesProvider>(context).streamUser(null);
   }
 }

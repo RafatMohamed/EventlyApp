@@ -1,8 +1,8 @@
 import 'package:evently_app/core/models/tab_bar_categories_model.dart';
 import 'package:evently_app/core/service/getPathImageService/get_path_img_services.dart';
 import 'package:evently_app/core/widgets/default_app_bar_app.dart';
-import 'package:evently_app/feature/add_event/view/widgets/custom_add_event_body.dart';
-import 'package:evently_app/feature/add_event/view/widgets/custom_tab_bar_add_edite_event.dart';
+import 'package:evently_app/feature/event/view/widgets/custom_add_event_body.dart';
+import 'package:evently_app/feature/event/view/widgets/custom_tab_bar_add_edite_event.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../core/service/Provider/them_app_service.dart';

@@ -1,7 +1,6 @@
-import 'package:evently_app/feature/add_event/model/event_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import '../../../feature/event/model/event_model.dart';
 import '../EventServiceFirebase/event_services.dart';
 
 class GetEventServicesProvider extends ChangeNotifier{
