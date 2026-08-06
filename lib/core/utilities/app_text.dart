@@ -14,6 +14,7 @@ class AppText {
   static const String routeRegisterViewApp = "registerView";
   static const String routeForgetPassViewApp = "forgetPassView";
   static const String authGateViewApp = "AuthGateView";
+  static const String routeMyEventViewApp = "MyEventView";
 
   static String get title0OnBoarding => "title0OnBoarding".tr();
   static String get title1OnBoarding => "title1OnBoarding".tr();
