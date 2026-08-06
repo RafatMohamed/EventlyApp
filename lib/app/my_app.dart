@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/core/service/Provider/auth_services.dart';
+import 'package:evently_app/core/service/is_login_services.dart';
 import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
@@ -32,6 +34,7 @@ class EventlyApp extends StatelessWidget {
       FavoriteView.routeName: (context) => const FavoriteView(),
       ProfileView.routeName: (context) => const ProfileView(),
       AddEventView.routeName: (context) => const AddEventView(),
+      AuthGate.routeName: (context) => const AuthGate(),
     };
     return MultiProvider(
       providers: [
@@ -41,6 +44,9 @@ class EventlyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => GetEventServicesProvider()..getAllEvent(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthServicesProvider(),
         ),
       ],
       child: CustomMaterialApp(routesApp: routesApp),
@@ -68,7 +74,7 @@ class CustomMaterialApp extends StatelessWidget {
       routes: routesApp,
       initialRoute: StorgeLocalHive.instance.getIsFirstOpenApp()
           ? OnBoardingView.routeName
-          : MainAppView.routeName,
+          : AuthGate.routeName,
     );
   }
 }

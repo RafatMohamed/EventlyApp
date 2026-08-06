@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/core/service/AuthServicesFirebase/auth_services_firebase.dart';
 import 'package:evently_app/core/service/Provider/them_app_service.dart';
+import 'package:evently_app/feature/login/view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -117,9 +119,15 @@ class CustomBuildThemProfileApp extends StatelessWidget {
             ],
           ),
         ),
-        CustomBuildListTile(
-          title: AppText.logOut,
-          trailing: SvgPicture.asset(Assets.icons.logout.path),
+        InkWell(
+          onTap: () {
+            AuthServicesFirebase.logOut(context: context);
+            Navigator.pushReplacementNamed(context, LoginView.routeName);
+          },
+          child: CustomBuildListTile(
+            title: AppText.logOut,
+            trailing: SvgPicture.asset(Assets.icons.logout.path),
+          ),
         ),
       ],
     );
