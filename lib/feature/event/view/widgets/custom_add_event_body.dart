@@ -1,9 +1,16 @@
+import 'dart:math';
+
 import 'package:evently_app/core/models/tab_bar_categories_model.dart';
+import 'package:evently_app/core/service/EventServiceFirebase/event_services.dart';
+import 'package:evently_app/core/service/Provider/get_event_services.dart';
 import 'package:evently_app/core/utilities/helper/custom_snack_bar_app.dart';
+import 'package:evently_app/core/utilities/helper/custom_widget_loading_data.dart';
 import 'package:evently_app/core/widgets/custom_button_app.dart';
 import 'package:evently_app/core/widgets/custom_text_form_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/utilities/app_padding.dart';
 import '../../../../core/utilities/app_text.dart';
 import '../../../../generated/assets.dart';
@@ -16,20 +23,44 @@ class DefaultAddEvent extends StatefulWidget {
     super.key,
     required this.categorie,
     required this.pathImage,
+    this.event,
   });
   final CategoriesModel categorie;
   final String pathImage;
+  final EventModel? event;
   @override
   State<DefaultAddEvent> createState() => _DefaultAddEventState();
 }
 
 class _DefaultAddEventState extends State<DefaultAddEvent> {
+  bool isLoading = false;
   DateTime? dateSelect;
   TimeOfDay? timeSelect;
   var formate = DateFormat("dd MMM,yyyy");
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController titleController = TextEditingController();
-  TextEditingController descController = TextEditingController();
+  late TextEditingController titleController;
+  late TextEditingController descController;
+
+  @override
+  void initState() {
+    titleController = TextEditingController(text: widget.event?.title);
+    descController = TextEditingController(text: widget.event?.desc);
+    dateSelect = widget.event != null
+        ? DateTime(
+            widget.event!.dateTime.year,
+            widget.event!.dateTime.month,
+            widget.event!.dateTime.day,
+          )
+        : null;
+    timeSelect = widget.event != null
+        ? TimeOfDay(
+            hour: widget.event!.dateTime.hour,
+            minute: widget.event!.dateTime.minute,
+          )
+        : null;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
@@ -110,7 +141,17 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
             iconPath: Assets.icons.clock.path,
             chooseDate: chooseTime,
           ),
-          CustomButtonApp(onTap: addEvent, text: AppText.addEvent),
+          IgnorePointer(
+            ignoring: isLoading,
+            child: isLoading
+                ? CustomWidgetLoadingData.circleProgrees(colorThem)
+                : CustomButtonApp(
+                    onTap: widget.event != null ? updateEvent : addEvent,
+                    text: widget.event != null
+                        ? AppText.updateEvent
+                        : AppText.addEvent,
+                  ),
+          ),
         ],
       ),
     );
@@ -133,14 +174,79 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
         ),
         categories: widget.categorie,
       );
-      AddEventServices.addEvent(event).then((_){
-        if (!mounted) return;
-        ShowMess.successMess(context: context, mess: "Add Event Success");
-        Navigator.of(context).pop();
-      }).catchError((error){
-        if (!mounted) return;
-        ShowMess.successMess(context: context, mess: "Failed Add Event $error");
+      setState(() {
+        isLoading = true;
       });
+      AddEventServices.addEvent(event)
+          .then((_) {
+            if (!mounted) return;
+            ShowMess.successMess(context: context, mess: "Add Event Success");
+            Navigator.of(context).pop();
+            Provider.of<GetEventServicesProvider>(
+              context,
+              listen: false,
+            ).getAllEvent();
+          })
+          .catchError((error) {
+            setState(() {
+              isLoading = false;
+            });
+            if (!mounted) return;
+            ShowMess.successMess(
+              context: context,
+              mess: "Failed Add Event $error",
+            );
+          });
+    }
+  }
+
+  Future<void> updateEvent() async {
+    if (formKey.currentState!.validate() &&
+        dateSelect != null &&
+        timeSelect != null) {
+      EventModel event = EventModel(
+        title: titleController.text,
+        desc: descController.text,
+        eventID: widget.event?.eventID,
+        eventOwner: widget.event?.eventOwner==null
+            ? widget.event?.eventOwner
+            : FirebaseAuth.instance.currentUser?.uid,
+        pathImage: widget.pathImage,
+        dateTime: DateTime(
+          dateSelect!.year,
+          dateSelect!.month,
+          dateSelect!.day,
+          timeSelect!.hour,
+          timeSelect!.minute,
+        ),
+        categories: widget.categorie,
+      );
+      setState(() {
+        isLoading = true;
+      });
+      EventServicesFirebase.updateEventFirebase(event)
+          .then((_) {
+            if (!mounted) return;
+            ShowMess.successMess(
+              context: context,
+              mess: "Update Event Success",
+            );
+            Navigator.of(context).pop(event);
+            Provider.of<GetEventServicesProvider>(
+              context,
+              listen: false,
+            ).getAllEvent();
+          })
+          .catchError((error) {
+            setState(() {
+              isLoading = false;
+            });
+            if (!mounted) return;
+            ShowMess.successMess(
+              context: context,
+              mess: "Failed Update Event $error",
+            );
+          });
     }
   }
 }

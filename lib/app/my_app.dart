@@ -3,6 +3,7 @@ import 'package:evently_app/core/service/Provider/auth_services.dart';
 import 'package:evently_app/core/service/is_login_services.dart';
 import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
+import 'package:evently_app/feature/event/model/event_model.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/view/on_boarding_view.dart';
 import 'package:flutter/material.dart';
@@ -35,23 +36,27 @@ class EventlyApp extends StatelessWidget {
       HomeView.routeName: (context) => const HomeView(),
       FavoriteView.routeName: (context) => const FavoriteView(),
       ProfileView.routeName: (context) => const ProfileView(),
-      AddEventView.routeName: (context) => const AddEventView(),
-      EventDetailsView.routeName: (context) => const EventDetailsView(),
+      AddEventView.routeName: (context){
+        var args =ModalRoute.of(context)!.settings.arguments as ({bool isUpdate,EventModel? event});
+        return  AddEventView(isEdite: args.isUpdate,event: args.event,);
+      },
+      EventDetailsView.routeName: (context) {
+        EventModel event = ModalRoute.of(context)!.settings.arguments as EventModel;
+        return EventDetailsView(event: event);
+      },
       AuthGate.routeName: (context) => const AuthGate(),
       MyEventView.routeName: (context) => const MyEventView(),
     };
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemAppService()),
+        ChangeNotifierProvider(create: (context) => LocalizationAppService()),
         ChangeNotifierProvider(
-          create: (context) => LocalizationAppService(),
+          create: (context) => GetEventServicesProvider()
+            ..getAllEvent()
+            ..getMyEvent(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => GetEventServicesProvider()..getAllEvent()..getMyEvent(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => AuthServicesProvider(),
-        ),
+        ChangeNotifierProvider(create: (context) => AuthServicesProvider()),
       ],
       child: CustomMaterialApp(routesApp: routesApp),
     );

@@ -1,25 +1,34 @@
-import 'package:evently_app/core/models/tab_bar_categories_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/core/service/EventServiceFirebase/event_services.dart';
+import 'package:evently_app/core/service/Provider/get_event_services.dart';
 import 'package:evently_app/core/service/getPathImageService/get_path_img_services.dart';
+import 'package:evently_app/core/utilities/app_colors.dart';
+import 'package:evently_app/core/utilities/helper/custom_widget_loading_data.dart';
 import 'package:evently_app/core/widgets/default_app_bar_app.dart';
-import 'package:evently_app/feature/event/view/widgets/custom_add_event_body.dart';
-import 'package:evently_app/feature/event/view/widgets/custom_tab_bar_add_edite_event.dart';
+import 'package:evently_app/feature/event/model/event_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../core/service/Provider/them_app_service.dart';
 import '../../../core/utilities/app_border_radius.dart';
 import '../../../core/utilities/app_padding.dart';
 import '../../../core/utilities/app_text.dart';
+import '../../../core/utilities/helper/custom_snack_bar_app.dart';
+import 'add_event_view.dart';
 
 class EventDetailsView extends StatefulWidget {
   static const String routeName = "/${AppText.routeEventDetailsViewApp}";
-  const EventDetailsView({super.key});
+  const EventDetailsView({super.key, required this.event});
+  final EventModel event;
 
   @override
   State<EventDetailsView> createState() => _EventDetailsViewState();
 }
 
 class _EventDetailsViewState extends State<EventDetailsView> {
-  CategoriesModel selectCategories = CategoriesModel.getListCategories().first;
+  bool isLoadingUpdate = false;
+  bool isLoadingDelete = false;
+
   @override
   Widget build(BuildContext context) {
     bool isDark() {
@@ -31,12 +40,123 @@ class _EventDetailsViewState extends State<EventDetailsView> {
 
     final ThemeData colorThem = Theme.of(context);
     final Size size = MediaQuery.sizeOf(context);
-
     return Scaffold(
       appBar: defaultAppBarApp(
         context,
         themeColor: colorThem,
-        title: AppText.addEvent,
+        title: AppText.eventDetails,
+        actions:
+        widget.event.eventOwner== FirebaseAuth.instance.currentUser?.uid
+            ? [
+                IgnorePointer(
+                  ignoring: isLoadingUpdate,
+                  child: GestureDetector(
+                    onTap: () async{
+                    var eventModelBack= await Navigator.pushNamed(
+                        context,
+                        AddEventView.routeName,
+                        arguments: (isUpdate: true, event: widget.event),
+                      );
+                    if(eventModelBack is EventModel){
+                      widget.event.title=eventModelBack.title;
+                      widget.event.desc=eventModelBack.desc;
+                      widget.event.dateTime=eventModelBack.dateTime;
+                    }
+                    },
+                    child: isLoadingUpdate
+                        ? CustomWidgetLoadingData.circleProgrees(colorThem)
+                        : Container(
+                            alignment: .center,
+                            padding: EdgeInsetsDirectional.all(AppPadding.p4),
+                            margin: const EdgeInsetsDirectional.only(
+                              start: AppPadding.p16,
+                              bottom: AppPadding.p10,
+                              top: AppPadding.p10,
+                            ),
+                            decoration: BoxDecoration(
+                              color: colorThem.disabledColor,
+                              borderRadius: BorderRadius.circular(
+                                AppBorderRadius.r8,
+                              ),
+                              border: Border.all(
+                                color: colorThem.unselectedWidgetColor,
+                                style: .solid,
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.edit_rounded,
+                              size: 24,
+                              color: colorThem.primaryColor,
+                              fill: .minPositive,
+                            ),
+                          ),
+                  ),
+                ),
+                IgnorePointer(
+                  ignoring: isLoadingDelete,
+                  child: GestureDetector(
+                    onTap: () async {
+                      setState(() {
+                        isLoadingDelete = true;
+                      });
+                      EventServicesFirebase.deleteEventFirebase(
+                            widget.event.eventID,
+                          )
+                          .then((_) {
+                            if (!context.mounted) return;
+                            ShowMess.successMess(
+                              context: context,
+                              mess: "Delete Event Success",
+                            );
+                            Navigator.of(context).pop();
+                            Provider.of<GetEventServicesProvider>(
+                              context,
+                              listen: false,
+                            ).getAllEvent();
+                          })
+                          .catchError((error) {
+                            setState(() {
+                              isLoadingDelete = false;
+                            });
+                            if (!context.mounted) return;
+                            ShowMess.successMess(
+                              context: context,
+                              mess: "Failed Delete Event $error",
+                            );
+                          });
+                    },
+                    child: isLoadingDelete
+                        ? CustomWidgetLoadingData.circleProgrees(colorThem)
+                        : Container(
+                            alignment: .center,
+                            padding: EdgeInsetsDirectional.all(AppPadding.p4),
+                            margin: const EdgeInsetsDirectional.only(
+                              start: AppPadding.p16,
+                              bottom: AppPadding.p10,
+                              top: AppPadding.p10,
+                              end: AppPadding.p16,
+                            ),
+                            decoration: BoxDecoration(
+                              color: colorThem.disabledColor,
+                              borderRadius: BorderRadius.circular(
+                                AppBorderRadius.r8,
+                              ),
+                              border: Border.all(
+                                color: colorThem.unselectedWidgetColor,
+                                style: .solid,
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.delete_outlined,
+                              size: 24,
+                              color: AppColors.redColor,
+                              fill: .minPositive,
+                            ),
+                          ),
+                  ),
+                ),
+              ]
+            : [],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -59,25 +179,95 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                   border: Border.all(color: colorThem.unselectedWidgetColor),
                   image: DecorationImage(
                     image: AssetImage(
-                      "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: selectCategories)}${isDark() ? "_dark" : "_light"}.png",
+                      "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: widget.event.categories)}${isDark() ? "_dark" : "_light"}.png",
                     ),
                     fit: .fill,
                   ),
                 ),
               ),
-              CustomTabBarAddEditeEvent(
-                selectedCategory: selectCategories,
-                onCategorySelected: (value) {
-                  setState(() {
-                    selectCategories = value;
-                  });
-                },
-              ),
-              DefaultAddEvent(
-                pathImage: GetPathImgServices.getPathImage(
-                  selectCategories: selectCategories,
+              Text(
+                widget.event.title,
+                style: colorThem.textTheme.bodySmall?.copyWith(
+                  color: colorThem.primaryColorLight,
+                  fontSize: 18,
                 ),
-                categorie: selectCategories,
+              ),
+              Container(
+                padding: const EdgeInsetsDirectional.all(AppPadding.p16),
+                decoration: BoxDecoration(
+                  color: colorThem.disabledColor,
+                  borderRadius: BorderRadius.circular(AppBorderRadius.r8),
+                  border: Border.all(
+                    color: colorThem.unselectedWidgetColor,
+                    style: .solid,
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: colorThem.scaffoldBackgroundColor,
+                        borderRadius: BorderRadiusDirectional.circular(
+                          AppBorderRadius.r8,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.calendar_month_outlined,
+                        color: colorThem.primaryColor,
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: .start,
+                      mainAxisAlignment: .spaceBetween,
+                      children: [
+                        Text(
+                          DateFormat("dd MMMM").format(widget.event.dateTime),
+                          style: colorThem.textTheme.bodySmall?.copyWith(
+                            color: colorThem.primaryColorLight,
+                          ),
+                        ),
+                        Text(
+                          DateFormat("hh:mm a").format(widget.event.dateTime),
+                          style: colorThem.textTheme.bodySmall?.copyWith(
+                            color: colorThem.secondaryHeaderColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                crossAxisAlignment: .start,
+                children: [
+                  Text(
+                    AppText.desc,
+                    style: colorThem.textTheme.bodySmall?.copyWith(
+                      color: colorThem.primaryColorLight,
+                      fontSize: 18,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    padding: const EdgeInsetsDirectional.all(AppPadding.p20),
+                    decoration: BoxDecoration(
+                      color: colorThem.disabledColor,
+                      borderRadius: BorderRadius.circular(AppBorderRadius.r8),
+                      border: Border.all(
+                        color: colorThem.unselectedWidgetColor,
+                        style: .solid,
+                      ),
+                    ),
+                    child: Text(
+                      widget.event.desc,
+                      style: colorThem.textTheme.bodySmall?.copyWith(
+                        color: colorThem.primaryColorLight,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

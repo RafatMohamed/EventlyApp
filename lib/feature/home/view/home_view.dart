@@ -47,7 +47,7 @@ class HomeView extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, MyEventView.routeName);
                 },
-                child: Text("MY Events", style: textTheme.bodyMedium),
+                child: Text(AppText.myEvent, style: textTheme.bodyMedium),
               ),
             ],
           ),

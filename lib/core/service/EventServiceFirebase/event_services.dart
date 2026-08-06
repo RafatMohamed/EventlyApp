@@ -18,6 +18,15 @@ class EventServicesFirebase {
     return docRef.set(event);
   }
 
+
+  static Future<void> deleteEventFirebase(String? eventID) {
+    return eventRef.doc(eventID).delete();
+  }
+  
+  static Future<void> updateEventFirebase(EventModel event) {
+    return eventRef.doc(event.eventID).update(event.toJsonFirebase());
+  }
+
   static Future<List<EventModel>> getEventFirebase() async {
     var snapShot = await eventRef.orderBy("dateTime").get();
     return snapShot.docs.map((e) {

@@ -50,9 +50,7 @@ class _MainAppViewState extends State<MainAppView> {
     ];
 
     return Scaffold(
-      body: SafeArea(
-          child: tabsView[currentIndex]
-      ),
+      body: SafeArea(child: tabsView[currentIndex]),
 
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
@@ -65,7 +63,11 @@ class _MainAppViewState extends State<MainAppView> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context,AddEventView.routeName);
+          Navigator.pushNamed(
+            context,
+            AddEventView.routeName,
+            arguments: (isUpdate: false, event: null),
+          );
         },
         child: const Icon(Icons.add),
       ),

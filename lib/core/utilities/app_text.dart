@@ -72,6 +72,9 @@ class AppText {
   static String get logOut => "logOut".tr();
 
   static String get addEvent => "addEvent".tr();
+  static String get updateEvent => "updateEvent".tr();
+  static String get eventDetails => "eventDetails".tr();
+  static String get myEvent => "myEvent".tr();
   static String get event => "event".tr();
   static String get editeEvent => "editeEvent".tr();
 
