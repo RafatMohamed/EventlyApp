@@ -3,6 +3,8 @@ import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/feature/home/view/widgets/custom_card_categories_item.dart';
 import 'package:evently_app/feature/home/view/widgets/custom_tab_bar_home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../core/service/Provider/auth_services.dart';
 import '../../../core/utilities/app_text.dart';
 
 class HomeView extends StatelessWidget {
@@ -11,6 +13,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user=Provider.of<AuthServicesProvider>(context);
     bool isLight = ThemeMode.light.isLight;
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ThemeData colorThem = Theme.of(context);
@@ -31,7 +34,7 @@ class HomeView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Text(AppText.raafat, style: textTheme.bodyMedium),
+          Text(user.user!.name, style: textTheme.bodyMedium),
           const Padding(
             padding: EdgeInsetsDirectional.symmetric(vertical: AppPadding.p24),
             child: CustomTabBarHome(),
