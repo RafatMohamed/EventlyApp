@@ -14,6 +14,7 @@ import '../core/utilities/app_them.dart';
 import '../feature/add_event/view/add_event_view.dart';
 import '../feature/favorite/view/favorite_view.dart';
 import '../feature/home/view/home_view.dart';
+import '../feature/home/view/widgets/my_event_view.dart';
 import '../feature/login/view/login_view.dart';
 import '../feature/profile/view/profile_view.dart';
 import '../feature/register/view/sign_up_view.dart';
@@ -35,6 +36,7 @@ class EventlyApp extends StatelessWidget {
       ProfileView.routeName: (context) => const ProfileView(),
       AddEventView.routeName: (context) => const AddEventView(),
       AuthGate.routeName: (context) => const AuthGate(),
+      MyEventView.routeName: (context) => const MyEventView(),
     };
     return MultiProvider(
       providers: [
@@ -43,7 +45,7 @@ class EventlyApp extends StatelessWidget {
           create: (context) => LocalizationAppService(),
         ),
         ChangeNotifierProvider(
-          create: (context) => GetEventServicesProvider()..getAllEvent(),
+          create: (context) => GetEventServicesProvider()..getAllEvent()..getMyEvent(),
         ),
         ChangeNotifierProvider(
           create: (context) => AuthServicesProvider(),
