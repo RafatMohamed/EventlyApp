@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:evently_app/core/models/tab_bar_categories_model.dart';
 import 'package:evently_app/core/service/EventServiceFirebase/event_services.dart';
 import 'package:evently_app/core/service/Provider/get_event_services.dart';

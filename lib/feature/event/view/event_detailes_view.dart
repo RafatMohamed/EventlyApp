@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/core/models/tab_bar_categories_model.dart';
 import 'package:evently_app/core/service/EventServiceFirebase/event_services.dart';
 import 'package:evently_app/core/service/Provider/get_event_services.dart';
 import 'package:evently_app/core/service/getPathImageService/get_path_img_services.dart';
@@ -28,7 +29,7 @@ class EventDetailsView extends StatefulWidget {
 class _EventDetailsViewState extends State<EventDetailsView> {
   bool isLoadingUpdate = false;
   bool isLoadingDelete = false;
-
+  late CategoriesModel categories = widget.event.categories;
   @override
   Widget build(BuildContext context) {
     bool isDark() {
@@ -46,26 +47,27 @@ class _EventDetailsViewState extends State<EventDetailsView> {
         themeColor: colorThem,
         title: AppText.eventDetails,
         actions:
-        widget.event.eventOwner== FirebaseAuth.instance.currentUser?.uid
+            widget.event.eventOwner == FirebaseAuth.instance.currentUser?.uid
             ? [
                 IgnorePointer(
                   ignoring: isLoadingUpdate,
                   child: GestureDetector(
-                    onTap: () async{
-                    var eventModelBack= await Navigator.pushNamed(
+                    onTap: () async {
+                      var eventModelBack = await Navigator.pushNamed(
                         context,
                         AddEventView.routeName,
                         arguments: (isUpdate: true, event: widget.event),
                       );
-                    if(eventModelBack is EventModel){
-                      widget.event.title=eventModelBack.title;
-                      widget.event.desc=eventModelBack.desc;
-                      widget.event.dateTime=eventModelBack.dateTime;
-                    }
+                      if (eventModelBack is EventModel && eventModelBack.pathImage.isNotEmpty) {
+                        widget.event.title = eventModelBack.title;
+                        widget.event.desc = eventModelBack.desc;
+                        widget.event.dateTime = eventModelBack.dateTime;
+                        widget.event.pathImage = eventModelBack.pathImage;
+                        widget.event.categories=eventModelBack.categories;
+                        categories = widget.event.categories;
+                      }
                     },
-                    child: isLoadingUpdate
-                        ? CustomWidgetLoadingData.circleProgrees(colorThem)
-                        : Container(
+                    child: Container(
                             alignment: .center,
                             padding: EdgeInsetsDirectional.all(AppPadding.p4),
                             margin: const EdgeInsetsDirectional.only(
@@ -83,7 +85,9 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                                 style: .solid,
                               ),
                             ),
-                            child: Icon(
+                            child:isLoadingUpdate
+                                ? CustomWidgetLoadingData.circleProgrees(colorThem)
+                                : Icon(
                               Icons.edit_rounded,
                               size: 24,
                               color: colorThem.primaryColor,
@@ -125,9 +129,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                             );
                           });
                     },
-                    child: isLoadingDelete
-                        ? CustomWidgetLoadingData.circleProgrees(colorThem)
-                        : Container(
+                    child:  Container(
                             alignment: .center,
                             padding: EdgeInsetsDirectional.all(AppPadding.p4),
                             margin: const EdgeInsetsDirectional.only(
@@ -146,7 +148,9 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                                 style: .solid,
                               ),
                             ),
-                            child: Icon(
+                            child:isLoadingDelete
+                                ? CustomWidgetLoadingData.circleProgrees(colorThem)
+                                : Icon(
                               Icons.delete_outlined,
                               size: 24,
                               color: AppColors.redColor,
@@ -179,7 +183,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                   border: Border.all(color: colorThem.unselectedWidgetColor),
                   image: DecorationImage(
                     image: AssetImage(
-                      "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: widget.event.categories)}${isDark() ? "_dark" : "_light"}.png",
+                      "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: categories)}${isDark() ? "_dark" : "_light"}.png",
                     ),
                     fit: .fill,
                   ),

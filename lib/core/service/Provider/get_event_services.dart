@@ -20,8 +20,9 @@ class GetEventServicesProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  Future<void> getMyEvent() async{
+  Future<List<EventModel>> getMyEvent() async{
     myEvent = await EventServicesFirebase.getMYEventFirebase(FirebaseAuth.instance.currentUser!.uid.toString());
     notifyListeners();
+    return myEvent;
   }
 }

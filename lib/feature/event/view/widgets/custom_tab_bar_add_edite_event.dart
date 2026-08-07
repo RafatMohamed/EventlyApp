@@ -52,7 +52,7 @@ class _CustomTabBarAddEditeEventState extends State<CustomTabBarAddEditeEvent>
         setState((){});
       },
       tabs: List.generate(CategoriesModel.getListCategories().length, (index) {
-        final isSelected = widget.currentIndex == index;
+        final isSelected = tabController.index == index;
         final CategoriesModel categoriesModel = CategoriesModel.getListCategories()[index];
         return TabBarCategoriesItem(
           isSelected: isSelected,

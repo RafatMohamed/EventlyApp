@@ -21,16 +21,21 @@ class AddEventView extends StatefulWidget {
 }
 
 class _AddEventViewState extends State<AddEventView> {
-  late CategoriesModel selectCategories = widget.isEdite
-      ? widget.event!.categories
-      : CategoriesModel.getListCategories().first;
+  late CategoriesModel selectCategories;
+
+  @override
+  void initState() {
+    super.initState();
+
+    selectCategories = widget.isEdite
+        ? widget.event!.categories
+        : CategoriesModel.getListCategories().first;
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isDark() {
-      if (Provider.of<ThemAppService>(context).currentThem == ThemeMode.dark) {
-        return true;
-      }
-      return false;
+      return context.watch<ThemAppService>().currentThem == ThemeMode.dark;
     }
 
     final ThemeData colorThem = Theme.of(context);
@@ -40,7 +45,9 @@ class _AddEventViewState extends State<AddEventView> {
       appBar: defaultAppBarApp(
         context,
         themeColor: colorThem,
-        title: widget.isEdite ? AppText.updateEvent : AppText.addEvent,
+        title: widget.isEdite
+            ? AppText.updateEvent
+            : AppText.addEvent,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -50,54 +57,44 @@ class _AddEventViewState extends State<AddEventView> {
           ),
           child: Column(
             spacing: AppPadding.p16,
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsetsDirectional.all(AppPadding.p10),
+                padding: const EdgeInsets.all(AppPadding.p10),
                 height: size.height * 0.25,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(
-                    AppBorderRadius.r16,
+                  borderRadius: BorderRadius.circular(AppBorderRadius.r16),
+                  border: Border.all(
+                    color: colorThem.unselectedWidgetColor,
                   ),
-                  color: Colors.transparent,
-                  border: Border.all(color: colorThem.unselectedWidgetColor),
                   image: DecorationImage(
+                    fit: BoxFit.fill,
                     image: AssetImage(
-                      "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: widget.isEdite ? widget.event!.categories : selectCategories)}${isDark() ? "_dark" : "_light"}.png",
+                      "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: selectCategories)}${isDark() ? "_dark" : "_light"}.png",
                     ),
-                    fit: .fill,
                   ),
                 ),
               ),
+
               CustomTabBarAddEditeEvent(
-                currentIndex: widget.isEdite
-                    ? CategoriesModel.getListCategories().indexWhere(
-                        (element) => element.id == widget.event!.categories.id,
-                      )
-                    : 0,
-                selectedCategory: widget.isEdite
-                    ? widget.event!.categories
-                    : selectCategories,
+                currentIndex: CategoriesModel.getListCategories()
+                    .indexWhere((e) => e.id == selectCategories.id),
+
+                selectedCategory: selectCategories,
+
                 onCategorySelected: (value) {
                   setState(() {
-                    if (widget.isEdite) {
-                      widget.event!.categories = value;
-                    } else {
-                      selectCategories = value;
-                    }
+                    selectCategories = value;
                   });
                 },
               ),
+
               DefaultAddEvent(
                 event: widget.event,
                 pathImage: GetPathImgServices.getPathImage(
-                  selectCategories: widget.isEdite
-                      ? widget.event!.categories
-                      : selectCategories,
+                  selectCategories: selectCategories,
                 ),
-                categorie: widget.isEdite
-                    ? widget.event!.categories
-                    : selectCategories,
+                categorie: selectCategories,
               ),
             ],
           ),
