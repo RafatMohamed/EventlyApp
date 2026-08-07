@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:evently_app/core/service/AuthServicesFirebase/auth_services_firebase.dart';
 import 'package:evently_app/core/service/Provider/auth_services.dart';
 import 'package:evently_app/core/utilities/helper/custom_snack_bar_app.dart';
@@ -8,7 +6,6 @@ import 'package:evently_app/feature/reset_pass/view/reset_pass_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../core/utilities/app_text.dart';
 import '../../../../core/widgets/custom_button_app.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
@@ -81,21 +78,26 @@ class _CustomFormBuildLoginState extends State<CustomFormBuildLogin> {
   }
 
   void login() {
-    if(formKey.currentState!.validate()){
+    if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      AuthServicesFirebase.LoginUser(email: email.text, pass: pass.text)
+      AuthServicesFirebase.loginUser(email: email.text, pass: pass.text)
           .then((value) {
-        Provider.of<AuthServicesProvider>(context,listen: false).streamUser(value);
-        Navigator.pushReplacementNamed(context, MainAppView.routeName);
-        ShowMess.successMess(context: context, mess: "Login Success");
-      })
+            if (!mounted) return;
+            Provider.of<AuthServicesProvider>(
+              context,
+              listen: false,
+            ).streamUser(value);
+            Navigator.pushReplacementNamed(context, MainAppView.routeName);
+            ShowMess.successMess(context: context, mess: "Login Success");
+          })
           .catchError((error) {
+        if (!mounted) return;
         if (error is FirebaseAuthException) {
-          ShowMess.errorMess(context: context, mess: error.toString());
-        }
-        ShowMess.errorMess(context: context, mess: "Failed Login");
-        ShowMess.errorMess(context: context, mess: "Failed Login");
-      });
+              ShowMess.errorMess(context: context, mess: error.toString());
+            }
+            ShowMess.errorMess(context: context, mess: "Failed Login");
+            ShowMess.errorMess(context: context, mess: "Failed Login");
+          });
     }
   }
 }

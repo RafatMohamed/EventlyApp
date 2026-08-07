@@ -1,12 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import '../../../../core/models/tab_bar_categories_model.dart';
 import '../../../../core/utilities/app_padding.dart';
 import '../../../home/view/widgets/custom_tab_bar_categories_item.dart';
 
 class CustomTabBarAddEditeEvent extends StatefulWidget {
-  const CustomTabBarAddEditeEvent({super.key, required this.selectedCategory, required this.onCategorySelected});
+  CustomTabBarAddEditeEvent({super.key, required this.selectedCategory, required this.onCategorySelected, required this.currentIndex});
   final CategoriesModel selectedCategory;
   final ValueChanged<CategoriesModel> onCategorySelected;
+  int currentIndex;
   @override
   State<CustomTabBarAddEditeEvent> createState() =>
       _CustomTabBarAddEditeEventState();
@@ -14,14 +17,16 @@ class CustomTabBarAddEditeEvent extends StatefulWidget {
 
 class _CustomTabBarAddEditeEventState extends State<CustomTabBarAddEditeEvent>
     with SingleTickerProviderStateMixin {
-  int currentIndex = 0;
   late TabController tabController;
   @override
   void initState() {
+    log(widget.currentIndex.toString());
     tabController = TabController(
       length: CategoriesModel.getListCategories().length,
       vsync: this,
+      initialIndex: widget.currentIndex,
     );
+    log(widget.currentIndex.toString());
     super.initState();
   }
 
@@ -42,12 +47,12 @@ class _CustomTabBarAddEditeEventState extends State<CustomTabBarAddEditeEvent>
       overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       labelPadding: const EdgeInsetsDirectional.only(end: AppPadding.p16),
       onTap: (value) {
-        currentIndex = value;
-        widget.onCategorySelected(CategoriesModel.getListCategories()[currentIndex]);
+        widget.currentIndex=value;
+        widget.onCategorySelected(CategoriesModel.getListCategories()[widget.currentIndex]);
         setState((){});
       },
       tabs: List.generate(CategoriesModel.getListCategories().length, (index) {
-        final isSelected = currentIndex == index;
+        final isSelected = tabController.index == index;
         final CategoriesModel categoriesModel = CategoriesModel.getListCategories()[index];
         return TabBarCategoriesItem(
           isSelected: isSelected,
@@ -57,3 +62,4 @@ class _CustomTabBarAddEditeEventState extends State<CustomTabBarAddEditeEvent>
     );
   }
 }
+

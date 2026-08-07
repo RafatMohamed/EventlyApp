@@ -31,7 +31,7 @@ class _AuthGateState extends State<AuthGate> {
 
     if (firebaseUser != null) {
       final user = await AuthServicesFirebase.getUserFirebase(firebaseUser.uid);
-
+      if (!mounted) return;
       Provider.of<AuthServicesProvider>(
         context,
         listen: false,

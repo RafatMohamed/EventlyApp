@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:evently_app/feature/add_event/view/add_event_view.dart';
 import 'package:evently_app/feature/favorite/view/favorite_view.dart';
 import 'package:evently_app/feature/home/view/home_view.dart';
 import 'package:evently_app/feature/profile/view/profile_view.dart';
 import 'package:evently_app/generated/assets.dart';
 import 'package:flutter/material.dart';
 import '../../../core/utilities/app_text.dart';
+import '../../event/view/add_event_view.dart';
 import '../widgets/custom_build_bottom_nav_bar_item.dart';
 
 class MainAppView extends StatefulWidget {
@@ -50,9 +50,7 @@ class _MainAppViewState extends State<MainAppView> {
     ];
 
     return Scaffold(
-      body: SafeArea(
-          child: tabsView[currentIndex]
-      ),
+      body: SafeArea(child: tabsView[currentIndex]),
 
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
@@ -65,7 +63,11 @@ class _MainAppViewState extends State<MainAppView> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context,AddEventView.routeName);
+          Navigator.pushNamed(
+            context,
+            AddEventView.routeName,
+            arguments: (isUpdate: false, event: null),
+          );
         },
         child: const Icon(Icons.add),
       ),

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../app_padding.dart';
 import '../app_text_styles.dart';
 
@@ -12,8 +10,8 @@ class ShowMess{
           color: Theme.of(context).primaryColor
         ),),
         elevation: 0,
-        duration: Duration(milliseconds: 500),
-        margin: EdgeInsetsDirectional.all(AppPadding.p16),
+        duration: const Duration(milliseconds: 500),
+        margin: const EdgeInsetsDirectional.all(AppPadding.p16),
         showCloseIcon: true,
         backgroundColor: Colors.green,
         closeIconColor: Theme.of(context).disabledColor,
@@ -35,8 +33,8 @@ class ShowMess{
           color: Theme.of(context).primaryColor
         ),),
         elevation: 0,
-        duration: Duration(milliseconds: 500),
-        margin: EdgeInsetsDirectional.all(AppPadding.p16),
+        duration: const Duration(milliseconds: 500),
+        margin: const EdgeInsetsDirectional.all(AppPadding.p16),
         showCloseIcon: true,
         backgroundColor: Colors.red,
         closeIconColor: Theme.of(context).disabledColor,

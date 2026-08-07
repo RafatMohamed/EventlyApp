@@ -17,15 +17,18 @@ class CustomCardCategoriesItem extends StatelessWidget {
     super.key,
     required this.size,
     required this.colorThem,
-    required this.textTheme, required this.events,
+    required this.textTheme,
   });
 
   final Size size;
   final ThemeData colorThem;
   final TextTheme textTheme;
-  final List<EventModel> events;
+
   @override
   Widget build(BuildContext context) {
+    List<EventModel> events = Provider.of<GetEventServicesProvider>(
+      context,
+    ).filteredEvent;
     bool isDark() {
       if (Provider.of<ThemAppService>(context).currentThem == ThemeMode.dark) {
         return true;
@@ -33,74 +36,100 @@ class CustomCardCategoriesItem extends StatelessWidget {
       return false;
     }
 
-    return ListView.builder(
-      itemCount: events.length,
-      itemBuilder: (context, index) {
-        EventModel event = events[index];
-        return Container(
-          margin: const EdgeInsetsDirectional.only(bottom: AppPadding.p16),
-          padding: const EdgeInsetsDirectional.all(AppPadding.p10),
-          height: size.height * 0.25,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadiusDirectional.circular(
-              AppBorderRadius.r16,
+    return FutureBuilder(
+      future: Provider.of<GetEventServicesProvider>(context).getAllEvent(),
+      builder: (context, snapshot) {
+        // if (snapshot.connectionState == ConnectionState.waiting) {
+        //   return CustomWidgetLoadingData.circleProgrees(colorThem);
+        // }
+        if(snapshot.hasError){
+          return  Text(
+            snapshot.error.toString(),
+            style: textTheme.bodySmall?.copyWith(
+              color: colorThem.primaryColorLight,
             ),
-            color: Colors.transparent,
-            border: Border.all(color: colorThem.unselectedWidgetColor),
-            image: DecorationImage(
-              image: AssetImage(
-                "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: event.categories)}${isDark() ? "_dark" : "_light"}.png",
-              ),
-              fit: .fill,
+          );
+        }
+
+        if(snapshot.toString().isEmpty){
+          return  Text(
+            "No Data Yet",
+            style: textTheme.bodySmall?.copyWith(
+              color: colorThem.primaryColorLight,
             ),
-          ),
-          child: Column(
-            crossAxisAlignment: .start,
-            mainAxisAlignment: .spaceBetween,
-            children: [
-              Container(
-                padding: const EdgeInsetsDirectional.all(AppPadding.p10),
-                decoration: BoxDecoration(
-                  color: colorThem.scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.circular(AppBorderRadius.r8),
-                  border: Border.all(
-                    color: colorThem.unselectedWidgetColor,
-                  ),
+          );
+        }
+
+        return ListView.builder(
+          itemCount: events.length,
+          itemBuilder: (context, index) {
+            EventModel event = events[index];
+            return Container(
+              margin: const EdgeInsetsDirectional.only(bottom: AppPadding.p16),
+              padding: const EdgeInsetsDirectional.all(AppPadding.p10),
+              height: size.height * 0.25,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadiusDirectional.circular(
+                  AppBorderRadius.r16,
                 ),
-                child: Text(
-                  DateFormat("dd MMM").format(event.dateTime),
-                  style: textTheme.bodySmall?.copyWith(
-                    color: colorThem.primaryColor,
+                color: Colors.transparent,
+                border: Border.all(color: colorThem.unselectedWidgetColor),
+                image: DecorationImage(
+                  image: AssetImage(
+                    "assets/images/png/${GetPathImgServices.getPathImage(selectCategories: event.categories)}${isDark() ? "_dark" : "_light"}.png",
                   ),
+                  fit: .fill,
                 ),
               ),
-              Container(
-                padding: const EdgeInsetsDirectional.all(AppPadding.p10),
-                decoration: BoxDecoration(
-                  color: colorThem.scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.circular(AppBorderRadius.r8),
-                  border: Border.all(
-                    color: colorThem.unselectedWidgetColor,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: .spaceBetween,
-                  children: [
-                    Text(
-                      event.title,
-                      style: textTheme.bodySmall?.copyWith(
-                        color: colorThem.primaryColorLight,
+              child: Column(
+                crossAxisAlignment: .start,
+                mainAxisAlignment: .spaceBetween,
+                children: [
+                  Container(
+                    padding: const EdgeInsetsDirectional.all(AppPadding.p10),
+                    decoration: BoxDecoration(
+                      color: colorThem.scaffoldBackgroundColor,
+                      borderRadius: BorderRadius.circular(AppBorderRadius.r8),
+                      border: Border.all(
+                        color: colorThem.unselectedWidgetColor,
                       ),
                     ),
-                    SvgPicture.asset(
-                      Assets.icons.favorite.path,
-                      fit: .scaleDown,
+                    child: Text(
+                      DateFormat("dd MMM").format(event.dateTime),
+                      style: textTheme.bodySmall?.copyWith(
+                        color: colorThem.primaryColor,
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    padding: const EdgeInsetsDirectional.all(AppPadding.p10),
+                    decoration: BoxDecoration(
+                      color: colorThem.scaffoldBackgroundColor,
+                      borderRadius: BorderRadius.circular(AppBorderRadius.r8),
+                      border: Border.all(
+                        color: colorThem.unselectedWidgetColor,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: .spaceBetween,
+                      children: [
+                        Text(
+                          event.title,
+                          style: textTheme.bodySmall?.copyWith(
+                            color: colorThem.primaryColorLight,
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          Assets.icons.favorite.path,
+                          fit: .scaleDown,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

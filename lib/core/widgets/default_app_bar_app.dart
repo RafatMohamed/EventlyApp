@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../utilities/app_border_radius.dart';
 import '../utilities/app_padding.dart';
 
-AppBar defaultAppBarApp (BuildContext context,{required ThemeData themeColor,required final String title,}){
+AppBar defaultAppBarApp (BuildContext context,{required ThemeData themeColor,required final String title,List<Widget>? actions}){
   return AppBar(
     title: Text(title),
     leading: GestureDetector(
@@ -24,5 +24,6 @@ AppBar defaultAppBarApp (BuildContext context,{required ThemeData themeColor,req
         child: Icon(Icons.arrow_back_ios_new_outlined,size: 24,color: themeColor.primaryColor,fill: .minPositive,),
       ),
     ),
+    actions:actions,
   );
 }

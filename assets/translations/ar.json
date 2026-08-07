@@ -56,5 +56,8 @@
   "chooseDate": "اختر التاريخ",
   "eventDate": "تاريخ الفعالية",
   "eventTime": "وقت الفعالية",
-  "RaafatMohamed": "رافت مخمد"
+  "RaafatMohamed": "رافت مخمد",
+  "updateEvent": "تحديث الحدث",
+  "eventDetails": "تفاصيل الحدث",
+  "myEvent": "أحداثي"
 }
