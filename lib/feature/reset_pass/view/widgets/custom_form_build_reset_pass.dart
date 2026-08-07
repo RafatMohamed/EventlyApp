@@ -26,12 +26,6 @@ class CustomFormBuildResetPass extends StatelessWidget {
             keyboardType: .emailAddress,
             textInputAction: .next,
           ),
-          const SizedBox(height: 32),
-          CustomButtonApp(onTap: () {
-            k
-          }, text: AppText.resetPass),
-        ],
-      ),
     );
   }
 }
