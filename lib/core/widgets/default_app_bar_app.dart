@@ -8,7 +8,7 @@ AppBar defaultAppBarApp (BuildContext context,{required ThemeData themeColor,req
     title: Text(title),
     leading: GestureDetector(
       onTap: () {
-        Navigator.pop(context);
+        Navigator.pop(context,true);
       },
       child: Container(
         alignment: .center,

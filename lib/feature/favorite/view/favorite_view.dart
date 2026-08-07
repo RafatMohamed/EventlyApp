@@ -23,7 +23,7 @@ class FavoriteView extends StatelessWidget {
         crossAxisAlignment: .start,
         children: [
           CustomTextFormField(hintText: AppText.searchEvent,suffixIconPath: Assets.icons.search.path,),
-          Expanded(child: CustomCardCategoriesItem(events: Provider.of<GetEventServicesProvider>(
+          Expanded(child: CustomCardCategoriesItem(onRefresh: () {},events: Provider.of<GetEventServicesProvider>(
             context,
           ).filteredEvent,size: size, colorThem: colorThem, textTheme: textTheme))
         ],

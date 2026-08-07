@@ -54,7 +54,6 @@ class EventlyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => GetEventServicesProvider()
             ..getAllEvent()
-            ..getMyEvent(),
         ),
         ChangeNotifierProvider(create: (context) => AuthServicesProvider()),
       ],

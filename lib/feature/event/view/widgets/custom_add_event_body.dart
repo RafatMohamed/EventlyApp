@@ -142,7 +142,7 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
           IgnorePointer(
             ignoring: isLoading,
             child: isLoading
-                ? CustomWidgetLoadingData.circleProgrees(colorThem)
+                ? CustomWidgetLoadingData.circleProgress(colorThem)
                 : CustomButtonApp(
                     onTap: widget.event != null ? updateEvent : addEvent,
                     text: widget.event != null
@@ -179,7 +179,7 @@ class _DefaultAddEventState extends State<DefaultAddEvent> {
           .then((_) {
             if (!mounted) return;
             ShowMess.successMess(context: context, mess: "Add Event Success");
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(true);
             Provider.of<GetEventServicesProvider>(
               context,
               listen: false,

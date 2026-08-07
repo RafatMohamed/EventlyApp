@@ -6,10 +6,10 @@ import '../../../../core/utilities/app_padding.dart';
 import '../../../home/view/widgets/custom_tab_bar_categories_item.dart';
 
 class CustomTabBarAddEditeEvent extends StatefulWidget {
-  CustomTabBarAddEditeEvent({super.key, required this.selectedCategory, required this.onCategorySelected, required this.currentIndex});
+  const CustomTabBarAddEditeEvent({super.key, required this.selectedCategory, required this.onCategorySelected, required this.currentIndex});
   final CategoriesModel selectedCategory;
   final ValueChanged<CategoriesModel> onCategorySelected;
-  int currentIndex;
+  final int currentIndex;
   @override
   State<CustomTabBarAddEditeEvent> createState() =>
       _CustomTabBarAddEditeEventState();
@@ -47,8 +47,7 @@ class _CustomTabBarAddEditeEventState extends State<CustomTabBarAddEditeEvent>
       overlayColor: const WidgetStatePropertyAll(Colors.transparent),
       labelPadding: const EdgeInsetsDirectional.only(end: AppPadding.p16),
       onTap: (value) {
-        widget.currentIndex=value;
-        widget.onCategorySelected(CategoriesModel.getListCategories()[widget.currentIndex]);
+        widget.onCategorySelected(CategoriesModel.getListCategories()[tabController.index]);
         setState((){});
       },
       tabs: List.generate(CategoriesModel.getListCategories().length, (index) {

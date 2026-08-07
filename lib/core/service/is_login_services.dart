@@ -1,3 +1,4 @@
+import 'package:evently_app/core/utilities/helper/custom_widget_loading_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,9 +47,9 @@ class _AuthGateState extends State<AuthGate> {
   @override
   Widget build(BuildContext context) {
     if (loading) {
-      return const Scaffold(
+      return Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: CustomWidgetLoadingData.circleProgress(Theme.of(context)),
         ),
       );
     }
@@ -57,9 +58,9 @@ class _AuthGateState extends State<AuthGate> {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
+          return Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: CustomWidgetLoadingData.circleProgress(Theme.of(context)),
             ),
           );
         }

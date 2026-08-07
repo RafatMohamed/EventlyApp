@@ -86,7 +86,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                               ),
                             ),
                             child:isLoadingUpdate
-                                ? CustomWidgetLoadingData.circleProgrees(colorThem)
+                                ? CustomWidgetLoadingData.circleProgress(colorThem)
                                 : Icon(
                               Icons.edit_rounded,
                               size: 24,
@@ -112,7 +112,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                               context: context,
                               mess: "Delete Event Success",
                             );
-                            Navigator.of(context).pop();
+                            Navigator.of(context).pop(true);
                             Provider.of<GetEventServicesProvider>(
                               context,
                               listen: false,
@@ -123,9 +123,9 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                               isLoadingDelete = false;
                             });
                             if (!context.mounted) return;
-                            ShowMess.successMess(
+                            ShowMess.errorMess(
                               context: context,
-                              mess: "Failed Delete Event $error",
+                              mess: "Failed Delete Event",
                             );
                           });
                     },
@@ -149,7 +149,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                               ),
                             ),
                             child:isLoadingDelete
-                                ? CustomWidgetLoadingData.circleProgrees(colorThem)
+                                ? CustomWidgetLoadingData.circleProgress(colorThem)
                                 : const Icon(
                               Icons.delete_outlined,
                               size: 24,

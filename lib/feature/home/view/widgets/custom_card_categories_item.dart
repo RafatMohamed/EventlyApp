@@ -15,13 +15,16 @@ class CustomCardCategoriesItem extends StatelessWidget {
     super.key,
     required this.size,
     required this.colorThem,
-    required this.textTheme, required this.events,
+    required this.textTheme,
+    required this.events,
+    required this.onRefresh,
   });
 
   final Size size;
   final ThemeData colorThem;
   final TextTheme textTheme;
   final List<EventModel> events;
+  final VoidCallback onRefresh;
   @override
   Widget build(BuildContext context) {
     bool isDark() {
@@ -36,8 +39,15 @@ class CustomCardCategoriesItem extends StatelessWidget {
       itemBuilder: (context, index) {
         EventModel event = events[index];
         return GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, EventDetailsView.routeName,arguments: events[index]);
+          onTap: () async {
+            var result = await Navigator.pushNamed(
+              context,
+              EventDetailsView.routeName,
+              arguments: events[index],
+            );
+            if (result==true) {
+              onRefresh();
+            }
           },
           child: Container(
             margin: const EdgeInsetsDirectional.only(bottom: AppPadding.p16),
@@ -65,9 +75,7 @@ class CustomCardCategoriesItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: colorThem.scaffoldBackgroundColor,
                     borderRadius: BorderRadius.circular(AppBorderRadius.r8),
-                    border: Border.all(
-                      color: colorThem.unselectedWidgetColor,
-                    ),
+                    border: Border.all(color: colorThem.unselectedWidgetColor),
                   ),
                   child: Text(
                     DateFormat("dd MMM").format(event.dateTime),
@@ -81,9 +89,7 @@ class CustomCardCategoriesItem extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: colorThem.scaffoldBackgroundColor,
                     borderRadius: BorderRadius.circular(AppBorderRadius.r8),
-                    border: Border.all(
-                      color: colorThem.unselectedWidgetColor,
-                    ),
+                    border: Border.all(color: colorThem.unselectedWidgetColor),
                   ),
                   child: Row(
                     mainAxisAlignment: .spaceBetween,

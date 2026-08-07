@@ -1,3 +1,4 @@
+import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_colors.dart';
 import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/feature/home/view/widgets/custom_card_categories_item.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../core/service/Provider/auth_services.dart';
 import '../../../core/service/Provider/get_event_services.dart';
+import '../../../core/utilities/app_border_radius.dart';
 import '../../../core/utilities/app_text.dart';
 
 class HomeView extends StatelessWidget {
@@ -31,28 +33,48 @@ class HomeView extends StatelessWidget {
           Row(
             mainAxisAlignment: .spaceBetween,
             children: [
-              Text.rich(
-                style: textTheme.labelSmall?.copyWith(
-                  fontWeight: .w400,
-                  color: isLight
-                      ? AppColors.secTextLight
-                      : AppColors.secTextDark,
-                ),
-                TextSpan(
-                  text: AppText.welcomeBack,
-                  children: const [TextSpan(text: "✨")],
-                ),
+              Column(
+                mainAxisAlignment: .spaceBetween,
+                crossAxisAlignment: .start,
+                children: [
+                  Text.rich(
+                    style: textTheme.labelSmall?.copyWith(
+                      fontWeight: .w400,
+                      color: isLight
+                          ? AppColors.secTextLight
+                          : AppColors.secTextDark,
+                    ),
+                    TextSpan(
+                      text: AppText.welcomeBack,
+                      children: const [TextSpan(text: "✨")],
+                    ),
+                  ),
+                  const SizedBox(height: 4,),
+                  Text(user.user!.name, style: textTheme.bodyMedium),
+                ],
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, MyEventView.routeName);
-                },
-                child: Text(AppText.myEvent, style: textTheme.bodyMedium),
+              Container(
+                padding: const EdgeInsetsDirectional.symmetric(
+                  horizontal: AppPadding.p8,
+                  vertical: AppPadding.p8,
+                ),
+                decoration: BoxDecoration(
+                    color:colorThem.disabledColor,
+                    borderRadius: BorderRadius.circular(AppBorderRadius.r16),
+                    border: Border.all(
+                        color: colorThem.unselectedWidgetColor
+                    )
+                ),
+                child:TextButton(
+                  onPressed: () {
+                    StorgeLocalHive.instance.clearIsFirstOpenApp();
+                    Navigator.pushNamed(context, MyEventView.routeName);
+                  },
+                  child: Text(AppText.myEvent, style: textTheme.bodyMedium),
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 4),
-          Text(user.user!.name, style: textTheme.bodyMedium),
           const Padding(
             padding: EdgeInsetsDirectional.symmetric(vertical: AppPadding.p24),
             child: CustomTabBarHome(),
@@ -62,6 +84,7 @@ class HomeView extends StatelessWidget {
               events: Provider.of<GetEventServicesProvider>(
                 context,
               ).filteredEvent,
+              onRefresh: () {},
               size: size,
               colorThem: colorThem,
               textTheme: textTheme,
