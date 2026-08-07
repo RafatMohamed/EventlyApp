@@ -8,7 +8,6 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class $AssetsImagesGen {
@@ -99,6 +98,7 @@ class $AssetsIconsGen {
   );
   final SvgGenImage clock = const SvgGenImage('assets/icons/clock.svg');
   final SvgGenImage darkMode = const SvgGenImage('assets/icons/dark_mode.svg');
+  final SvgGenImage editIcon = const SvgGenImage('assets/icons/edit-icon.svg');
   final SvgGenImage eyeSlash = const SvgGenImage('assets/icons/eye-slash.svg');
   final SvgGenImage favorite = const SvgGenImage('assets/icons/favorite.svg');
   final SvgGenImage favouriteSelect = const SvgGenImage(
@@ -123,17 +123,11 @@ class $AssetsIconsGen {
   final SvgGenImage search = const SvgGenImage('assets/icons/search.svg');
   final SvgGenImage sms = const SvgGenImage('assets/icons/sms.svg');
   final SvgGenImage sport = const SvgGenImage('assets/icons/sport.svg');
+  final SvgGenImage trash = const SvgGenImage('assets/icons/trash.svg');
   final SvgGenImage user = const SvgGenImage('assets/icons/user.svg');
   final SvgGenImage userSelect = const SvgGenImage(
     'assets/icons/user_select.svg',
   );
-}
-
-class $AssetsTranslationsGen {
-  const $AssetsTranslationsGen();
-
-  final String ar = 'assets/translations/ar.json';
-  final String en = 'assets/translations/en.json';
 }
 
 class AssetGenImage {
