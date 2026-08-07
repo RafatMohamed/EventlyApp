@@ -27,7 +27,9 @@ class CustomFormBuildResetPass extends StatelessWidget {
             textInputAction: .next,
           ),
           const SizedBox(height: 32),
-          CustomButtonApp(onTap: () {}, text: AppText.resetPass),
+          CustomButtonApp(onTap: () {
+            k
+          }, text: AppText.resetPass),
         ],
       ),
     );
