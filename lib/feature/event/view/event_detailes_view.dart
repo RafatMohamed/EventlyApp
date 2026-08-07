@@ -69,7 +69,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                     },
                     child: Container(
                             alignment: .center,
-                            padding: EdgeInsetsDirectional.all(AppPadding.p4),
+                            padding: const EdgeInsetsDirectional.all(AppPadding.p4),
                             margin: const EdgeInsetsDirectional.only(
                               start: AppPadding.p16,
                               bottom: AppPadding.p10,
@@ -131,7 +131,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                     },
                     child:  Container(
                             alignment: .center,
-                            padding: EdgeInsetsDirectional.all(AppPadding.p4),
+                            padding: const EdgeInsetsDirectional.all(AppPadding.p4),
                             margin: const EdgeInsetsDirectional.only(
                               start: AppPadding.p16,
                               bottom: AppPadding.p10,
@@ -150,7 +150,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                             ),
                             child:isLoadingDelete
                                 ? CustomWidgetLoadingData.circleProgrees(colorThem)
-                                : Icon(
+                                : const Icon(
                               Icons.delete_outlined,
                               size: 24,
                               color: AppColors.redColor,
@@ -220,7 +220,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                         color: colorThem.primaryColor,
                       ),
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                     Column(
                       crossAxisAlignment: .start,
                       mainAxisAlignment: .spaceBetween,
@@ -252,7 +252,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                       fontSize: 18,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsetsDirectional.all(AppPadding.p20),
                     decoration: BoxDecoration(

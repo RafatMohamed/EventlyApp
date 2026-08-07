@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/service/Provider/get_event_services.dart';
 import '../../../../core/utilities/app_text.dart';
+import '../../../../core/utilities/helper/custom_widget_loading_data.dart';
+import '../../../event/view/add_event_view.dart';
 
 class MyEventView extends StatelessWidget {
   static const String routeName = "/${AppText.routeMyEventViewApp}";
@@ -35,9 +37,9 @@ class MyEventView extends StatelessWidget {
                   context,
                 ).getMyEvent(),
                 builder: (context, snapshot) {
-                  // if (snapshot.connectionState == ConnectionState.waiting) {
-                  //   return CustomWidgetLoadingData.circleProgrees(colorThem);
-                  // }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CustomWidgetLoadingData.circleProgrees(colorThem);
+                  }
                   if (snapshot.hasError) {
                     return Text(
                       snapshot.error.toString(),
@@ -46,18 +48,47 @@ class MyEventView extends StatelessWidget {
                       ),
                     );
                   }
-                      style: textTheme.bodySmall?.copyWith(
-                      ),
+                  if (snapshot.data!.isEmpty) {
+                    return Column(
+                      mainAxisAlignment: .center,
+                      children: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsetsDirectional.symmetric(
+                              horizontal: AppPadding.p16,
+                              vertical: AppPadding.p10,
+                            ),
+                            backgroundColor: colorThem.primaryColor,
+                          ),
+                          onPressed: () async {
+                            await Navigator.pushNamed(
+                              context,
+                              AddEventView.routeName,
+                              arguments: (isUpdate: false, event: null),
+                            );
+                          },
+                          child: Text(
+                            "You Dont have Own Events Please Click to add Event",
+                            textAlign: .center,
+                            style: textTheme.bodySmall?.copyWith(
+                              color: colorThem.scaffoldBackgroundColor,
+                            ),
+                          ),
+                        ),
+                      ],
                     );
                   }
-                  return CustomCardCategoriesItem(
-                    events: Provider.of<GetEventServicesProvider>(
-                      context,
-                    ).myEvent,
-                    size: size,
-                    colorThem: colorThem,
-                    textTheme: textTheme,
-                  );
+                  if (snapshot.hasData) {
+                    return CustomCardCategoriesItem(
+                      events: Provider.of<GetEventServicesProvider>(
+                        context,
+                      ).myEvent,
+                      size: size,
+                      colorThem: colorThem,
+                      textTheme: textTheme,
+                    );
+                  }
+                  return const SizedBox();
                 },
               ),
             ),
