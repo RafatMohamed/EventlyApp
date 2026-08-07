@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
 import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
@@ -29,33 +31,33 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
     super.dispose();
   }
 
-  List<OnBoardingModel> itemsOnBoarding = [
-    OnBoardingModel(
-      pathImage: Assets.images.svg.beingCreative.path,
-      title: AppText.title0OnBoarding,
-      desc: AppText.desc0OnBoarding,
-    ),
-    OnBoardingModel(
-      pathImage: Assets.images.svg.hotTrending.path,
-      title: AppText.title1OnBoarding,
-      desc: AppText.desc1OnBoarding,
-    ),
-    OnBoardingModel(
-      pathImage: Assets.images.svg.beingCreative2.path,
-      title: AppText.title2OnBoarding,
-      desc: AppText.desc2OnBoarding,
-    ),
-    OnBoardingModel(
-      pathImage: Assets.images.svg.beingCreative3.path,
-      title: AppText.title3OnBoarding,
-      desc: AppText.desc3OnBoarding,
-    ),
-  ];
 
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    List<OnBoardingModel> itemsOnBoarding = [
+      OnBoardingModel(
+        pathImage: Assets.images.svg.beingCreative.path,
+        title: AppText.title0OnBoarding.tr(context: context),
+        desc: AppText.desc0OnBoarding,
+      ),
+      OnBoardingModel(
+        pathImage: Assets.images.svg.hotTrending.path,
+        title: AppText.title1OnBoarding,
+        desc: AppText.desc1OnBoarding,
+      ),
+      OnBoardingModel(
+        pathImage: Assets.images.svg.beingCreative2.path,
+        title: AppText.title2OnBoarding,
+        desc: AppText.desc2OnBoarding,
+      ),
+      OnBoardingModel(
+        pathImage: Assets.images.svg.beingCreative3.path,
+        title: AppText.title3OnBoarding,
+        desc: AppText.desc3OnBoarding,
+      ),
+    ];
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppPadding.p24),
       child: Column(
@@ -109,6 +111,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
   }
 
   Future<void> navigationToMainView() {
+    StorgeLocalHive.instance.saveIsFirstOpenApp(false);
     return  Navigator.pushReplacementNamed(context, MainAppView.routeName);
   }
 }

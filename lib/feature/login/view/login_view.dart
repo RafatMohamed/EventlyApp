@@ -36,14 +36,14 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 48),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, SignUpView.routeName);
+                    Navigator.pushReplacementNamed(context, SignUpView.routeName);
                   },
                   child: Text.rich(
                     textAlign: .center,
                     style: textTheme.titleSmall,
                     TextSpan(
                       children: <TextSpan>[
-                        const TextSpan(text: AppText.dontHaveAcc),
+                        TextSpan(text: AppText.dontHaveAcc),
                         const TextSpan(text: " ? "),
                         TextSpan(
                           text: AppText.signUp,
@@ -65,7 +65,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                CustomButtonGoogle(onTap: () {}, text: AppText.login),
+                const CustomButtonGoogle(),
               ],
             ),
           ),

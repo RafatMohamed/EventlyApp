@@ -8,6 +8,7 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class $AssetsImagesGen {
@@ -27,10 +28,10 @@ class $AssetsPngGen {
     'assets/images/png/birthday_light.png',
   );
   final AssetGenImage bookClubDark = const AssetGenImage(
-    'assets/images/png/book_club_dark.png',
+    'assets/images/png/bookClub_dark.png',
   );
   final AssetGenImage bookClubLight = const AssetGenImage(
-    'assets/images/png/book_club_light.png',
+    'assets/images/png/bookClub_light.png',
   );
   final AssetGenImage brandingDark = const AssetGenImage(
     'assets/images/png/branding_dark.png',
@@ -48,6 +49,9 @@ class $AssetsPngGen {
     'assets/images/png/exhibition_light.png',
   );
   final AssetGenImage logo = const AssetGenImage('assets/images/png/logo.png');
+  final AssetGenImage logoRoute = const AssetGenImage(
+    'assets/images/png/logo_route.png',
+  );
   final AssetGenImage meetingDark = const AssetGenImage(
     'assets/images/png/meeting_dark.png',
   );
@@ -88,6 +92,12 @@ class $AssetsSvgGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  final SvgGenImage birthday = const SvgGenImage('assets/icons/birthday.svg');
+  final SvgGenImage book = const SvgGenImage('assets/icons/book.svg');
+  final SvgGenImage calendarAdd = const SvgGenImage(
+    'assets/icons/calendar-add.svg',
+  );
+  final SvgGenImage clock = const SvgGenImage('assets/icons/clock.svg');
   final SvgGenImage darkMode = const SvgGenImage('assets/icons/dark_mode.svg');
   final SvgGenImage eyeSlash = const SvgGenImage('assets/icons/eye-slash.svg');
   final SvgGenImage favorite = const SvgGenImage('assets/icons/favorite.svg');
@@ -102,15 +112,28 @@ class $AssetsIconsGen {
   final SvgGenImage homeSelect = const SvgGenImage(
     'assets/icons/home_select.svg',
   );
+  final SvgGenImage iconCategoriesAll = const SvgGenImage(
+    'assets/icons/iconCategoriesAll.svg',
+  );
   final SvgGenImage lightMode = const SvgGenImage(
     'assets/icons/light_mode.svg',
   );
   final SvgGenImage lock = const SvgGenImage('assets/icons/lock.svg');
+  final SvgGenImage logout = const SvgGenImage('assets/icons/logout.svg');
+  final SvgGenImage search = const SvgGenImage('assets/icons/search.svg');
   final SvgGenImage sms = const SvgGenImage('assets/icons/sms.svg');
+  final SvgGenImage sport = const SvgGenImage('assets/icons/sport.svg');
   final SvgGenImage user = const SvgGenImage('assets/icons/user.svg');
   final SvgGenImage userSelect = const SvgGenImage(
     'assets/icons/user_select.svg',
   );
+}
+
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  final String ar = 'assets/translations/ar.json';
+  final String en = 'assets/translations/en.json';
 }
 
 class AssetGenImage {

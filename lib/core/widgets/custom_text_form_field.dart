@@ -18,7 +18,8 @@ class CustomTextFormField extends StatelessWidget {
     this.isEmail = false,
     this.isName = false,
     this.suffixIconPath,
-    this.prefixIconPath
+    this.prefixIconPath,
+    this.maxLines=1
   });
   final bool? isEmail, isName,isPassword;
   final String hintText;
@@ -32,6 +33,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? withValidator;
   final String? suffixIconPath;
   final String? prefixIconPath;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       cursorColor: themeColor.primaryColor,
       cursorHeight: 25,
+      maxLines: maxLines,
       validator: (value) {
         if (withValidator!) {
           if (value == null || value.isEmpty) {
@@ -75,8 +78,10 @@ class CustomTextFormField extends StatelessWidget {
         fontStyle: .normal,
       ),
       textInputAction: textInputAction,
+
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
+
         hintText: hintText,
         suffixIcon:  isPassword == true
             ? GestureDetector(
