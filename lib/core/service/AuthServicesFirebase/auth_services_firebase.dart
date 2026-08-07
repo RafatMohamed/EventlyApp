@@ -86,6 +86,7 @@ class AuthServicesFirebase {
 
   static Future<void> logOut({required BuildContext context})async{
     await FirebaseAuth.instance.signOut();
+    await GoogleSignIn().signOut();
     if (!context.mounted) return;
     Provider.of<AuthServicesProvider>(context).streamUser(null);
   }
