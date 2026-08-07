@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/service/Provider/get_event_services.dart';
 import '../../../../core/utilities/app_text.dart';
+import '../../../../core/utilities/helper/custom_widget_loading_data.dart';
 import '../../../event/view/add_event_view.dart';
 
 class MyEventView extends StatelessWidget {
@@ -36,9 +37,9 @@ class MyEventView extends StatelessWidget {
                   context,
                 ).getMyEvent(),
                 builder: (context, snapshot) {
-                  // if (snapshot.connectionState == ConnectionState.waiting) {
-                  //   return CustomWidgetLoadingData.circleProgrees(colorThem);
-                  // }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CustomWidgetLoadingData.circleProgrees(colorThem);
+                  }
                   if (snapshot.hasError) {
                     return Text(
                       snapshot.error.toString(),
@@ -53,7 +54,7 @@ class MyEventView extends StatelessWidget {
                       children: [
                         TextButton(
                           style: TextButton.styleFrom(
-                            padding: EdgeInsetsDirectional.symmetric(
+                            padding: const EdgeInsetsDirectional.symmetric(
                               horizontal: AppPadding.p16,
                               vertical: AppPadding.p10,
                             ),
