@@ -8,7 +8,6 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class $AssetsImagesGen {
@@ -129,13 +128,6 @@ class $AssetsIconsGen {
   final SvgGenImage userSelect = const SvgGenImage(
     'assets/icons/user_select.svg',
   );
-}
-
-class $AssetsTranslationsGen {
-  const $AssetsTranslationsGen();
-
-  final String ar = 'assets/translations/ar.json';
-  final String en = 'assets/translations/en.json';
 }
 
 class AssetGenImage {

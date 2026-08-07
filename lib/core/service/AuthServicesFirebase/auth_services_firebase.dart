@@ -90,4 +90,11 @@ class AuthServicesFirebase {
     if (!context.mounted) return;
     Provider.of<AuthServicesProvider>(context).streamUser(null);
   }
+  static Future<void> resetPassword({required String email})async{
+    var snapShot = await authRef.where("email",isEqualTo: email).limit(1).get();
+    if(snapShot.docs.isEmpty){
+      throw Exception("this email is not Register , please try again");
+    }
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email,);
+  }
 }
