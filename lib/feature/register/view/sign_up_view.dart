@@ -1,13 +1,7 @@
-import 'dart:io';
-
-import 'package:evently_app/core/models/auth_model.dart';
-import 'package:evently_app/core/service/AuthServicesFirebase/auth_services_firebase.dart';
-import 'package:evently_app/core/service/Provider/auth_services.dart';
 import 'package:evently_app/core/widgets/app_bar_logo.dart';
 import 'package:evently_app/feature/login/view/login_view.dart';
 import 'package:evently_app/feature/register/view/widgets/custom_form_build_sign_up.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../../core/utilities/app_padding.dart';
 import '../../../core/utilities/app_text.dart';
 import '../../../core/widgets/custom_button_google.dart';

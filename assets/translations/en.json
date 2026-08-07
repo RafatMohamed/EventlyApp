@@ -56,5 +56,9 @@
 "chooseDate": "Choose Date",
 "eventDate": "Event Date",
 "eventTime": "Event Time",
-  "RaafatMohamed": "Raafat Mohamed"
+  "RaafatMohamed": "Raafat Mohamed",
+  "updateEvent": "Update Event",
+  "eventDetails": "Event Details",
+  "myEvent": "My Events"
+
 }

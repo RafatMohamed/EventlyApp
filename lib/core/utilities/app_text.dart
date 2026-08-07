@@ -9,11 +9,13 @@ class AppText {
   static const String routeHomeViewApp = "homeView";
   static const String routeFavoriteViewApp = "favoriteView";
   static const String routeProfileViewApp = "profileView";
-  static const String routeAddEventViewApp = "addEvent";
+  static const String routeAddEventViewApp = "addEventView";
+  static const String routeEventDetailsViewApp = "EventDetailsView";
   static const String routeLoginViewApp = "loginView";
   static const String routeRegisterViewApp = "registerView";
   static const String routeForgetPassViewApp = "forgetPassView";
   static const String authGateViewApp = "AuthGateView";
+  static const String routeMyEventViewApp = "MyEventView";
 
   static String get title0OnBoarding => "title0OnBoarding".tr();
   static String get title1OnBoarding => "title1OnBoarding".tr();
@@ -70,6 +72,9 @@ class AppText {
   static String get logOut => "logOut".tr();
 
   static String get addEvent => "addEvent".tr();
+  static String get updateEvent => "updateEvent".tr();
+  static String get eventDetails => "eventDetails".tr();
+  static String get myEvent => "myEvent".tr();
   static String get event => "event".tr();
   static String get editeEvent => "editeEvent".tr();
 

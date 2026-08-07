@@ -23,11 +23,13 @@ class CustomButtonGoogle extends StatelessWidget {
         onTap: () async {
           AuthServicesFirebase.signInWithGoogle()
               .then((value) {
+            if (!context.mounted) return;
             Provider.of<AuthServicesProvider>(context,listen: false).streamUser(value);
             Navigator.pushNamed(context, MainAppView.routeName);
             ShowMess.successMess(context: context, mess: "Login Success");
           })
               .catchError((error) {
+            if (!context.mounted) return;
             if (error is FirebaseAuthException) {
               ShowMess.errorMess(context: context, mess: error.toString());
             }

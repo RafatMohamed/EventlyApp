@@ -86,13 +86,15 @@ class _CustomFormBuildSignUpState extends State<CustomFormBuildSignUp> {
 
   void register() {
     if(formKey.currentState!.validate() && pass.text==confirmPass.text){
-      AuthServicesFirebase.RegisterUser(name: name.text,email: email.text, pass: pass.text)
+      AuthServicesFirebase.registerUser(name: name.text,email: email.text, pass: pass.text)
           .then((value) {
+        if (!mounted) return;
         Provider.of<AuthServicesProvider>(context,listen: false).streamUser(value);
         Navigator.pushReplacementNamed(context, MainAppView.routeName);
         ShowMess.successMess(context: context, mess: "Register Success");
       })
           .catchError((error) {
+        if (!mounted) return;
         if (error is FirebaseAuthException) {
           ShowMess.errorMess(context: context, mess: error.toString());
         }
