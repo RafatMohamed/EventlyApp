@@ -47,7 +47,6 @@ class _CustomFormBuildLoginState extends State<CustomFormBuildLogin> {
           CustomTextFormField(
             hintText: AppText.enterYourPass,
             isPassword: true,
-            isSecureValue: true,
             prefixIconPath: Assets.icons.lock.path,
             keyboardType: .visiblePassword,
             textInputAction: .done,
