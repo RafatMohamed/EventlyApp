@@ -32,7 +32,6 @@ class _MyEventViewState extends State<MyEventView> {
     });
   }
 
-  List<EventModel>? listEvents;
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
