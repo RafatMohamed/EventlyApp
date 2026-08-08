@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/service/getPathImageService/get_path_img_services.dart';
 import 'package:evently_app/feature/event/view/event_detailes_view.dart';
+import 'package:evently_app/feature/favorite/services/favourite_event_.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/service/Provider/them_app_service.dart';
 import '../../../../core/utilities/app_border_radius.dart';
 import '../../../../core/utilities/app_padding.dart';
-import '../../../../generated/assets.dart';
 import '../../../event/model/event_model.dart';
 
 class CustomCardCategoriesItem extends StatelessWidget {
@@ -38,6 +37,9 @@ class CustomCardCategoriesItem extends StatelessWidget {
       itemCount: events.length,
       itemBuilder: (context, index) {
         EventModel event = events[index];
+        final providerFavourite =
+        context.watch<FavouriteEventServicesProvider>();
+       final bool isEventFavourite = providerFavourite.getIsFavouriteEvent(event);
         return GestureDetector(
           onTap: () async {
             var result = await Navigator.pushNamed(
@@ -45,7 +47,7 @@ class CustomCardCategoriesItem extends StatelessWidget {
               EventDetailsView.routeName,
               arguments: events[index],
             );
-            if (result==true) {
+            if (result == true) {
               onRefresh();
             }
           },
@@ -91,20 +93,31 @@ class CustomCardCategoriesItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(AppBorderRadius.r8),
                     border: Border.all(color: colorThem.unselectedWidgetColor),
                   ),
-                  child: Row(
-                    mainAxisAlignment: .spaceBetween,
-                    children: [
-                      Text(
-                        event.title,
-                        style: textTheme.bodySmall?.copyWith(
-                          color: colorThem.primaryColorLight,
+                  child: InkWell(
+                    onTap: () async{
+                      if(isEventFavourite){
+                        providerFavourite.remove(event);
+                      }else{
+                        providerFavourite.addFavourite(event);
+                      }
+                    },
+                    child: Row(
+                      mainAxisAlignment: .spaceBetween,
+                      children: [
+                        Text(
+                          event.title,
+                          style: textTheme.bodySmall?.copyWith(
+                            color: colorThem.primaryColorLight,
+                          ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                        Assets.icons.favorite.path,
-                        fit: .scaleDown,
-                      ),
-                    ],
+                        Icon(
+                          isEventFavourite
+                              ? Icons.favorite_outlined
+                              : Icons.favorite_border_outlined,
+                          color: colorThem.primaryColor,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

@@ -28,7 +28,7 @@ class _AuthGateState extends State<AuthGate> {
   }
 
   Future<void> loadUser() async {
-    final firebaseUser = FirebaseAuth.instance.currentUser;
+    final User? firebaseUser = FirebaseAuth.instance.currentUser;
 
     if (firebaseUser != null) {
       final user = await AuthServicesFirebase.getUserFirebase(firebaseUser.uid);
