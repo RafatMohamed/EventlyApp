@@ -51,30 +51,29 @@ class _MainAppViewState extends State<MainAppView> {
       ),
     ];
 
-    return ChangeNotifierProvider(
-      create: (context) => FavouriteEventServicesProvider()..getFavouriteMyEvent(),
-      child: Scaffold(
-        body: SafeArea(child: tabsView[currentIndex]),
+    return Scaffold(
+      body: SafeArea(
+        child: IndexedStack(index: currentIndex, children: tabsView),
+      ),
 
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) {
-            currentIndex = index;
-            setState(() {});
-          },
-          currentIndex: currentIndex,
-          items: iconBottomNavBar,
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          currentIndex = index;
+          setState(() {});
+        },
+        currentIndex: currentIndex,
+        items: iconBottomNavBar,
+      ),
 
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(
-              context,
-              AddEventView.routeName,
-              arguments: (isUpdate: false, event: null),
-            );
-          },
-          child: const Icon(Icons.add),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            AddEventView.routeName,
+            arguments: (isUpdate: false, event: null),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

@@ -19,22 +19,15 @@ class FavoriteView extends StatefulWidget {
 }
 
 class _FavoriteViewState extends State<FavoriteView> {
-  late Future<List<EventModel>> myFavouriteEvents;
+
+ late Future<List<EventModel>> events;
   @override
   void initState() {
+    events = Provider.of<FavouriteEventServicesProvider>(context,listen: false).getFavouriteMyEvent();
     super.initState();
-    myFavouriteEvents = context
-        .read<FavouriteEventServicesProvider>()
-        .getFavouriteMyEvent();
+
   }
 
-  Future<void> refreshEvents() async {
-    setState(() {
-      myFavouriteEvents = context
-          .read<FavouriteEventServicesProvider>()
-          .getFavouriteMyEvent();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +40,7 @@ class _FavoriteViewState extends State<FavoriteView> {
         vertical: AppPadding.p8,
       ),
       child: FutureBuilder(
-        future: myFavouriteEvents,
+        future: events,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CustomWidgetLoadingData.circleProgress(colorThem);
@@ -68,7 +61,7 @@ class _FavoriteViewState extends State<FavoriteView> {
                   "You Don't have Favourite Event ,please return  to Home",
                   textAlign: .center,
                   style: textTheme.bodySmall?.copyWith(
-                    color: colorThem.scaffoldBackgroundColor,
+                    color: colorThem.primaryColor,
                   ),
                 ),
               ],
@@ -85,7 +78,7 @@ class _FavoriteViewState extends State<FavoriteView> {
                 ),
                 Expanded(
                   child: CustomCardCategoriesItem(
-                    onRefresh: refreshEvents,
+                    onRefresh: () {},
                     events: snapshot.data??[],
                     size: size,
                     colorThem: colorThem,

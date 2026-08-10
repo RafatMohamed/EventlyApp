@@ -18,12 +18,16 @@ class FavouriteEventServicesProvider extends ChangeNotifier {
   Future<void> addFavourite(EventModel event) async {
     await EventServicesFirebase.addEventFavourite(event: event);
     isFavouriteID.add(event.eventID!);
+    myFavouriteEvent.add(event);
     notifyListeners();
   }
 
   Future<void> remove(EventModel event) async {
     await EventServicesFirebase.removeEventFavourite(event: event);
     isFavouriteID.remove(event.eventID);
+    myFavouriteEvent.removeWhere((element) {
+     return element.eventID==event.eventID;
+    },);
     notifyListeners();
   }
 

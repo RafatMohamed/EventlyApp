@@ -14,6 +14,7 @@ import '../core/service/Provider/them_app_service.dart';
 import '../core/utilities/app_them.dart';
 import '../feature/event/view/add_event_view.dart';
 import '../feature/event/view/event_detailes_view.dart';
+import '../feature/favorite/services/favourite_event_.dart';
 import '../feature/favorite/view/favorite_view.dart';
 import '../feature/home/view/home_view.dart';
 import '../feature/home/view/widgets/my_event_view.dart';
@@ -36,12 +37,15 @@ class EventlyApp extends StatelessWidget {
       HomeView.routeName: (context) => const HomeView(),
       FavoriteView.routeName: (context) => const FavoriteView(),
       ProfileView.routeName: (context) => const ProfileView(),
-      AddEventView.routeName: (context){
-        var args =ModalRoute.of(context)!.settings.arguments as ({bool isUpdate,EventModel? event});
-        return  AddEventView(isEdite: args.isUpdate,event: args.event,);
+      AddEventView.routeName: (context) {
+        var args =
+            ModalRoute.of(context)!.settings.arguments
+                as ({bool isUpdate, EventModel? event});
+        return AddEventView(isEdite: args.isUpdate, event: args.event);
       },
       EventDetailsView.routeName: (context) {
-        EventModel event = ModalRoute.of(context)!.settings.arguments as EventModel;
+        EventModel event =
+            ModalRoute.of(context)!.settings.arguments as EventModel;
         return EventDetailsView(event: event);
       },
       AuthGate.routeName: (context) => const AuthGate(),
@@ -50,10 +54,12 @@ class EventlyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemAppService()),
+        ChangeNotifierProvider(
+          create: (context) => FavouriteEventServicesProvider()..intiFavouriteProvider()..getFavouriteMyEvent(),
+        ),
         ChangeNotifierProvider(create: (context) => LocalizationAppService()),
         ChangeNotifierProvider(
-          create: (context) => GetEventServicesProvider()
-            ..getAllEvent()
+          create: (context) => GetEventServicesProvider()..getAllEvent(),
         ),
         ChangeNotifierProvider(create: (context) => AuthServicesProvider()),
       ],

@@ -37,8 +37,7 @@ class CustomCardCategoriesItem extends StatelessWidget {
       itemCount: events.length,
       itemBuilder: (context, index) {
         EventModel event = events[index];
-        final providerFavourite =
-        context.watch<FavouriteEventServicesProvider>();
+        final providerFavourite = context.watch<FavouriteEventServicesProvider>();
        final bool isEventFavourite = providerFavourite.getIsFavouriteEvent(event);
         return GestureDetector(
           onTap: () async {
@@ -96,9 +95,9 @@ class CustomCardCategoriesItem extends StatelessWidget {
                   child: InkWell(
                     onTap: () async{
                       if(isEventFavourite){
-                        providerFavourite.remove(event);
+                       await providerFavourite.remove(event);
                       }else{
-                        providerFavourite.addFavourite(event);
+                        await  providerFavourite.addFavourite(event);
                       }
                     },
                     child: Row(
