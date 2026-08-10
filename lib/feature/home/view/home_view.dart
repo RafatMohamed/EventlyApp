@@ -2,7 +2,6 @@ import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_colors.dart';
 import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/core/utilities/helper/custom_widget_loading_data.dart';
-import 'package:evently_app/feature/event/model/event_model.dart';
 import 'package:evently_app/feature/home/view/widgets/custom_card_categories_item.dart';
 import 'package:evently_app/feature/home/view/widgets/custom_tab_bar_home.dart';
 import 'package:evently_app/feature/home/view/widgets/my_event_view.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../core/models/tab_bar_categories_model.dart';
 import '../../../core/service/Provider/auth_services.dart';
+import '../../../core/service/Provider/current_Index_categories_provider.dart';
 import '../../../core/service/Provider/get_event_services.dart';
 import '../../../core/utilities/app_border_radius.dart';
 import '../../../core/utilities/app_text.dart';
@@ -23,29 +23,34 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  int currentIndex = 0;
-  late GetEventServicesProvider eventProvider =
-      Provider.of<GetEventServicesProvider>(context, listen: false);
+  late int currentIndexProvider;
+
+ late GetEventServicesProvider eventProvider;
 
   Future<dynamic> getEvents() async {
-    if (currentIndex == 0) {
-      return await eventProvider.getAllEvent();
+    if (currentIndexProvider == 0) {
+
+     return await eventProvider.getAllEvent();
     }
-    return await eventProvider.getFilteredEvent(
-      CategoriesModel.getListCategories()[currentIndex - 1].id,
+   return await eventProvider.getFilteredEvent(
+      CategoriesModel.getListCategories()[currentIndexProvider - 1].id,
     );
   }
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await getEvents();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getEvents();
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    eventProvider = Provider.of<GetEventServicesProvider>(context, listen: false);
+    currentIndexProvider = Provider.of<CurrentIndexCategoriesProvider>(
+      context,
+    ).currentIndex;
     final user = Provider.of<AuthServicesProvider>(context);
     bool isLight = ThemeMode.light.isLight;
     final TextTheme textTheme = Theme.of(context).textTheme;
@@ -108,17 +113,20 @@ class _HomeViewState extends State<HomeView> {
             ),
             child: CustomTabBarHome(
               onCategorySelected: (value) {
-                currentIndex = value;
-                if (currentIndex == 0) {
+                currentIndexProvider = value;
+                Provider.of<CurrentIndexCategoriesProvider>(
+                  context,
+                  listen: false,
+                ).changCurrentIndex(value);
+                if (currentIndexProvider == 0) {
                   eventProvider.getAllEvent();
                 } else {
-                  eventProvider.getFilteredEvent(
-                    CategoriesModel.getListCategories()[currentIndex - 1].id,
+                 eventProvider.getFilteredEvent(
+                    CategoriesModel.getListCategories()[currentIndexProvider - 1].id,
                   );
                 }
-                setState(() {});
               },
-              currentIndex: currentIndex,
+              currentIndex: currentIndexProvider,
             ),
           ),
           Expanded(
@@ -134,7 +142,7 @@ class _HomeViewState extends State<HomeView> {
                         crossAxisAlignment: .stretch,
                         children: [
                           Text(
-                            "You Don't have Event in this Categories \n${CategoriesModel.getListCategories()[currentIndex - 1].id}",
+                            "You Don't have Event in this Categories \n${CategoriesModel.getListCategories()[currentIndexProvider - 1].id}",
                             textAlign: .center,
                             style: textTheme.bodySmall?.copyWith(
                               color: colorThem.primaryColor,
@@ -147,11 +155,13 @@ class _HomeViewState extends State<HomeView> {
                           context,
                         ).filteredEvent,
                         onRefresh: () {
-                          if (currentIndex == 0) {
+                          if (currentIndexProvider == 0) {
                             eventProvider.getAllEvent();
                           } else {
                             eventProvider.getFilteredEvent(
-                              CategoriesModel.getListCategories()[currentIndex - 1].id,
+                              CategoriesModel.getListCategories()[currentIndexProvider -
+                                      1]
+                                  .id,
                             );
                           }
                         },

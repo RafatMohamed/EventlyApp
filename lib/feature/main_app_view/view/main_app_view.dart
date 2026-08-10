@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:evently_app/feature/favorite/services/favourite_event_.dart';
+import 'package:evently_app/core/service/Provider/current_Index_categories_provider.dart';
 import 'package:evently_app/feature/favorite/view/favorite_view.dart';
 import 'package:evently_app/feature/home/view/home_view.dart';
 import 'package:evently_app/feature/profile/view/profile_view.dart';
@@ -51,29 +51,32 @@ class _MainAppViewState extends State<MainAppView> {
       ),
     ];
 
-    return Scaffold(
-      body: SafeArea(
-        child: IndexedStack(index: currentIndex, children: tabsView),
-      ),
+    return ChangeNotifierProvider(
+      create: (context) => CurrentIndexCategoriesProvider(),
+      child: Scaffold(
+        body: SafeArea(
+          child: IndexedStack(index: currentIndex, children: tabsView),
+        ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          currentIndex = index;
-          setState(() {});
-        },
-        currentIndex: currentIndex,
-        items: iconBottomNavBar,
-      ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            currentIndex = index;
+            setState(() {});
+          },
+          currentIndex: currentIndex,
+          items: iconBottomNavBar,
+        ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(
-            context,
-            AddEventView.routeName,
-            arguments: (isUpdate: false, event: null),
-          );
-        },
-        child: const Icon(Icons.add),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              AddEventView.routeName,
+              arguments: (isUpdate: false, event: null),
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

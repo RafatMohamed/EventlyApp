@@ -1,7 +1,5 @@
-import 'package:evently_app/core/service/Provider/get_event_services.dart';
 import 'package:evently_app/generated/assets.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../../../core/models/tab_bar_categories_model.dart';
 import '../../../../core/utilities/app_padding.dart';
 import '../../../../core/utilities/app_text.dart';
