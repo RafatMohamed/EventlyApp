@@ -120,7 +120,7 @@ class _OnBoardingItemState extends State<OnBoardingItem> {
                 onTap: (inx) {
                   isLightThem=inx;
                   themProvider.changThem(
-                    inx == 0 ? ThemeMode.light : ThemeMode.dark,
+                    inx == 0 ? ThemeMode.light : ThemeMode.dark,context
                   );
                 },
               ),

@@ -48,9 +48,9 @@ class CustomBuildThemProfileApp extends StatelessWidget {
           trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
           onChanged: (value) {
             if (value) {
-              themProvider.changThem(ThemeMode.dark,);
+              themProvider.changThem(ThemeMode.dark,context);
             } else {
-              themProvider.changThem(ThemeMode.light,);
+              themProvider.changThem(ThemeMode.light,context);
             }
           },
           title: Text(
