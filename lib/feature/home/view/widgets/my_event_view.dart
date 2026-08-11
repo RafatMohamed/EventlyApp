@@ -1,5 +1,7 @@
+import 'package:evently_app/core/utilities/app_colors.dart';
 import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/core/widgets/default_app_bar_app.dart';
+import 'package:evently_app/feature/event/model/event_model.dart';
 import 'package:evently_app/feature/home/view/widgets/custom_card_categories_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,9 +10,27 @@ import '../../../../core/utilities/app_text.dart';
 import '../../../../core/utilities/helper/custom_widget_loading_data.dart';
 import '../../../event/view/add_event_view.dart';
 
-class MyEventView extends StatelessWidget {
+class MyEventView extends StatefulWidget {
   static const String routeName = "/${AppText.routeMyEventViewApp}";
   const MyEventView({super.key});
+
+  @override
+  State<MyEventView> createState() => _MyEventViewState();
+}
+
+class _MyEventViewState extends State<MyEventView> {
+  late Future<List<EventModel>> myEventsFuture;
+  @override
+  void initState() {
+    super.initState();
+    myEventsFuture = context.read<GetEventServicesProvider>().getMyEvent();
+  }
+
+  Future<void> refreshEvents() async {
+    setState((){
+      myEventsFuture = context.read<GetEventServicesProvider>().getMyEvent();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +41,7 @@ class MyEventView extends StatelessWidget {
       appBar: defaultAppBarApp(
         context,
         themeColor: colorThem,
-        title: "My EVent",
+        title: AppText.myEvent,
       ),
       body: Padding(
         padding: const EdgeInsetsDirectional.symmetric(
@@ -32,13 +52,12 @@ class MyEventView extends StatelessWidget {
           crossAxisAlignment: .start,
           children: [
             Expanded(
-              child: FutureBuilder(
-                future: Provider.of<GetEventServicesProvider>(
-                  context,
-                ).getMyEvent(),
+              child: FutureBuilder<List<EventModel>>(
+                future: myEventsFuture,
                 builder: (context, snapshot) {
+                  final events= snapshot.data ??[];
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CustomWidgetLoadingData.circleProgrees(colorThem);
+                    return CustomWidgetLoadingData.circleProgress(colorThem);
                   }
                   if (snapshot.hasError) {
                     return Text(
@@ -48,7 +67,7 @@ class MyEventView extends StatelessWidget {
                       ),
                     );
                   }
-                  if (snapshot.data!.isEmpty) {
+                  if (events.isEmpty){
                     return Column(
                       mainAxisAlignment: .center,
                       children: [
@@ -61,11 +80,14 @@ class MyEventView extends StatelessWidget {
                             backgroundColor: colorThem.primaryColor,
                           ),
                           onPressed: () async {
-                            await Navigator.pushNamed(
+                            var result = await Navigator.pushNamed(
                               context,
                               AddEventView.routeName,
                               arguments: (isUpdate: false, event: null),
                             );
+                            if (result == true) {
+                              return refreshEvents();
+                            }
                           },
                           child: Text(
                             "You Dont have Own Events Please Click to add Event",
@@ -78,17 +100,24 @@ class MyEventView extends StatelessWidget {
                       ],
                     );
                   }
-                  if (snapshot.hasData) {
+                  if (events.isNotEmpty) {
                     return CustomCardCategoriesItem(
-                      events: Provider.of<GetEventServicesProvider>(
-                        context,
-                      ).myEvent,
+                      onRefresh:refreshEvents,
+                      events:events,
                       size: size,
                       colorThem: colorThem,
                       textTheme: textTheme,
                     );
                   }
-                  return const SizedBox();
+                  return const Center(
+                    child: Text(
+                      "Tarb yeh",
+                      style: TextStyle(
+                        color: AppColors.backgroundDark,
+                        fontSize: 50,
+                      ),
+                    ),
+                  );
                 },
               ),
             ),

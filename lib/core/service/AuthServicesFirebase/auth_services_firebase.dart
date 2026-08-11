@@ -48,7 +48,7 @@ class AuthServicesFirebase {
         .signInWithEmailAndPassword(email: email, password: pass);
     return await getUserFirebase(userCredential.user!.uid);
   }
-  static Future<AuthModel> signInWithGoogle() async {
+  static Future<AuthModel> signInWithGoogle(BuildContext context) async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     if (googleUser == null) {
@@ -80,6 +80,11 @@ class AuthServicesFirebase {
     );
 
     await addUsersFirebase(user);
+
+     Provider.of<AuthServicesProvider>(
+      context,
+      listen: false,
+    ).streamUser(user);
 
     return user;
   }

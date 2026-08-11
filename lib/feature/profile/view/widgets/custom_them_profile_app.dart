@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/service/AuthServicesFirebase/auth_services_firebase.dart';
 import 'package:evently_app/core/service/Provider/them_app_service.dart';
+import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/feature/login/view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,9 +49,9 @@ class CustomBuildThemProfileApp extends StatelessWidget {
           trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
           onChanged: (value) {
             if (value) {
-              themProvider.changThem(ThemeMode.dark,);
+              themProvider.changThem(ThemeMode.dark,context);
             } else {
-              themProvider.changThem(ThemeMode.light,);
+              themProvider.changThem(ThemeMode.light,context);
             }
           },
           title: Text(
@@ -122,6 +123,7 @@ class CustomBuildThemProfileApp extends StatelessWidget {
         InkWell(
           onTap: () {
             AuthServicesFirebase.logOut(context: context);
+            StorgeLocalHive.instance.clearIsFirstOpenApp();
             Navigator.pushReplacementNamed(context, LoginView.routeName);
           },
           child: CustomBuildListTile(

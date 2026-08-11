@@ -8,12 +8,14 @@ import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/view/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../core/service/Provider/current_Index_categories_provider.dart';
 import '../core/service/Provider/get_event_services.dart';
 import '../core/service/Provider/localization_app_service.dart';
 import '../core/service/Provider/them_app_service.dart';
 import '../core/utilities/app_them.dart';
 import '../feature/event/view/add_event_view.dart';
 import '../feature/event/view/event_detailes_view.dart';
+import '../feature/favorite/services/favourite_event_.dart';
 import '../feature/favorite/view/favorite_view.dart';
 import '../feature/home/view/home_view.dart';
 import '../feature/home/view/widgets/my_event_view.dart';
@@ -36,12 +38,15 @@ class EventlyApp extends StatelessWidget {
       HomeView.routeName: (context) => const HomeView(),
       FavoriteView.routeName: (context) => const FavoriteView(),
       ProfileView.routeName: (context) => const ProfileView(),
-      AddEventView.routeName: (context){
-        var args =ModalRoute.of(context)!.settings.arguments as ({bool isUpdate,EventModel? event});
-        return  AddEventView(isEdite: args.isUpdate,event: args.event,);
+      AddEventView.routeName: (context) {
+        var args =
+            ModalRoute.of(context)!.settings.arguments
+                as ({bool isUpdate, EventModel? event});
+        return AddEventView(isEdite: args.isUpdate, event: args.event);
       },
       EventDetailsView.routeName: (context) {
-        EventModel event = ModalRoute.of(context)!.settings.arguments as EventModel;
+        EventModel event =
+            ModalRoute.of(context)!.settings.arguments as EventModel;
         return EventDetailsView(event: event);
       },
       AuthGate.routeName: (context) => const AuthGate(),
@@ -50,11 +55,13 @@ class EventlyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemAppService()),
+        ChangeNotifierProvider(create: (context) => CurrentIndexCategoriesProvider(),),
+        ChangeNotifierProvider(
+          create: (context) => FavouriteEventServicesProvider()..getFavouriteMyEvent(),
+        ),
         ChangeNotifierProvider(create: (context) => LocalizationAppService()),
         ChangeNotifierProvider(
-          create: (context) => GetEventServicesProvider()
-            ..getAllEvent()
-            ..getMyEvent(),
+          create: (context) => GetEventServicesProvider()..getAllEvent(),
         ),
         ChangeNotifierProvider(create: (context) => AuthServicesProvider()),
       ],

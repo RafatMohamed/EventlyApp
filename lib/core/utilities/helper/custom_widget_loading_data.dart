@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomWidgetLoadingData {
-  static Widget circleProgrees(ThemeData colorThem){
+  static Widget circleProgress(ThemeData colorThem,){
     return  Center(
       child: SizedBox(
-        width: 50,
-        height: 50,
+        height: 25,
+        width: 25,
         child: CircularProgressIndicator(
           backgroundColor: colorThem.scaffoldBackgroundColor,
           color: colorThem.primaryColor,

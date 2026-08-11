@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/shared/storge_local_hive.dart';
 import 'package:evently_app/core/utilities/app_padding.dart';
 import 'package:evently_app/core/utilities/app_text.dart';
-import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/model/on_boarding_model.dart';
 import 'package:evently_app/generated/assets.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/service/is_login_services.dart';
 import '../../../../core/widgets/custom_button_app.dart';
 import 'on_boarding_item.dart';
 
@@ -112,6 +112,6 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
 
   Future<void> navigationToMainView() {
     StorgeLocalHive.instance.saveIsFirstOpenApp(false);
-    return  Navigator.pushReplacementNamed(context, MainAppView.routeName);
+    return  Navigator.pushReplacementNamed(context, AuthGate.routeName);
   }
 }
