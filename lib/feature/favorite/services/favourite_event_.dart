@@ -20,7 +20,6 @@ class FavouriteEventServicesProvider extends ChangeNotifier {
   Future<void> addFavourite(EventModel event) async {
     await EventServicesFirebase.addEventFavourite(event: event);
     isFavouriteID.add(event.eventID!);
-    myFavouriteEvent.add(event);
     myFavouriteEventFilteredSearch.add(event);
     notifyListeners();
   }
