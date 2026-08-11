@@ -19,26 +19,29 @@ class FavoriteView extends StatefulWidget {
 }
 
 class _FavoriteViewState extends State<FavoriteView> {
-
- late Future<List<EventModel>> events;
+  late Future<List<EventModel>> events;
   @override
   void initState() {
-    events = Provider.of<FavouriteEventServicesProvider>(context,listen: false).getFavouriteMyEvent();
+    events = Provider.of<FavouriteEventServicesProvider>(
+      context,
+      listen: false,
+    ).getFavouriteMyEvent();
     super.initState();
   }
 
- Future<void> refreshEvents() async {
-   setState(() {
-     events = context
-         .read<FavouriteEventServicesProvider>()
-         .getFavouriteMyEvent();
-   });
- }
-
+  Future<void> refreshEvents() async {
+    setState(() {
+      events = context
+          .read<FavouriteEventServicesProvider>()
+          .getFavouriteMyEvent();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-   var eventsBuild = Provider.of<FavouriteEventServicesProvider>(context).myFavouriteEvent;
+    var eventsBuild = Provider.of<FavouriteEventServicesProvider>(
+      context,
+    ).myFavouriteEventFilteredSearch;
 
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ThemeData colorThem = Theme.of(context);
@@ -84,16 +87,38 @@ class _FavoriteViewState extends State<FavoriteView> {
                 CustomTextFormField(
                   hintText: AppText.searchEvent,
                   suffixIconPath: Assets.icons.search.path,
+                  isName: true,
+                  onChanged: (value) async {
+                    Provider.of<FavouriteEventServicesProvider>(
+                      context,
+                      listen: false,
+                    ).searchFavouriteMyEvent(value);
+                  },
                 ),
-                Expanded(
-                  child: CustomCardCategoriesItem(
-                    onRefresh: () {},
-                    events: eventsBuild,
-                    size: size,
-                    colorThem: colorThem,
-                    textTheme: textTheme,
-                  ),
-                ),
+                eventsBuild.isEmpty
+                    ? Center(
+                      child: Column(
+                          mainAxisAlignment: .center,
+                          children: [
+                            Text(
+                              "No Result",
+                              textAlign: .center,
+                              style: textTheme.bodySmall?.copyWith(
+                                color: colorThem.primaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                    )
+                    : Expanded(
+                        child: CustomCardCategoriesItem(
+                          onRefresh: () {},
+                          events: eventsBuild.isNotEmpty ? eventsBuild : [],
+                          size: size,
+                          colorThem: colorThem,
+                          textTheme: textTheme,
+                        ),
+                      ),
               ],
             );
           }

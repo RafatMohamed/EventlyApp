@@ -10,6 +10,7 @@ class FavouriteEventServicesProvider extends ChangeNotifier {
   }
   Set<String> isFavouriteID = {};
   List<EventModel> myFavouriteEvent = [];
+  List<EventModel> myFavouriteEventFilteredSearch = [];
 
   Future<void> intiFavouriteProvider() async {
     isFavouriteID = await EventServicesFirebase.getAllIDDocFavourite();
@@ -20,6 +21,7 @@ class FavouriteEventServicesProvider extends ChangeNotifier {
     await EventServicesFirebase.addEventFavourite(event: event);
     isFavouriteID.add(event.eventID!);
     myFavouriteEvent.add(event);
+    myFavouriteEventFilteredSearch.add(event);
     notifyListeners();
   }
 
@@ -29,13 +31,28 @@ class FavouriteEventServicesProvider extends ChangeNotifier {
     myFavouriteEvent.removeWhere((element) {
      return element.eventID==event.eventID;
     },);
+    myFavouriteEventFilteredSearch.removeWhere((element) {
+     return element.eventID==event.eventID;
+    },);
     notifyListeners();
   }
 
   Future<List<EventModel>> getFavouriteMyEvent() async {
     myFavouriteEvent = await EventServicesFirebase.getEventFavourite();
+    myFavouriteEventFilteredSearch=myFavouriteEvent;
     notifyListeners();
-    return myFavouriteEvent;
+    return myFavouriteEventFilteredSearch;
+  }
+
+  void searchFavouriteMyEvent(String query) async {
+    if(query.isEmpty){
+      myFavouriteEventFilteredSearch=myFavouriteEvent;
+    }else{
+      myFavouriteEventFilteredSearch = myFavouriteEvent.where((element) {
+        return element.title.trim().toLowerCase() == query.trim().toLowerCase()||element.desc.trim().toLowerCase()==query.trim().toLowerCase();
+      },).toList();
+    }
+    notifyListeners();
   }
 
   bool getIsFavouriteEvent(EventModel event) {
