@@ -20,7 +20,7 @@ class CustomButtonGoogle extends StatelessWidget {
       visible: Platform.isAndroid,
       child: GestureDetector(
         onTap: () async {
-          AuthServicesFirebase.signInWithGoogle()
+          AuthServicesFirebase.signInWithGoogle(context)
               .then((value) async {
                 if (!context.mounted) return;
                 Provider.of<AuthServicesProvider>(
