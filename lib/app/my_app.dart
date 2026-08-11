@@ -8,6 +8,7 @@ import 'package:evently_app/feature/main_app_view/view/main_app_view.dart';
 import 'package:evently_app/feature/on_boarding/view/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../core/service/Provider/current_Index_categories_provider.dart';
 import '../core/service/Provider/get_event_services.dart';
 import '../core/service/Provider/localization_app_service.dart';
 import '../core/service/Provider/them_app_service.dart';
@@ -54,8 +55,9 @@ class EventlyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemAppService()),
+        ChangeNotifierProvider(create: (context) => CurrentIndexCategoriesProvider(),),
         ChangeNotifierProvider(
-          create: (context) => FavouriteEventServicesProvider()..intiFavouriteProvider()..getFavouriteMyEvent(),
+          create: (context) => FavouriteEventServicesProvider()..getFavouriteMyEvent(),
         ),
         ChangeNotifierProvider(create: (context) => LocalizationAppService()),
         ChangeNotifierProvider(

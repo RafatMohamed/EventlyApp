@@ -33,7 +33,7 @@ class CustomCardCategoriesItem extends StatelessWidget {
       return false;
     }
 
-    return ListView.builder(
+    return events.first.toString().isNotEmpty? ListView.builder(
       itemCount: events.length,
       itemBuilder: (context, index) {
         EventModel event = events[index];
@@ -99,6 +99,7 @@ class CustomCardCategoriesItem extends StatelessWidget {
                       }else{
                         await  providerFavourite.addFavourite(event);
                       }
+                      onRefresh();
                     },
                     child: Row(
                       mainAxisAlignment: .spaceBetween,
@@ -124,6 +125,6 @@ class CustomCardCategoriesItem extends StatelessWidget {
           ),
         );
       },
-    );
+    ):SizedBox();
   }
 }

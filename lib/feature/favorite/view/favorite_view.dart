@@ -25,12 +25,21 @@ class _FavoriteViewState extends State<FavoriteView> {
   void initState() {
     events = Provider.of<FavouriteEventServicesProvider>(context,listen: false).getFavouriteMyEvent();
     super.initState();
-
   }
+
+ Future<void> refreshEvents() async {
+   setState(() {
+     events = context
+         .read<FavouriteEventServicesProvider>()
+         .getFavouriteMyEvent();
+   });
+ }
 
 
   @override
   Widget build(BuildContext context) {
+   var eventsBuild = Provider.of<FavouriteEventServicesProvider>(context).myFavouriteEvent;
+
     final TextTheme textTheme = Theme.of(context).textTheme;
     final ThemeData colorThem = Theme.of(context);
     final Size size = MediaQuery.sizeOf(context);
@@ -67,7 +76,7 @@ class _FavoriteViewState extends State<FavoriteView> {
               ],
             );
           }
-          if (snapshot.data!.isNotEmpty) {
+          if (snapshot.data!.isNotEmpty && snapshot.hasData) {
             return Column(
               spacing: 16,
               crossAxisAlignment: .start,
@@ -79,7 +88,7 @@ class _FavoriteViewState extends State<FavoriteView> {
                 Expanded(
                   child: CustomCardCategoriesItem(
                     onRefresh: () {},
-                    events: snapshot.data??[],
+                    events: eventsBuild,
                     size: size,
                     colorThem: colorThem,
                     textTheme: textTheme,
