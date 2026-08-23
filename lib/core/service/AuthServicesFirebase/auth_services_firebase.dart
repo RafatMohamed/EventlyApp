@@ -54,46 +54,53 @@ class AuthServicesFirebase {
     if (googleUser == null) {
       throw Exception("Google sign in cancelled");
     }
+    try{
 
-    final GoogleSignInAuthentication googleAuth =
-    await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-    final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
-    final firebaseUser = userCredential.user!;
+      final firebaseUser = userCredential.user!;
 
-    final doc = await authRef.doc(firebaseUser.uid).get();
+      final doc = await authRef.doc(firebaseUser.uid).get();
 
-    if (doc.exists) {
-      return doc.data()!;
+      if (doc.exists) {
+        Provider.of<AuthServicesProvider>(
+          context,
+          listen: false,
+        ).streamUser(doc.data());
+        return doc.data()!;
+      }
+
+      final user = AuthModel(
+        userId: firebaseUser.uid,
+        name: firebaseUser.displayName ?? "",
+        email: firebaseUser.email ?? "",
+      );
+
+      await addUsersFirebase(user);
+
+      Provider.of<AuthServicesProvider>(
+        context,
+        listen: false,
+      ).streamUser(user);
+
+      return user;
+    }catch(error){
+      rethrow;
     }
-
-    final user = AuthModel(
-      userId: firebaseUser.uid,
-      name: firebaseUser.displayName ?? "",
-      email: firebaseUser.email ?? "",
-    );
-
-    await addUsersFirebase(user);
-
-     Provider.of<AuthServicesProvider>(
-      context,
-      listen: false,
-    ).streamUser(user);
-
-    return user;
   }
 
   static Future<void> logOut({required BuildContext context})async{
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
     if (!context.mounted) return;
-    Provider.of<AuthServicesProvider>(context).streamUser(null);
+    Provider.of<AuthServicesProvider>(context,listen: false).streamUser(null);
   }
   static Future<void> resetPassword({required String email})async{
     var snapShot = await authRef.where("email",isEqualTo: email).limit(1).get();
