@@ -37,8 +37,8 @@ class CustomCardCategoriesItem extends StatelessWidget {
       itemCount: events.length,
       itemBuilder: (context, index) {
         EventModel event = events[index];
-        final providerFavourite = context.watch<FavouriteEventServicesProvider>();
-       final bool isEventFavourite = providerFavourite.getIsFavouriteEvent(event);
+        final providerFavourite =Provider.of<FavouriteEventServicesProvider>(context);
+        final bool isEventFavourite = providerFavourite.getIsFavouriteEvent(event);
         return GestureDetector(
           onTap: () async {
             var result = await Navigator.pushNamed(
@@ -95,11 +95,10 @@ class CustomCardCategoriesItem extends StatelessWidget {
                   child: InkWell(
                     onTap: () async{
                       if(isEventFavourite){
-                       await providerFavourite.remove(event);
+                        await Provider.of<FavouriteEventServicesProvider>(context,listen: false).remove(event);
                       }else{
-                        await  providerFavourite.addFavourite(event);
+                        await Provider.of<FavouriteEventServicesProvider>(context,listen: false).addFavourite(event);
                       }
-                      onRefresh();
                     },
                     child: Row(
                       mainAxisAlignment: .spaceBetween,

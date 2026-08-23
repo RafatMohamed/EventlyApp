@@ -47,12 +47,12 @@ class EventServicesFirebase {
     return favResultEvents;
   }
 
-  static Future<Set<String>> getAllIDDocFavourite() async {
-    final eventSnapshot = await favouriteEventRef.get();
-    return eventSnapshot.docs.map((e) {
-      return e.id;
-    }).toSet();
-  }
+  // static Future<Set<String>> getAllIDDocFavourite() async {
+  //   final eventSnapshot = await favouriteEventRef.get();
+  //   return eventSnapshot.docs.map((e) {
+  //     return e.id;
+  //   }).toSet();
+  // }
 
   static Future<void> deleteEventFirebase(String? eventID) async {
     return await eventRef.doc(eventID).delete();
